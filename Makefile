@@ -21,6 +21,11 @@ lint:  ## Run flake8 over app
 	flake8 orb
 
 ###################################
+### Language
+makemessages:  ## Make PO messages files
+	./manage.py makemessages -l es -l pt_BR
+
+###################################
 ### Building project components
 
 build: python-deps node-deps database templates docs  ## Run all build commands, including dependencies, database, assets, and docs

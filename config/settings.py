@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for mpowering project.
 
@@ -9,7 +11,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
 import os
-import sys
 
 from django.core.urlresolvers import reverse_lazy
 
@@ -100,6 +101,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'orb/locale'),
+]
+LANGUAGES = [
+    ('en', u'English'),
+    ('es', u'Español'),
+    ('pt_BR', u'Português'),
+]
 #####################################################################
 
 
@@ -210,7 +219,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 
 try:
-    from local_settings import *
+    from local_settings import *  # noqa
 except ImportError:
     import warnings
     warnings.warn("Using default settings. Add `config.local_settings.py` for custom settings.")

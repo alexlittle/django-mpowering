@@ -1,0 +1,2383 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-10 17:53+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: orb/api/error_codes.py:31
+msgid "You have already uploaded a resource with this title"
+msgstr ""
+
+#: orb/api/error_codes.py:32
+msgid "Resource not found"
+msgstr ""
+
+#: orb/api/error_codes.py:33
+msgid "No title provided"
+msgstr ""
+
+#: orb/api/error_codes.py:34
+msgid "No description provided"
+msgstr ""
+
+#: orb/api/error_codes.py:35
+msgid "This tag already exists"
+msgstr ""
+
+#: orb/api/error_codes.py:36
+msgid "Cannot add empty tag"
+msgstr ""
+
+#: orb/api/error_codes.py:37
+msgid "Please supply a string to search for"
+msgstr ""
+
+#: orb/api/error_codes.py:38
+msgid "No resource specfified"
+msgstr ""
+
+#: orb/api/error_codes.py:39
+msgid "No tag specfified"
+msgstr ""
+
+#: orb/api/error_codes.py:40
+msgid "Tag not found"
+msgstr ""
+
+#: orb/api/error_codes.py:41
+msgid "Resource already tagged with this tag"
+msgstr ""
+
+#: orb/api/error_codes.py:42
+#, python-brace-format
+msgid "Description is too long, please enter no more than {max_words} words"
+msgstr ""
+
+#: orb/api/validation.py:13
+msgid "You do not have API access"
+msgstr ""
+
+#: orb/emailer.py:16
+msgid "Welcome to ORB"
+msgstr ""
+
+#: orb/emailer.py:40 orb/templates/orb/profile/reset-sent.html:3
+#: orb/templates/orb/profile/reset-sent.html:6
+msgid "Password reset"
+msgstr ""
+
+#: orb/emailer.py:63 orb/templates/orb/resource/create_thanks.html:3
+#: orb/templates/orb/resource/create_thanks.html:6
+msgid "Resource Submitted"
+msgstr ""
+
+#: orb/emailer.py:89 orb/emailer.py:116
+msgid "Resource Submission"
+msgstr ""
+
+#: orb/emailer.py:145
+msgid " New resource submitted"
+msgstr ""
+
+#: orb/emailer.py:171
+msgid "Link checker results"
+msgstr ""
+
+#: orb/forms.py:31
+msgid "Please enter a title"
+msgstr ""
+
+#: orb/forms.py:33
+msgid "Comma separated if entering more than one organisation"
+msgstr ""
+
+#: orb/forms.py:35
+msgid "Please enter at least one organisation"
+msgstr ""
+
+#: orb/forms.py:39
+msgid "Please enter a description"
+msgstr ""
+
+#: orb/forms.py:40
+#, python-format
+msgid "Please enter no more than %d words."
+msgstr ""
+
+#: orb/forms.py:46
+msgid "Health domain"
+msgstr ""
+
+#: orb/forms.py:49
+msgid "Please select at least one health domain"
+msgstr ""
+
+#: orb/forms.py:53
+msgid "Please select at least one resource type"
+msgstr ""
+
+#: orb/forms.py:57
+msgid "Please select at least one audience"
+msgstr ""
+
+#: orb/forms.py:60
+msgid ""
+"The geographic area the resource is designed for, may be region e.g. "
+"(\"Africa\", \"East Africa\") or country (e.g. \"Ethiopia\", \"Mali\"). "
+"Comma separated if entering more than one geography"
+msgstr ""
+
+#: orb/forms.py:61
+msgid "Please enter at least one geographical area"
+msgstr ""
+
+#: orb/forms.py:65
+msgid ""
+"The languages the resource uses. Comma separated if entering more than one "
+"language"
+msgstr ""
+
+#: orb/forms.py:66
+msgid "Please enter at least one language"
+msgstr ""
+
+#: orb/forms.py:70
+msgid "Please select at least one device"
+msgstr ""
+
+#: orb/forms.py:74
+msgid "Please select a license"
+msgstr ""
+
+#: orb/forms.py:75
+msgid ""
+"<a href='/cc-faq' target='_blank'>More information on Creative Commons "
+"licenses</a>"
+msgstr ""
+
+#: orb/forms.py:78
+msgid ""
+"Please enter any other relevant tags for this resource, comma separated if "
+"entering more than one tag"
+msgstr ""
+
+#: orb/forms.py:82
+msgid ""
+"Please tick the box to confirm that you have read the <a href='/resource/"
+"guidelines/' target='_blank' class='prominent'>guidelines and criteria</a> "
+"for submitting resources to ORB"
+msgstr ""
+
+#: orb/forms.py:84
+msgid ""
+"Please tick the box to confirm that you have read the guidelines for "
+"submitting resources to ORB"
+msgstr ""
+
+#: orb/forms.py:97
+msgid ""
+"Please enter any specific text you would like to be used for the attribution "
+"for this resource"
+msgstr ""
+
+#: orb/forms.py:150
+msgid "Continue &gt;&gt;"
+msgstr ""
+
+#: orb/forms.py:159
+msgid "You have entered a study time, but not selected a unit."
+msgstr ""
+
+#: orb/forms.py:167
+#, python-brace-format
+msgid ""
+"You have entered {no_words} words, please enter no more than {max_words}"
+msgstr ""
+
+#: orb/forms.py:185
+msgid "You have entered already submitted a resource with this title."
+msgstr ""
+
+#: orb/forms.py:214
+msgid "Add"
+msgstr ""
+
+#: orb/forms.py:225
+msgid "Please correct the errors below and resubmit the form."
+msgstr ""
+
+#: orb/forms.py:229
+msgid "Please submit a file and/or a url for this resource"
+msgstr ""
+
+#: orb/forms.py:240
+#, python-format
+msgid "Currently, ORB does not allow uploading of '%s' files"
+msgstr ""
+
+#: orb/forms.py:243
+#, python-format
+msgid ""
+"Please keep filesize under %(max_size)s. Current filesize %(actual_size)s"
+msgstr ""
+
+#: orb/forms.py:256
+msgid "This does not appear to be a valid Url"
+msgstr ""
+
+#: orb/forms.py:263 orb/forms.py:282 orb/forms.py:305
+msgid "Please enter something to search for"
+msgstr ""
+
+#: orb/forms.py:274
+msgid "Go"
+msgstr ""
+
+#: orb/forms.py:295 orb/forms.py:352 orb/templates/orb/search.html:5
+#: orb/templates/orb/search.html.py:9
+msgid "Search"
+msgstr ""
+
+#: orb/forms.py:304
+msgid "Search terms"
+msgstr ""
+
+#: orb/forms.py:374
+msgid "Please select at least a search term or a tag"
+msgstr ""
+
+#: orb/forms.py:387
+msgid "Please enter a reason as to why the resource has been rejected"
+msgstr ""
+
+#: orb/forms.py:388
+msgid ""
+"The text you enter here will be included in the email to the submitter of "
+"the resource, so please bear this in mind when explaining your reasoning."
+msgstr ""
+
+#: orb/forms.py:389
+msgid "Reason for rejection"
+msgstr ""
+
+#: orb/forms.py:402
+msgid "Submit"
+msgstr ""
+
+#: orb/models.py:26 orb/models.py:161
+msgid "Rejected"
+msgstr ""
+
+#: orb/models.py:27 orb/models.py:162 orb/templates/orb/analytics/home.html:80
+#: orb/templates/orb/analytics/home.html:93
+#: orb/templates/orb/analytics/review.html:11
+msgid "Pending CRT"
+msgstr ""
+
+#: orb/models.py:28
+msgid "Pending MRT"
+msgstr ""
+
+#: orb/models.py:29 orb/models.py:164
+msgid "Approved"
+msgstr ""
+
+#: orb/models.py:37
+msgid "Mins"
+msgstr ""
+
+#: orb/models.py:38
+msgid "Hours"
+msgstr ""
+
+#: orb/models.py:39
+msgid "Days"
+msgstr ""
+
+#: orb/models.py:40
+msgid "Weeks"
+msgstr ""
+
+#: orb/models.py:64 orb/templates/orb/analytics/resource.html:60
+#: orb/templates/orb/analytics/tag.html:65
+#: orb/templates/orb/analytics/tag.html:94
+msgid "Resource"
+msgstr ""
+
+#: orb/models.py:65 orb/templates/orb/analytics/tag.html:53
+#: orb/templates/orb/analytics/tag.html:87
+msgid "Resources"
+msgstr ""
+
+#: orb/models.py:163 orb/templates/orb/analytics/home.html:81
+#: orb/templates/orb/analytics/home.html:121
+#: orb/templates/orb/analytics/home.html:138
+#: orb/templates/orb/analytics/review.html:49
+msgid "Pending MEP"
+msgstr ""
+
+#: orb/models.py:227
+msgid "is translation of"
+msgstr ""
+
+#: orb/models.py:228
+msgid "is derivative of"
+msgstr ""
+
+#: orb/models.py:229
+msgid "is contained in"
+msgstr ""
+
+#: orb/models.py:248
+msgid "Quality Assurance"
+msgstr ""
+
+#: orb/models.py:249
+msgid "Value for Frontline Health Workers (FLHW)"
+msgstr ""
+
+#: orb/models.py:250
+msgid "Video resources"
+msgstr ""
+
+#: orb/models.py:251
+msgid "Animation resources"
+msgstr ""
+
+#: orb/models.py:252
+msgid "Audio resources"
+msgstr ""
+
+#: orb/models.py:253
+msgid "Text based resources"
+msgstr ""
+
+#: orb/models.py:268
+msgid "Category"
+msgstr ""
+
+#: orb/models.py:269
+msgid "Categories"
+msgstr ""
+
+#: orb/models.py:306
+msgid "Tag"
+msgstr ""
+
+#: orb/models.py:307 orb/templates/orb/email/link_checker_results.html:18
+#: orb/templates/orb/email/link_checker_results.txt:16
+msgid "Tags"
+msgstr ""
+
+#: orb/models.py:344
+msgid "Tag property"
+msgstr ""
+
+#: orb/models.py:345
+msgid "Tag properties"
+msgstr ""
+
+#: orb/models.py:375
+msgid "under 18"
+msgstr ""
+
+#: orb/models.py:376
+msgid "18-24"
+msgstr ""
+
+#: orb/models.py:377
+msgid "25-34"
+msgstr ""
+
+#: orb/models.py:378
+msgid "35-50"
+msgstr ""
+
+#: orb/models.py:379
+msgid "over 50"
+msgstr ""
+
+#: orb/models.py:380 orb/models.py:385
+msgid "Prefer not to say"
+msgstr ""
+
+#: orb/models.py:383
+msgid "Female"
+msgstr ""
+
+#: orb/models.py:384
+msgid "Male"
+msgstr ""
+
+#: orb/models.py:431 orb/models.py:484 orb/templates/orb/analytics/tag.html:105
+msgid "View"
+msgstr ""
+
+#: orb/models.py:432
+msgid "View-api"
+msgstr ""
+
+#: orb/models.py:433 orb/templates/orb/analytics/tag.html:106
+#: orb/templates/orb/profile/view.html:83 orb/views.py:183
+msgid "Edit"
+msgstr ""
+
+#: orb/models.py:434 orb/templates/orb/resource/view.html:180
+#: orb/templates/orb/resource/view.html:185
+msgid "Download"
+msgstr ""
+
+#: orb/models.py:435
+msgid "Create"
+msgstr ""
+
+#: orb/models.py:463
+msgid "search"
+msgstr ""
+
+#: orb/models.py:464
+msgid "search-api"
+msgstr ""
+
+#: orb/models.py:465
+msgid "search-adv"
+msgstr ""
+
+#: orb/models.py:485
+msgid "View-API"
+msgstr ""
+
+#: orb/models.py:486
+msgid "View-URL"
+msgstr ""
+
+#: orb/models.py:513
+msgid "Public"
+msgstr ""
+
+#: orb/models.py:514
+msgid "Private"
+msgstr ""
+
+#: orb/models.py:527
+msgid "Collection"
+msgstr ""
+
+#: orb/models.py:528 orb/templates/orb/resource/view.html:236
+msgid "Collections"
+msgstr ""
+
+#: orb/models.py:551
+msgid "Collection user"
+msgstr ""
+
+#: orb/models.py:552
+msgid "Collection users"
+msgstr ""
+
+#: orb/models.py:562
+msgid "Collection resource"
+msgstr ""
+
+#: orb/models.py:563
+msgid "Collection resources"
+msgstr ""
+
+#: orb/partners/OnemCHW/models.py:26 orb/partners/OnemCHW/models.py:27
+msgid "CountryData"
+msgstr ""
+
+#: orb/profile/forms.py:20 orb/profile/forms.py:64
+msgid "Please enter a username."
+msgstr ""
+
+#: orb/profile/forms.py:24 orb/profile/forms.py:70
+msgid "Please enter a password."
+msgstr ""
+
+#: orb/profile/forms.py:26
+msgid "Please note that your username and password are case-sensitive."
+msgstr ""
+
+#: orb/profile/forms.py:41 orb/profile/views.py:45
+#: orb/templates/includes/header.html:59
+msgid "Login"
+msgstr ""
+
+#: orb/profile/forms.py:44
+msgid "Forgotten password?"
+msgstr ""
+
+#: orb/profile/forms.py:57
+msgid "Invalid username or password. Please try again."
+msgstr ""
+
+#: orb/profile/forms.py:66 orb/profile/forms.py:227
+msgid "Please enter a valid e-mail address."
+msgstr ""
+
+#: orb/profile/forms.py:67
+msgid "Please enter your e-mail address."
+msgstr ""
+
+#: orb/profile/forms.py:71
+msgid "Your password should be at least 6 characters long."
+msgstr ""
+
+#: orb/profile/forms.py:76
+msgid "Please enter your password again."
+msgstr ""
+
+#: orb/profile/forms.py:77
+msgid "Your password again should be at least 6 characters long."
+msgstr ""
+
+#: orb/profile/forms.py:80
+msgid "Please enter your first name."
+msgstr ""
+
+#: orb/profile/forms.py:81
+msgid "Your first name should be at least 2 characters long."
+msgstr ""
+
+#: orb/profile/forms.py:85
+msgid "Please enter your last name."
+msgstr ""
+
+#: orb/profile/forms.py:86
+msgid "Your last name should be at least 2 characters long."
+msgstr ""
+
+#: orb/profile/forms.py:92 orb/profile/forms.py:248
+msgid "Please select from the options above, or enter in the field below:"
+msgstr ""
+
+#: orb/profile/forms.py:100 orb/profile/forms.py:174 orb/profile/forms.py:256
+msgid "Please select an age range"
+msgstr ""
+
+#: orb/profile/forms.py:104 orb/profile/forms.py:178 orb/profile/forms.py:260
+msgid "Please select a gender"
+msgstr ""
+
+#: orb/profile/forms.py:107
+msgid ""
+"Please tick the box to confirm that you have read the <a href='/terms/' "
+"target='_blank' class='prominent'>terms</a> about registering with ORB"
+msgstr ""
+
+#: orb/profile/forms.py:109
+msgid "Please tick the box to confirm that you have read the terms"
+msgstr ""
+
+#: orb/profile/forms.py:111
+msgid "Subscribe to mPowering update emails"
+msgstr ""
+
+#: orb/profile/forms.py:136 orb/profile/views.py:108
+#: orb/templates/includes/header.html:60
+msgid "Register"
+msgstr ""
+
+#: orb/profile/forms.py:153
+msgid "Username has already been registered, please select another."
+msgstr ""
+
+#: orb/profile/forms.py:159
+msgid "Email has already been registered"
+msgstr ""
+
+#: orb/profile/forms.py:164 orb/profile/forms.py:324
+msgid "Passwords do not match."
+msgstr ""
+
+#: orb/profile/forms.py:170
+msgid "Please select or enter a role"
+msgstr ""
+
+#: orb/profile/forms.py:187
+msgid "Please enter a username or email address."
+msgstr ""
+
+#: orb/profile/forms.py:201 orb/profile/views.py:130
+msgid "Reset password"
+msgstr ""
+
+#: orb/profile/forms.py:216
+msgid "Username/email not found"
+msgstr ""
+
+#: orb/profile/forms.py:222
+msgid "You cannot edit your API Key."
+msgstr ""
+
+#: orb/profile/forms.py:224
+msgid "You cannot edit your username."
+msgstr ""
+
+#: orb/profile/forms.py:232
+msgid "Your new password should be at least 6 characters long"
+msgstr ""
+
+#: orb/profile/forms.py:262
+msgid "Please tick the box to subscribe to mPowering update emails"
+msgstr ""
+
+#: orb/profile/forms.py:295
+msgid "Change password"
+msgstr ""
+
+#: orb/profile/forms.py:300
+msgid "API Key"
+msgstr ""
+
+#: orb/profile/forms.py:304
+msgid "Save"
+msgstr ""
+
+#: orb/profile/forms.py:317
+msgid "Email address already in use"
+msgstr ""
+
+#: orb/profile/views.py:187
+msgid "Profile updated"
+msgstr ""
+
+#: orb/profile/views.py:194
+msgid "Password updated"
+msgstr ""
+
+#: orb/templates/404.html:3 orb/templates/404.html.py:5
+msgid "Page not found"
+msgstr ""
+
+#: orb/templates/404.html:9
+#, python-format
+msgid ""
+"\n"
+"<p>The page you were looking for was not found.</p>\n"
+"<p>Return to the <a href=\"%(home)s\">homepage</a> or try a <a href="
+"\"%(search)s\">search</a></p>\n"
+msgstr ""
+
+#: orb/templates/500.html:3
+msgid "Server Error"
+msgstr ""
+
+#: orb/templates/500.html:4
+msgid ""
+"\n"
+"<p>Unfortunately a server error has occurred. A message has been sent to the "
+"server administrator.</p>\n"
+msgstr ""
+
+#: orb/templates/base.html:6 orb/templates/orb/home.html:5 orb/views.py:54
+msgid "ORB by mPowering"
+msgstr ""
+
+#: orb/templates/base.html:9 orb/templates/search/opensearch.html:3
+msgid "ORB"
+msgstr ""
+
+#: orb/templates/base.html:66
+msgid "Contact Us"
+msgstr ""
+
+#: orb/templates/base.html:70
+msgid "Follow Us"
+msgstr ""
+
+#: orb/templates/base.html:71 orb/templates/orb/profile/view.html:73
+msgid "Twitter"
+msgstr ""
+
+#: orb/templates/base.html:72
+msgid "Blog"
+msgstr ""
+
+#: orb/templates/base.html:75
+msgid "About Us"
+msgstr ""
+
+#: orb/templates/base.html:76 orb/templates/orb/about.html:4
+#: orb/templates/orb/profile/view.html:51
+msgid "About"
+msgstr ""
+
+#: orb/templates/base.html:77 orb/templates/orb/about.html:45
+msgid "Content Review Team"
+msgstr ""
+
+#: orb/templates/base.html:78 orb/templates/orb/about.html:58
+msgid "Medical Expert Panel"
+msgstr ""
+
+#: orb/templates/base.html:79 orb/templates/orb/partners.html:5
+#: orb/templates/orb/partners.html.py:10
+msgid "Content Partners"
+msgstr ""
+
+#: orb/templates/base.html:80 orb/templates/orb/how_to.html:4
+#: orb/templates/orb/how_to.html.py:9
+msgid "How to use ORB resources"
+msgstr ""
+
+#: orb/templates/base.html:81 orb/templates/orb/developers.html:4
+#: orb/templates/orb/developers.html:9
+msgid "Developers Area"
+msgstr ""
+
+#: orb/templates/base.html:86 orb/templates/orb/terms.html:4
+msgid "Terms and Privacy Policy"
+msgstr ""
+
+#: orb/templates/includes/header.html:16
+msgid "Home"
+msgstr ""
+
+#: orb/templates/includes/header.html:17
+msgid "Browse Resources"
+msgstr ""
+
+#: orb/templates/includes/header.html:24
+#: orb/templates/orb/viz/country_map.html:3
+#: orb/templates/orb/viz/country_map.html:103
+msgid "Country Map"
+msgstr ""
+
+#: orb/templates/includes/header.html:25 orb/templates/orb/toolkits/home.html:4
+#: orb/templates/orb/toolkits/home.html:7
+msgid "Toolkits"
+msgstr ""
+
+#: orb/templates/includes/header.html:29
+#: orb/templates/orb/resource/create_step1.html:8
+msgid "Add Resource"
+msgstr ""
+
+#: orb/templates/includes/header.html:32
+#: orb/templates/orb/analytics/home.html:4
+#: orb/templates/orb/analytics/home.html:77
+#: orb/templates/orb/analytics/resource.html:3
+#: orb/templates/orb/analytics/tag.html:3
+msgid "Analytics"
+msgstr ""
+
+#: orb/templates/includes/header.html:38
+msgid "Site analytics"
+msgstr ""
+
+#: orb/templates/includes/header.html:39
+msgid "Monthly Analytics"
+msgstr ""
+
+#: orb/templates/includes/header.html:40
+#: orb/templates/orb/analytics/home.html:86
+#: orb/templates/orb/analytics/home.html:242
+#: orb/templates/orb/analytics/map.html:3
+#: orb/templates/orb/analytics/map.html:7
+msgid "Activity Map"
+msgstr ""
+
+#: orb/templates/includes/header.html:43
+#: orb/templates/orb/analytics/review.html:4
+#: orb/templates/orb/analytics/review.html:8
+msgid "Pending Resources"
+msgstr ""
+
+#: orb/templates/includes/header.html:49
+msgid "My ORB"
+msgstr ""
+
+#: orb/templates/includes/header.html:51
+msgid "View Profile"
+msgstr ""
+
+#: orb/templates/includes/header.html:52
+msgid "Edit Profile"
+msgstr ""
+
+#: orb/templates/includes/header.html:53
+msgid "Rated"
+msgstr ""
+
+#: orb/templates/includes/header.html:54
+#: orb/templates/orb/profile/bookmarks.html:7
+msgid "Bookmarks"
+msgstr ""
+
+#: orb/templates/includes/header.html:55
+msgid "Logout"
+msgstr ""
+
+#: orb/templates/orb/about.html:9
+msgid "About ORB"
+msgstr ""
+
+#: orb/templates/orb/about.html:11
+#, python-format
+msgid ""
+"\n"
+"\n"
+"<p>ORB offers frontline health workers and trainers access to\n"
+"\tquality assured openly licensed content that can be used on mobile "
+"devices\n"
+"\tand shared virally amongst communities.</p>\n"
+"\n"
+"<p>ORB has three unique features:\n"
+"<ol>\n"
+"\t<li>Brings into one space quality-assured, multimedia materials\n"
+"\t\tfrom multiple content developers, with a focus on maternal and child\n"
+"\t\thealth.</li>\n"
+"\t<li>Adaptation of existing content: ORB aims to reduce the practice\n"
+"\t\tof new content being developed unnecessarily.</li>\n"
+"\t<li>A global collaborative network of organizations to share and\n"
+"\t\treview content, integrate content into programs and share\n"
+"\t\tuser-experience.</li>\n"
+"</ol>\n"
+"</p>\n"
+"\n"
+"<p>By improving access to health content and mobile learning, ORB\n"
+"\thelps health workers access the vital content they need to do their\n"
+"\twork effectively and confidently.</p>\n"
+"\n"
+"<p>By using the site, you are agreeing to our <a href=\"%(orb_terms)s"
+"\">Terms and Privacy\n"
+"\tPolicy</a> and that the content on this site <a href=\"%(orb_terms)s#not-"
+"medical\">does not constitute medical\n"
+"\tadvice</a>.</p>\n"
+"<p>\n"
+"\tORB has been developed by the <a href=\"http://mpoweringhealth.org"
+"\">mPowering\n"
+"\t\tFrontline Health Workers</a> partnership.\n"
+"</p>\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/about.html:46
+msgid ""
+"\n"
+"<p>Our Content Review Team consists of staff from over 35\n"
+"\torgansations, with backgrounds in global public health, training and\n"
+"\ttechnology.</p>\n"
+"<p>When resources are submitted to ORB, the Content Review Team makes\n"
+"\tthe initial decision on the suitability of the resource to be included\n"
+"\tin ORB. Once a resource has been approved by the Content Review Team it\n"
+"\tis then passed to our Medical Expert Panel.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/about.html:60
+msgid ""
+"\n"
+"<p>Our Medical Expert Panel consists of medical professionals from\n"
+"\tinternational health organisations.</p>\n"
+"<p>When a submitted resource has been approved by Content Review\n"
+"\tTeam, the Medical Expert Panel makes the final decision on whether a\n"
+"\tresource can be included in ORB, based on the most up to date medical\n"
+"\tinformation and guidelines available.</p>\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/about.html:71
+msgid "Homepage Photo Credits"
+msgstr ""
+
+#: orb/templates/orb/about.html:72
+#, python-format
+msgid ""
+"\n"
+"<ul>\n"
+"\t<li>Open University HEAT Program</li>\n"
+"\t<li>Ye Tun Oo Courtesy of Photoshare</li>\n"
+"\t<li>UNICEF South Africa</li>\n"
+"\t<li>Lesley-Anne Long</li>\n"
+"\t<li>Grand Challenges in Global Health</li>\n"
+"\t<li><a href=\"//commons.wikimedia.org/w/index.php?title=User:Piki-"
+"photow&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Piki-"
+"photow (page does not exist)\">T.K. Naliaka</a> - <span class=\"int-own-work"
+"\" lang=\"en\">Own work</span>, <a title=\"Creative Commons Attribution-"
+"Share Alike 4.0\" href=\"http://creativecommons.org/licenses/by-sa/4.0\">CC "
+"BY-SA 4.0</a>, https://commons.wikimedia.org/w/index.php?curid=36622513</"
+"li>\n"
+"\t<li>Beth.herlin (Own work) [<a href=\"http://creativecommons.org/licenses/"
+"by-sa/4.0\">CC BY-SA 4.0</a>], <a href=\"https://commons.wikimedia.org/wiki/"
+"File%%3AZIKA.png\">via Wikimedia Commons</a></li>\n"
+"</ul>\n"
+msgstr ""
+
+#: orb/templates/orb/about.html:84
+msgid "Other Credits"
+msgstr ""
+
+#: orb/templates/orb/about.html:85
+msgid ""
+"\n"
+"<ul>\n"
+"\t<li>Country flag icons provided by Wikipedia (public domain)</li>\n"
+"</ul>\n"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:19
+#: orb/templates/orb/analytics/home.html:49
+#: orb/templates/orb/analytics/resource.html:17
+#: orb/templates/orb/analytics/resource.html:59
+#: orb/templates/orb/analytics/tag.html:17
+#: orb/templates/orb/analytics/tag.html:64
+msgid "Date"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:20
+#: orb/templates/orb/analytics/resource.html:18
+#: orb/templates/orb/analytics/tag.html:18
+#: orb/templates/orb/analytics/visitor.html:18
+msgid "Total"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:21
+#: orb/templates/orb/analytics/resource.html:19
+#: orb/templates/orb/analytics/tag.html:19
+msgid "Resource Views"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:22
+#: orb/templates/orb/analytics/resource.html:20
+#: orb/templates/orb/analytics/tag.html:20
+msgid "Resource File Views"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:23
+#: orb/templates/orb/analytics/resource.html:21
+#: orb/templates/orb/analytics/tag.html:21
+msgid "Resource URL Views"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:24
+msgid "Searches"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:40
+#: orb/templates/orb/analytics/resource.html:35
+#: orb/templates/orb/analytics/tag.html:35
+msgid "Activity"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:50
+msgid "Users"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:62
+#: orb/templates/orb/analytics/home.html:82
+#: orb/templates/orb/analytics/home.html:181
+msgid "User Registrations"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:79
+#: orb/templates/orb/analytics/home.html:89
+#: orb/templates/orb/analytics/tag.html:50
+msgid "Activity Graph"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:83
+msgid "Popular Searches"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:84
+msgid "Popular Resources"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:85
+#: orb/templates/orb/analytics/home.html:225
+msgid "Organisations"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:90
+#: orb/templates/orb/analytics/home.html:184
+#: orb/templates/orb/analytics/resource.html:51
+#: orb/templates/orb/analytics/tag.html:56
+msgid "graph_generating"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:100
+#: orb/templates/orb/analytics/home.html:145
+#: orb/templates/orb/analytics/review.html:18
+#: orb/templates/orb/analytics/review.html:56
+msgid "Submitted"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:101
+#: orb/templates/orb/analytics/home.html:146
+#: orb/templates/orb/analytics/review.html:19
+#: orb/templates/orb/analytics/review.html:57 orb/views.py:80
+msgid "Title"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:102
+#: orb/templates/orb/analytics/home.html:147
+#: orb/templates/orb/analytics/review.html:20
+#: orb/templates/orb/analytics/review.html:58
+#: orb/templates/orb/profile/view.html:40
+msgid "Organisation"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:103
+#: orb/templates/orb/analytics/home.html:148
+#: orb/templates/orb/analytics/review.html:21
+#: orb/templates/orb/analytics/review.html:59
+#: orb/templates/orb/analytics/tag.html:96
+msgid "Options"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:119
+#: orb/templates/orb/analytics/home.html:164
+#: orb/templates/orb/analytics/review.html:36
+#: orb/templates/orb/analytics/review.html:74
+msgid "Preview"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:123
+#: orb/templates/orb/analytics/home.html:166
+#: orb/templates/orb/analytics/review.html:75 orb/views.py:200
+msgid "Approve"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:125
+#: orb/templates/orb/analytics/home.html:168
+#: orb/templates/orb/analytics/review.html:76 orb/views.py:195
+msgid "Reject"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:134
+#: orb/templates/orb/analytics/review.html:45
+msgid "No resources pending CRT review"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:177
+#: orb/templates/orb/analytics/review.html:85
+msgid "No resources pending MEP review"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:182
+msgid "Total registrations"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:187
+msgid "Popular Searches (last month)"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:196
+msgid "Popular Tags (last month)"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:205
+msgid "Popular Resources (last month)"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:210
+msgid "stats"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:216
+msgid "Searches with no results (last 3 months)"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:226
+msgid "Organizations with Approved Resources"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:227
+msgid "Approved content count in parentheses."
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:234
+msgid "Organizations without Approved Resources"
+msgstr ""
+
+#: orb/templates/orb/analytics/home.html:248
+msgid "Countries"
+msgstr ""
+
+#: orb/templates/orb/analytics/resource.html:48
+#: orb/templates/orb/analytics/tag.html:48
+msgid "Analytics for:"
+msgstr ""
+
+#: orb/templates/orb/analytics/resource.html:50
+#: orb/templates/orb/analytics/tag.html:55
+msgid "Activity Graph (last month)"
+msgstr ""
+
+#: orb/templates/orb/analytics/resource.html:53
+#: orb/templates/orb/analytics/tag.html:58
+msgid "Activity Detail (last month)"
+msgstr ""
+
+#: orb/templates/orb/analytics/resource.html:61
+#: orb/templates/orb/analytics/tag.html:66
+msgid "Location"
+msgstr ""
+
+#: orb/templates/orb/analytics/resource.html:62
+#: orb/templates/orb/analytics/tag.html:67
+msgid "Resource File/URL"
+msgstr ""
+
+#: orb/templates/orb/analytics/tag.html:51
+msgid "Activity Detail"
+msgstr ""
+
+#: orb/templates/orb/analytics/tag.html:52
+#: orb/templates/orb/analytics/tag.html:79
+msgid "Export Analytics"
+msgstr ""
+
+#: orb/templates/orb/analytics/tag.html:93
+msgid "Last updated"
+msgstr ""
+
+#: orb/templates/orb/analytics/tag.html:95
+msgid "Status"
+msgstr ""
+
+#: orb/templates/orb/analytics/tag.html:107
+msgid "Stats"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:3
+#: orb/templates/orb/analytics/visitor.html:7
+msgid "Visitor Analytics"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:9
+msgid ""
+"\n"
+"<p>Also look at the stats/analytics on <a href=\"https://analytics.google."
+"com/\">Google Analytics</a></p>\n"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:17
+msgid "Metric"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:23
+msgid "Unique registered users"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:27
+msgid "Unique anonymous users (IP)"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:31
+msgid "Total unique users"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:35
+msgid "Total new registrations"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:39
+msgid "Total distinct visitor countries"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:43
+msgid "Total searches"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:47
+msgid "Resources submitted"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:51
+#, python-format
+msgid "Total approved resources (until end %(month)s)"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:55
+msgid "Total languages"
+msgstr ""
+
+#: orb/templates/orb/analytics/visitor.html:62
+msgid "Other Months"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:2
+msgid "Creative Commons FAQs"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:6
+msgid "FAQ: Creative Commons Licenses for Global Health Content"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:8
+msgid ""
+"\n"
+"<h3>What is a Creative Commons (CC) license?</h3>\n"
+"<p>CC licenses allow members of the public to share, re-use and\n"
+"\tdistribute your work. CC licenses work alongside copyright, and are\n"
+"\tincreasingly common for shareable content - MIT, Khan Academy, and even\n"
+"\tthe White House use CC to share their content.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:16
+#, python-format
+msgid ""
+"\n"
+"<h3>Why does this matter in global health?</h3>\n"
+"<p>Health training materials share vital information with health\n"
+"\tworkers and communities. Releasing this content under a CC license\n"
+"\tmeans that Ministries, trainers, health workers, and others can access,\n"
+"\tuse, and share their content. It also helps to save time and costs by\n"
+"\treducing unnecessary duplication in content development.</p>\n"
+"<p>\n"
+"\tmPowering requires that all <a href=\"%(orb_add)s\">resources\n"
+"\t\tsubmitted to ORB</a> have a CC or public domain license, to ensure that\n"
+"\tour users have permission to access and share the content.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:28
+msgid ""
+"\n"
+"<h3>Will I still get credit as the author of my content?</h3>\n"
+"<p>Yes. All CC licenses require anyone sharing content to\n"
+"\tacknowledge the author. In fact, CC licenses can help content reach new\n"
+"\taudiences and share your organization’s work more broadly.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:33
+msgid ""
+"\n"
+"<h3>Can my content be changed by others?</h3>\n"
+"<p>It’s up to you. Some licenses allow users to remix, build upon,\n"
+"\tor modify your work (creating derivatives), while others do not allow\n"
+"\tfor derivatives of any kind.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:38
+msgid ""
+"\n"
+"<h3>How can I decide which license is best for me?</h3>\n"
+"<p>\n"
+"\tThere are six main kinds of CC licenses. All require attribution to the\n"
+"\toriginal author, but they vary by how much they allow the user to\n"
+"\tchange the content, and how it can be shared. Try the license chooser\n"
+"\tat <a href=\"http://www.creativecommons.org/choose\">www.creativecommons."
+"org/choose</a>\n"
+"\tto help you find the license that meets your needs.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:47
+msgid ""
+"\n"
+"<h3>Can I choose which content I release under a CC license?</h3>\n"
+"<p>Yes, you can choose a license for each piece of content you\n"
+"\tproduce. Many organizations use different CC licenses for different\n"
+"\tpieces of work, or release some things under CC while retaining others\n"
+"\tfor commercial use.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:53
+msgid ""
+"\n"
+"<h3>How can I select the right CC license for my content?</h3>\n"
+"<p>\n"
+"\tVisit <a href=\"http://www.creativecommons.org/\">www.creativecommons.org</"
+"a>\n"
+"\tand choose the license that meets your needs. Fill out a short form\n"
+"\twith the title of the piece and who should receive attribution, then\n"
+"\tsubmit. If your resource lives offline, (such as a PDF), you will be\n"
+"\tprompted to download a graphic of the CC license of your choice. If\n"
+"\tyour resource lives online (such as a video), you’ll receive an html\n"
+"\tcode that you can include on your web site to indicate which content is\n"
+"\tavailable under which license.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:65
+msgid ""
+"\n"
+"<h3>What if someone uses my content in a way that is not compatible\n"
+"\twith the license?</h3>\n"
+"<p>With content released under any license, there is a risk that it\n"
+"\tcould be misused. With a CC license, your organization has the right to\n"
+"\tdeal with this infringement in the same way as an infringement of a\n"
+"\tnon-open license or copyright.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:72
+msgid ""
+"\n"
+"<h3>Could I be liable if someone makes mistakes when adapting my\n"
+"\tcontent?</h3>\n"
+"<p>\n"
+"\tMisuse of medical or health education content is a serious concern, and\n"
+"\tall the CC licenses contain clauses on <a\n"
+"\t\thref=\"http://creativecommons.org/licenses/by/4.0/legalcode"
+"\">disclaimer\n"
+"\t\tof warranties and limitation of liabilities</a>. Most organizations "
+"find\n"
+"\tthese sufficient, but some choose to seek legal advice to ensure the\n"
+"\tlicense terms meet their needs.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/cc-faq.html:83
+#, python-format
+msgid ""
+"\n"
+"<h3>How can I learn more?</h3>\n"
+"<p>More detailed FAQs are available on the <a href=\"https://wiki."
+"creativecommons.org/wiki/Frequently_Asked_Questions\">Creative Commons "
+"website</a>.\n"
+"\tIf your question is not addressed there or you need additional\n"
+"\tinformation, please contact <a href=\"mailto:%(email)s"
+"\">info@mpoweringhealth.org</a>.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/collection/view.html:31
+msgid "There are no resources in this collection."
+msgstr ""
+
+#: orb/templates/orb/developers.html:10
+msgid ""
+"\n"
+"<p>Here is a brief overview of the technologies behind the ORB platform.</"
+"p>\n"
+"<p>\n"
+"\tAll the core code is released under an GNU GPL v3 open source license and\n"
+"\tcan be found on <a href=\"https://github.com/mPowering/django-orb"
+"\">GitHub</a>.\n"
+"</p>\n"
+"\n"
+"<ul>\n"
+"\t<li>the core of the code is written in the <a\n"
+"\t\thref=\"https://www.djangoproject.com/\">Django framework</a></li>\n"
+"\t<li>the front-end interface uses the <a\n"
+"\t\thref=\"http://getbootstrap.com/\">Bootstrap 3 framework</a></li>\n"
+"\t<li>the REST API has been developed using the <a\n"
+"\t\thref=\"http://tastypieapi.org/\">Tastypie framework</a></li>\n"
+"\t<li>the search functionality is powered by <a\n"
+"\t\thref=\"https://lucene.apache.org/solr/\">Apache Solr</a></li>\n"
+"</ul>\n"
+"\n"
+"<p>\n"
+"\tInformation on how to use the ORB platform API can be found in our <a\n"
+"\t\thref=\"http://mpowering.readthedocs.org/\">documentation site</a>\n"
+"</p>\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/email/first_resource.html:2
+#, python-format
+msgid ""
+"\n"
+"<p>Dear %(firstname)s %(lastname)s,</p>\n"
+"\n"
+"<p>Welcome to the ORB community!</p>\n"
+"\n"
+"<p>Thank you for submitting your first resource ('%(title)s').</p>\n"
+"\n"
+"<p>Since this is your first resource on ORB, here’s some information\n"
+"\tabout our content approval process:</p>\n"
+"\n"
+"<ol>\n"
+"\t<li>Our Content Review Team will review your resource to make sure\n"
+"\t\tit meets our inclusion guidelines.</li>\n"
+"\t<li>If they approve your resource, they will pass it on to our\n"
+"\t\tMedical Expert Panel. They will check that your resource meets current\n"
+"\t\tbest medical practice and guidelines.</li>\n"
+"\t<li>The Medical Expert Panel will decide if your resource is ready\n"
+"\t\tto go up on the site.</li>\n"
+"\t<li>We will send you an email to let you know if your resource was\n"
+"\t\taccepted, or, if not, why we decided not to include it on ORB.</li>\n"
+"</ol>\n"
+"\n"
+"<p>\n"
+"\tYou can find more detailed information about the process here: <a\n"
+"\t\thref=\"http://health-orb.org/about/\">http://health-orb.org/about/</a>.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"\tThe approvals process takes about 2 weeks. If you have any questions\n"
+"\tplease contact us at <a href=\"mailto:%(info_email)s\">%(info_email)s</a>\n"
+"</p>\n"
+"\n"
+"<p>Thanks again for submitting your resource!</p> \n"
+msgstr ""
+
+#: orb/templates/orb/email/first_resource.txt:2
+#, python-format
+msgid ""
+"\n"
+"Dear %(firstname)s %(lastname)s,\n"
+"\n"
+"Welcome to the ORB community!\n"
+"\n"
+"Thank you for submitting your first resource ('%(title)s').\n"
+"\n"
+"Since this is your first resource on ORB, here’s some information about our "
+"content approval process:\n"
+"\n"
+"* Our Content Review Team will review your resource to make sure it meets "
+"our inclusion guidelines.\n"
+"* If they approve your resource, they will pass it on to our Medical Expert "
+"Panel. They will check that your resource meets current best medical "
+"practice and guidelines.\n"
+"* The Medical Expert Panel will decide if your resource is ready to go up on "
+"the site.\n"
+"* We will send you an email to let you know if your resource was accepted, "
+"or, if not, why we decided not to include it on ORB.\n"
+"\n"
+"You can find more detailed information about the process here: http://health-"
+"orb.org/about/\n"
+"\n"
+"The approvals process takes about 2 weeks. If you have any questions please "
+"contact us at %(info_email)s\n"
+"\n"
+"Thanks again for submitting your resource!\n"
+msgstr ""
+
+#: orb/templates/orb/email/footer.html:2
+msgid ""
+"\n"
+"<p>Best regards,</p>\n"
+"<p>Lesley-Anne Long<br/>\n"
+"ORB by mPowering Frontline Health Workers<br/>\n"
+"<a href=\"mailto:info@mpoweringhealth.org\">info@mpoweringhealth.org</a><br/"
+">\n"
+"<a href=\"http://health-orb.org\">http://health-orb.org</a></br/>\n"
+"1776 Massachusetts Ave NW | Washington, D.C. 20036</p>\n"
+msgstr ""
+
+#: orb/templates/orb/email/footer.txt:2
+msgid ""
+"\n"
+"Best regards,\n"
+"\n"
+"Lesley-Anne Long\n"
+"\n"
+"ORB by mPowering Frontline Health Workers\n"
+"info@mpoweringhealth.org\n"
+"http://health-orb.org\n"
+"1776 Massachusetts Ave NW | Washington, D.C. 20036\n"
+msgstr ""
+
+#: orb/templates/orb/email/link_checker_results.html:3
+#: orb/templates/orb/email/link_checker_results.txt:3
+msgid "Results from Link Checker Validation"
+msgstr ""
+
+#: orb/templates/orb/email/link_checker_results.html:5
+#: orb/templates/orb/email/link_checker_results.txt:5
+msgid "The following urls had issues:"
+msgstr ""
+
+#: orb/templates/orb/email/link_checker_results.html:8
+#: orb/templates/orb/email/link_checker_results.txt:8
+msgid "Resource URLs"
+msgstr ""
+
+#: orb/templates/orb/email/password_reset.html:2
+#, python-format
+msgid ""
+"\n"
+"<p>Here is your new password for ORB: %(new_password)s</p>\n"
+"\n"
+"<p>When you next log in, visit your profile page where you can update your "
+"password to something more memorable.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/email/password_reset.txt:2
+#, python-format
+msgid ""
+"\n"
+"Here is your new password for ORB: %(new_password)s\n"
+"\n"
+"When you next log in, visit your profile page where you can update your "
+"password to something more memorable.\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_approved.html:2
+#, python-format
+msgid ""
+"\n"
+"<p>Dear %(firstname)s %(lastname)s,</p>\n"
+"\n"
+"<p>Thank you for submitting \"%(title)s\" to the ORB platform.</p>\n"
+"\n"
+"<p>We are pleased to let you know that your resource has now been\n"
+"\tapproved and is freely available on ORB.</p>\n"
+"<p>\n"
+"\tYou can access your resource here: <a href=\"%(resource_link)s\">"
+"%(resource_link)s</a>.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_approved.txt:2
+#, python-format
+msgid ""
+"\n"
+"Dear %(firstname)s %(lastname)s,\n"
+"\n"
+"Thank you for submitting \"%(title)s\" to the ORB platform.\n"
+"\n"
+"We are pleased to let you know that your resource has now been approved and "
+"is freely available on ORB.\n"
+"\n"
+"You can access your resource here: %(resource_link)s.\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_rejected.html:2
+#, python-format
+msgid ""
+"\n"
+"<p>Dear %(firstname)s %(lastname)s,</p>\n"
+"\n"
+"<p>Thank you for submitting \"%(title)s\" to the ORB platform.</p>\n"
+"\n"
+"<p>Unfortunately, your resource did not meet the following criteria to be "
+"included on ORB:</p>\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_rejected.html:14
+#, python-format
+msgid ""
+"\n"
+"<p>The review team made the following comments:</p>\t\n"
+"\t\n"
+"<p>\"%(notes)s\"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_rejected.txt:2
+#, python-format
+msgid ""
+"\n"
+"Dear %(firstname)s %(lastname)s,\n"
+"\n"
+"Thank you for submitting \"%(title)s\" to the ORB platform.\n"
+"\n"
+"Unfortunately, your resource did not meet the following criteria to be "
+"included on ORB:\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_rejected.txt:14
+#, python-format
+msgid ""
+"\n"
+"The review team made the following comments:\t\n"
+"\t\n"
+"\"%(notes)s\"\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_submitted.html:2
+#, python-format
+msgid ""
+"\n"
+"<p>%(firstname)s %(lastname)s has just submitted a new resource '%(title)s'."
+"</p>\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/email/resource_submitted.txt:2
+#, python-format
+msgid ""
+"\n"
+"\n"
+"%(firstname)s %(lastname)s has just submitted a new resource '%(title)s'.\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/email/welcome.html:2
+#, python-format
+msgid ""
+"\n"
+"<p>Dear %(firstname)s %(lastname)s,</p>\n"
+"\n"
+"<p>Thank you for registering on ORB and welcome to our community!</p>\n"
+"\n"
+"<p>As a registered user you can now submit resources to ORB as well\n"
+"\tas opt to receive news and updates from our team.</p>\n"
+"\n"
+"<p>We're here to help if you have any questions, so please feel free\n"
+"\tto contact us.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/email/welcome.txt:2
+#, python-format
+msgid ""
+"\n"
+"Dear %(firstname)s %(lastname)s,\n"
+"\n"
+"Thank you for registering on ORB and welcome to our community!\n"
+"\n"
+"As a registered user you can now submit resources to ORB as well as opt to "
+"receive news and updates from our team.\n"
+"\n"
+"We're here to help if you have any questions, so please feel free to contact "
+"us.\n"
+msgstr ""
+
+#: orb/templates/orb/home.html:16
+msgid ""
+"\n"
+"<h3 style=\"text-align: center\">Connecting Frontline Health Workers\n"
+"\tto resources and each other to expand their knowledge, organize content\n"
+"\tinto courses, and share their learning with the community.</h3>\n"
+msgstr ""
+
+#: orb/templates/orb/how_to.html:11
+msgid "Find Resources"
+msgstr ""
+
+#: orb/templates/orb/how_to.html:18
+#, python-format
+msgid ""
+"\n"
+"<p>The ORB platform gives you several methods to help find the right\n"
+"\tcontent for you:</p>\n"
+"\n"
+"<ul>\n"
+"\t<li><a href=\"%(orb_home)s\">Browsing</a></li>\n"
+"\t<li><a href=\"%(orb_search)s\">Searching</a></li>\n"
+"\t<li><a href=\"%(orb_filter)s\">Filtering</a></li>\n"
+"</ul>\n"
+"\n"
+"<p>All the resources are free to access and, and no registration\n"
+"\tis required. When you're using the resources, and especially if\n"
+"\tyou're adapting them, remember to keep within the terms of the license\n"
+"\tand include attribution. Every resource on ORB is openly licensed,\n"
+"\thowever some have restrictions on creating adaptations or translations.</"
+"p>\n"
+"\n"
+"<p>\n"
+"\tFor helpful resources on Creative Commons licenses, visit our <a href="
+"\"%(orb_cc_faq)s\">FAQs on Creative \n"
+"\tCommons Licensing for Global Health Content</a>, or the <a href=\"http://"
+"creativecommons.org/\">Creative Commons website</a>.</p>\n"
+"\n"
+"<p>Once you've found the resources you're looking for, each resource\n"
+"\twill have at least one download or web link option. Use these to save\n"
+"\tthe resource onto your laptop or mobile device. You can use the resources "
+"for\n"
+"\tyour own self-study or simply integrate them into your training\n"
+"\tprogram or workshop.</p>\n"
+"<p>Here are some ideas for how you could use the content in your training\n"
+"\tprogram:</p>\n"
+"<ul>\n"
+"\t<li>Copy the videos onto SD cards, to distribute to health workers\n"
+"\t\tto watch on their mobile devices</li>\n"
+"\t<li>Integrate the resources into a mobile learning or eLearning\n"
+"\t\ttraining course</li>\n"
+"\t<li>Use as teaching aids in classroom or in-person courses</li>\n"
+"\t<li>Use the videos with community members to help reinforce health\n"
+"\t\tmessages (for example about handwashing, or breastfeeding)</li>\n"
+"</ul>\n"
+"\n"
+"<p>Soon we'll be adding tools to the ORB platform to make it easy\n"
+"\tfor you to create mobile enabled training courses, using and adapting\n"
+"\tthe ORB resources.</p>\n"
+"\t\n"
+"<p>For information about getting started with the Moodle elearning "
+"platform, \n"
+"    please visit the <a href=\"http://docs.moodle.org/en/"
+"Getting_started_for_teachers\">Moodle documentation site</a>.</p>\n"
+"\n"
+"<p>\n"
+"\tWe'd love to hear from you about how you've used the ORB resources. If\n"
+"\tyou have a story to share, please <a\n"
+"\t\thref=\"mailto:%(email)s\">contact us</a>.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/how_to.html:69
+msgid "Submit Resources"
+msgstr ""
+
+#: orb/templates/orb/how_to.html:75
+#, python-format
+msgid ""
+"\n"
+"<p>\n"
+"\tIf you have some great resources to share, please submit them to\n"
+"\tthe ORB platform. To submit a resource, you'll need to register\n"
+"\t(simple and free), then use the <a href=\"%(orb_add)s\">Add\n"
+"\t\tResource</a> form to submit your resource.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"\tAll submitted resources must meet the <a href=\"%(orb_criteria)s\">ORB\n"
+"\t\tGuidelines and Criteria</a> to be made available publically through the\n"
+"\tplatform.\n"
+"</p>\n"
+"\n"
+"<p>\n"
+"\tIf you have many resources to share, then consider becoming an <a\n"
+"\t\thref=\"%(orb_partners)s\">ORB Content Partner</a>. ORB Content\n"
+"\tPartners get extra benefits, such as access to the ORB API, a\n"
+"\tcustomized organization page and usage and analytics reports for their\n"
+"\tresources. For more information on how to become an ORB Content\n"
+"\tpartner, please <a href=\"mailto:%(email)s\">contact\n"
+"\t\tus</a>.\n"
+"</p>\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:5
+msgid "Key Facts"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:7
+msgid "Population"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:8
+msgid "census"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:9
+msgid "Number of women in childbearing age"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:16
+msgid "Number of children under 5"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:23
+msgid "Total Fertility Rate"
+msgstr ""
+
+#: orb/templates/orb/includes/country_key_facts.html:26
+msgid "Under 5 Mortality"
+msgstr ""
+
+#: orb/templates/orb/includes/page_navigator.html:7
+msgid "previous"
+msgstr ""
+
+#: orb/templates/orb/includes/page_navigator.html:11
+#, python-format
+msgid "Page %(i)s of %(x)s"
+msgstr ""
+
+#: orb/templates/orb/includes/page_navigator.html:15
+msgid "next"
+msgstr ""
+
+#: orb/templates/orb/includes/profile_rating_row.html:20
+#: orb/templates/orb/includes/resource_row.html:21
+msgid "from "
+msgstr ""
+
+#: orb/templates/orb/includes/resource_row.html:40
+#: orb/templates/orb/includes/resource_row.html:41
+msgid "Study time: "
+msgstr ""
+
+#: orb/templates/orb/includes/user_rating.html:20
+msgid "Thank you for your rating!"
+msgstr ""
+
+#: orb/templates/orb/includes/user_rating.html:24
+msgid ""
+"Thank you for your rating! Your rating will be shown once at least <span id="
+"\"rating-min-users\"></span> different users have submitted a rating."
+msgstr ""
+
+#: orb/templates/orb/login_required.html:3
+#: orb/templates/orb/login_required.html:6
+msgid "Login required"
+msgstr ""
+
+#: orb/templates/orb/login_required.html:14
+#, python-format
+msgid ""
+"Please <a href=\"%(login)s?next=%(nextpath)s\" class=\"alert-link\">login</"
+"a> or <a href=\"%(register)s\" class=\"alert-link\">register</a>"
+msgstr ""
+
+#: orb/templates/orb/logout.html:3 orb/templates/orb/logout.html.py:5
+msgid "Logged Out"
+msgstr ""
+
+#: orb/templates/orb/logout.html:7
+#, python-format
+msgid ""
+"You are now logged out. <a href=\"%(url_login)s\" class=\"alert-link\">Log "
+"in again</a>"
+msgstr ""
+
+#: orb/templates/orb/partners.html:12
+#, python-format
+msgid ""
+"\n"
+"\n"
+"<h3>Anyone is welcome to share content resources on ORB!</h3>\n"
+"\n"
+"<p>\n"
+"\tIf you believe your content meets <a href=\"%(orb_guidelines)s\">our\n"
+"\t\tcriteria</a>, we would like to hear from you. Just go to our ‘Add a\n"
+"\tResource’ link and you’ll find out how your content could potentially\n"
+"\treach hundreds of thousands of health workers across the world.\n"
+"</p>\n"
+"\n"
+"\n"
+"<h3>Are you interested in becoming an ORB Content Partner?</h3>\n"
+"\n"
+"<p>This is a more formal relationship with ORB and mPowering Frontline "
+"Health Workers.</p>\n"
+"\n"
+"<p>As a Content Partner, we will create an ORB partner page with\n"
+"\tyour logo, a short description of your organisation and a link back to\n"
+"\tyour home page. We will also help connect with you other partners who\n"
+"\tmay want to use your content or commission new content from you.\n"
+"\n"
+"\tContent Partners should have an internal quality assurance and review\n"
+"\tprocess in place, as this will help us fast-track your ORB resources\n"
+"\tthrough our content review process.</p>\n"
+"\t\n"
+"<p>The criteria for becoming a content partner are:</p>\n"
+"\n"
+"<ul>\n"
+"\t<li>Commitment to using open content licensing (Creative Commons)\n"
+"\t\tand sharing your digital health training materials on ORB. <a\n"
+"\t\thref=\"https://youtu.be/zbqq6Gg5g3U\">Watch our video on Creative\n"
+"\t\t\tCommons for Global Health</a>\n"
+"\t</li>\n"
+"\t<li>Robust, well-documented internal quality assurance and review\n"
+"\t\tprocesses - this helps us to fast-track your ORB resources through our\n"
+"\t\tcontent review process</li>\n"
+"\t<li>Agreement to being an ambassador for ORB - promoting its use\n"
+"\t\tby implementers, health workers and others</li>\n"
+"</ul>\n"
+"\n"
+"<p>\n"
+"\tTo apply to become an ORB Content Partner, please <a\n"
+"\t\thref=\"mailto:info@mpoweringhealth.org\">contact us</a>. All Content\n"
+"\tPartners should send a letter of commitment, not to exceed one page,\n"
+"\twhich documents how they meet these criteria and their motivation for\n"
+"\tbecoming a Content Partner.\n"
+"</p>\n"
+msgstr ""
+
+#: orb/templates/orb/partners.html:67 orb/templates/orb/partners.html.py:70
+#: orb/templates/orb/partners.html:81
+#, python-format
+msgid "View all %(org)s resources on ORB"
+msgstr ""
+
+#: orb/templates/orb/partners.html:78
+msgid "View all NURHI project resources on ORB"
+msgstr ""
+
+#: orb/templates/orb/partners.html:79
+msgid "View all Ghana BCS project resources on ORB"
+msgstr ""
+
+#: orb/templates/orb/profile/bookmarks.html:4
+msgid "bookmarks"
+msgstr ""
+
+#: orb/templates/orb/profile/bookmarks.html:10
+msgid "<p>You have bookmarked the following resources:</p>"
+msgstr ""
+
+#: orb/templates/orb/profile/bookmarks.html:18
+msgid "Remove<br/> Bookmark"
+msgstr ""
+
+#: orb/templates/orb/profile/bookmarks.html:23
+msgid "<p>You haven't bookmarked any resources yet.</p>"
+msgstr ""
+
+#: orb/templates/orb/profile/edit.html:5 orb/templates/orb/profile/edit.html:9
+msgid "Your Profile"
+msgstr ""
+
+#: orb/templates/orb/profile/rated.html:4
+msgid "resources rated"
+msgstr ""
+
+#: orb/templates/orb/profile/rated.html:7
+msgid "Resources Rated"
+msgstr ""
+
+#: orb/templates/orb/profile/rated.html:10
+msgid "<p>You have rated the following resources:</p>"
+msgstr ""
+
+#: orb/templates/orb/profile/rated.html:15
+msgid "<p>You haven't rated any resources yet.</p>"
+msgstr ""
+
+#: orb/templates/orb/profile/reset-sent.html:7
+msgid ""
+"\n"
+"<p>A new password has been emailed to you</p>\n"
+msgstr ""
+
+#: orb/templates/orb/profile/view.html:4
+msgid "profile"
+msgstr ""
+
+#: orb/templates/orb/profile/view.html:25
+msgid "Role"
+msgstr ""
+
+#: orb/templates/orb/profile/view.html:62
+msgid "Website"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step1.html:11
+msgid "Add Resource - Step 1"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step1.html:15
+#, python-format
+msgid ""
+"<strong>Lots of resources to add?</strong> Please <a href=\"mailto:%(email)s"
+"\" class=\"alert-link\">contact us</a> about using our API to make it easier "
+"for you to upload and maintain your resources on ORB."
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:6
+msgid "Add Resource -Step 2"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:9
+msgid "Add Resource Files/URLs - Step 2"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:11
+#, python-format
+msgid ""
+"\n"
+"<p>Please now add one or more files and/or URLs for '%(title)s'.</p>\n"
+"<p>For example, your resource may consist of multiple files or is available "
+"in multiple languages, so you can upload each of them here.</p>\n"
+"<p>Please provide a title for each of the files/urls.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:17
+#: orb/templates/orb/resource/edit_step2.html:15
+#: orb/templates/orb/resource/view.html:174
+msgid "Files"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:27
+#: orb/templates/orb/resource/create_step2.html:45
+#: orb/templates/orb/resource/edit_step2.html:25
+#: orb/templates/orb/resource/edit_step2.html:43
+msgid "remove"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:32
+#: orb/templates/orb/resource/edit_step2.html:30
+msgid "There are no files for this resource"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:35
+#: orb/templates/orb/resource/edit_step2.html:33
+msgid "URLs"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:50
+#: orb/templates/orb/resource/edit_step2.html:48
+msgid "There are no urls for this resource"
+msgstr ""
+
+#: orb/templates/orb/resource/create_step2.html:57
+#: orb/templates/orb/resource/edit_step2.html:55
+msgid "Finished"
+msgstr ""
+
+#: orb/templates/orb/resource/create_thanks.html:8
+#, python-format
+msgid ""
+" Thank you for submitting \n"
+"'%(r_title)s' as a resource to the ORB Platform"
+msgstr ""
+
+#: orb/templates/orb/resource/create_thanks.html:11
+msgid ""
+"Your submission with be reviewed by the Content Review Team and our Medical "
+"Expert Panel before it will be made available publicly on this site."
+msgstr ""
+
+#: orb/templates/orb/resource/edit.html:8
+#: orb/templates/orb/resource/edit.html:11
+#: orb/templates/orb/resource/edit_thanks.html:3
+msgid "Edit Resource"
+msgstr ""
+
+#: orb/templates/orb/resource/edit_step2.html:6
+msgid "Edit Resource -Step 2"
+msgstr ""
+
+#: orb/templates/orb/resource/edit_step2.html:9
+msgid "Edit Resource - Step 2"
+msgstr ""
+
+#: orb/templates/orb/resource/edit_step2.html:11
+#, python-format
+msgid ""
+"\n"
+"<p>Now please add the file(s) and/or URL(s) for '%(title)s'.</p>\t\n"
+msgstr ""
+
+#: orb/templates/orb/resource/edit_thanks.html:6
+msgid "Resource Edited"
+msgstr ""
+
+#: orb/templates/orb/resource/edit_thanks.html:7
+#, python-format
+msgid ""
+" Your resource\n"
+"'%(r_title)s' has been updated "
+msgstr ""
+
+#: orb/templates/orb/resource/edit_thanks.html:12
+#, python-format
+msgid ""
+"You can <a href=\"%(preview)s\" class=\"alert-link\">view your updates</a> "
+"or <a href=\"%(edit)s\" class=\"alert-link\">go back and edit your resource "
+"again</a>."
+msgstr ""
+
+#: orb/templates/orb/resource/guidelines.html:4
+#: orb/templates/orb/resource/guidelines.html:8
+msgid "Guidelines"
+msgstr ""
+
+#: orb/templates/orb/resource/guidelines.html:10
+msgid ""
+"\n"
+"<p>ORB and mPowering Frontline Health Workers aim to provide high\n"
+"\tquality, relevant and up to date resources that will help to improve\n"
+"\tthe performance of frontline health workers. ORB hosts\n"
+"\tlearning tools, courses, job aids, videos, and similar resources.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/resource/guidelines.html:17
+msgid ""
+"\n"
+"<p>All resources submitted to ORB will be evaluated, by our\n"
+"\tContent Review Team and Medical Expert Panel, against the following\n"
+"\tcriteria:</p>\n"
+msgstr ""
+
+#: orb/templates/orb/resource/reject_form.html:5
+msgid "Resource - Reject"
+msgstr ""
+
+#: orb/templates/orb/resource/reject_form.html:8
+msgid "Reject Resource"
+msgstr ""
+
+#: orb/templates/orb/resource/reject_form.html:10
+msgid ""
+"\n"
+"<p>Please select all of the ORB criteria that the resource failed to meet, "
+"and some notes explaining why it failed and/or how the resource could be "
+"updated to meet the criteria. </p>\n"
+msgstr ""
+
+#: orb/templates/orb/resource/status_updated.html:3
+#: orb/templates/orb/resource/status_updated.html:6
+msgid "Status Updated"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:65
+#: orb/templates/orb/resource/view.html:159
+msgid "Bookmarked"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:153
+msgid "Your Rating"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:157
+msgid "Bookmark"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:161
+msgid "Bookmark this"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:166
+msgid "Your Rating/Bookmark"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:169
+#, python-format
+msgid ""
+"Please <a href=\"%(login)s?next=%(nextpath)s\">login</a> or <a href="
+"\"%(register)s\">register</a> to rate or bookmark this resource"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:206
+msgid "Links"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:211
+#: orb/templates/orb/resource/view.html:216
+msgid "Go to"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:237
+msgid "This resource is included in the following collections:"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:247
+msgid "Study Time"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:288
+msgid "License"
+msgstr ""
+
+#: orb/templates/orb/resource/view.html:303
+msgid "Attribution"
+msgstr ""
+
+#: orb/templates/orb/search.html:13 orb/templates/orb/tag.html:70
+msgid "Advanced search & filter"
+msgstr ""
+
+#: orb/templates/orb/search.html:17
+msgid "results"
+msgstr ""
+
+#: orb/templates/orb/search.html:27
+msgid "No results found."
+msgstr ""
+
+#: orb/templates/orb/search_advanced.html:5
+msgid "Advanced Search"
+msgstr ""
+
+#: orb/templates/orb/search_advanced.html:9
+msgid "Advanced Search & Filter"
+msgstr ""
+
+#: orb/templates/orb/search_advanced_results.html:4
+#: orb/templates/orb/search_advanced_results.html:9
+msgid "Advanced Search Results"
+msgstr ""
+
+#: orb/templates/orb/search_advanced_results.html:30
+msgid "Sorry, no resources were found matching your criteria."
+msgstr ""
+
+#: orb/templates/orb/tag.html:42
+msgid "Website:"
+msgstr ""
+
+#: orb/templates/orb/tag.html:47
+msgid "Email:"
+msgstr ""
+
+#: orb/templates/orb/tag.html:59
+msgid "Order by: "
+msgstr ""
+
+#: orb/templates/orb/tag.html:84
+msgid "There are no resources tagged with "
+msgstr ""
+
+#: orb/templates/orb/tag.html:88
+#, python-format
+msgid ""
+"\n"
+"                <p>There are no resources yet for %(name)s.</p>\n"
+"                <p>Do you have resources relevant to %(name)s?\n"
+"                    You can <a href=\"%(add_resource_url)s\">add openly "
+"licensed content resources</a> and improve\n"
+"                    the knowledge base for frontline health workers.</p>\n"
+"                <a href=\"%(add_resource_url)s\">\n"
+"                    <button type=\"button\" class=\"btn btn-primary\">Add "
+"your resource &raquo;</button>\n"
+"                </a>\n"
+"                <p>If you have not yet registered, please <a href="
+"\"%(registration_url)s\">take a moment to do so</a> first.</p>\n"
+"            "
+msgstr ""
+
+#: orb/templates/orb/tag_cloud.html:4 orb/templates/orb/tag_cloud.html.py:10
+msgid "Tag cloud"
+msgstr ""
+
+#: orb/templates/orb/taxonomy.html:5 orb/templates/orb/taxonomy.html.py:10
+msgid "Taxonomy"
+msgstr ""
+
+#: orb/templates/orb/terms.html:9
+msgid "Terms of Use"
+msgstr ""
+
+#: orb/templates/orb/terms.html:10
+msgid ""
+"\n"
+"<h3>Limitations of Liability</h3>\n"
+"<p>When you access this Web site, you agree that mPowering Frontline\n"
+"\tHealth Workers shall not be liable to you for any loss or injury caused\n"
+"\tin procuring, compiling, or delivering the information gained from the\n"
+"\tsite. In no event will mPowering Frontline Health Workers be liable to\n"
+"\tyou or anyone else for any action taken by you on the basis of such\n"
+"\tinformation or for any incidental, consequential, special, or similar\n"
+"\tdamages.</p>\n"
+"<h3>Disclaimer</h3>\n"
+"<p>This Web site is provided on an “as-is” basis. mPowering\n"
+"\tFrontline Health Workers disclaims all responsibility for any loss,\n"
+"\tinjury, claim, liability, or damage of any kind resulting from, arising\n"
+"\tout of, or any way related to any errors in or omissions from this Web\n"
+"\tsite and the content, including but not limited to technical\n"
+"\tinaccuracies and typographical errors.</p>\n"
+"<p>Every effort is made to provide accurate and complete\n"
+"\tinformation, but mPowering Frontline Health Workers cannot guarantee\n"
+"\tthat there will be no errors. mPowering Frontline Health Workers makes\n"
+"\tno claims, promises, or guarantees about the accuracy, completeness, or\n"
+"\tadequacy of the contents of this Web site and expressly disclaims\n"
+"\tliability for errors and omissions in the contents of this Web site.</p>\n"
+"<p>With respect to the content of this site, mPowering Frontline\n"
+"\tHealth Workers its employees, and contractor make no warranty,\n"
+"\texpressed or implied or statutory, including but not limited to the\n"
+"\twarranties of non-infringement of third-party rights, title, and the\n"
+"\twarranties of merchantability and fitness for a particular purpose,\n"
+"\twith respect to content available from this Web site or other Internet\n"
+"\tresources linked from it. Additionally, mPowering Frontline Health\n"
+"\tWorkers assumes no legal liability for the accuracy, completeness, or\n"
+"\tusefulness of any information, product, or process disclosed herein or\n"
+"\tfreedom from computer viruses, and does not represent that use of such\n"
+"\tinformation, product, or process would not infringe on privately owned\n"
+"\trights. mPowering Frontline Health Workers may make improvements and/or\n"
+"\tchanges to its features, functionality, or content at any time.</p>\n"
+"\t\n"
+"\n"
+"<h3><a name=\"not-medical\" class=\"named-anchor\"></a>Not Medical Advice</"
+"h3>\n"
+"<p>The content contained on this site is not intended to and does\n"
+"\tnot constitute medical advice, and no doctor/patient relationship is\n"
+"\tcreated. The accuracy, completeness, adequacy, or currency of the\n"
+"\tcontent is not warranted or guaranteed. The use of information on the\n"
+"\tsite or materials linked from the site is at the user's own risk. The\n"
+"\tcontents of the site, such as text, graphics, images and other\n"
+"\tmaterials are for informational purposes only. The content is not\n"
+"\tintended to be a substitute for professional medical advice, diagnosis,\n"
+"\tor treatment. Users should always seek the advice of physicians or\n"
+"\tother qualified health providers with any questions regarding a medical\n"
+"\tcondition. Users should never disregard professional medical advice or\n"
+"\tdelay in seeking it because of something on the site. The site does not\n"
+"\trecommend or endorse any specific tests, products, procedures,\n"
+"\topinions, or other information that might be mentioned on the site.</p>\n"
+msgstr ""
+
+#: orb/templates/orb/terms.html:65
+msgid "Privacy Policy"
+msgstr ""
+
+#: orb/templates/orb/terms.html:66
+msgid ""
+"\n"
+"<p>This section explains how mPowering Frontline Health Workers will\n"
+"\thandle information about you obtained from your visit to this Web site.\n"
+"\tThe information received depends upon what you do when visiting this\n"
+"\tsite.</p>\n"
+"<h3>If you visit our site to read or download information</h3>\n"
+"<p>mPowering Frontline Health Workers collects and stores only the\n"
+"\tfollowing information about you: the name of the domain from which you\n"
+"\taccess the Internet (for example, aol.com, if you are connecting from\n"
+"\tan America Online account, or iowa.edu if you are connecting from the\n"
+"\tUniversity of Iowa's domain); the date and time you access this site,\n"
+"\tthe Internet address of the Web site from which you linked directly to\n"
+"\tthis site, if any; and which pages you view while you visit this Web\n"
+"\tsite.</p>\n"
+"<p>mPowering Frontline Health Workers uses the information it\n"
+"\tcollects to count the number of visitors to the different sections of\n"
+"\tour site, find out what information is the most viewed, and to help\n"
+"\tmake this Web site more useful to visitors.</p>\n"
+"<h3>Identifying yourself via e-mail message or a completed form</h3>\n"
+"<p>If you decide to send to ORB personally identifying information,\n"
+"\tmPowering Frontline Health Workers may use that personally identifying\n"
+"\tinformation to respond to your comment or suggestion and to count the\n"
+"\tnumber of people sending comments to the site.</p>\n"
+"<p>\n"
+"\t<strong>mPowering Frontline Health Workers will not obtain\n"
+"\t\tpersonally identifying information about you when you visit the ORB\n"
+"\t\tsite unless you choose to provide such information.</strong>\n"
+"</p>\n"
+"<p>mPowering Frontline Health Workers will act reasonably to ensure\n"
+"\tthat any information you provide to us is not accessed by unauthorized\n"
+"\tpersons. mPowering Frontline Health Workers does not sell, rent, share,\n"
+"\tor otherwise willfully disclose to any third party, e-mail addresses or\n"
+"\tother personally identifiable information shared on this site without\n"
+"\tyour permission.</p>\n"
+"\n"
+msgstr ""
+
+#: orb/templates/orb/thanks.html:4
+msgid "Registration complete"
+msgstr ""
+
+#: orb/templates/orb/thanks.html:6
+#, python-format
+msgid ""
+"Thank you for registering. You are now logged in. <a href=\"%(orb_home)s\" "
+"class=\"alert-link\">Return to the homepage</a>"
+msgstr ""
+
+#: orb/templates/orb/toolkits/home.html:11
+msgid "Community Health Framework"
+msgstr ""
+
+#: orb/templates/orb/toolkits/home.html:28
+msgid "Principles for Digital Development"
+msgstr ""
+
+#: orb/templates/orb/toolkits/home.html:45
+msgid ""
+"Financing Framework to End Preventable Child and Maternal Deaths (EPCMD)"
+msgstr ""
+
+#: orb/templates/search/opensearch.html:4
+msgid "ORB by mPowering - Search"
+msgstr ""
+
+#: orb/views.py:79
+msgid "Create date"
+msgstr ""
+
+#: orb/views.py:81
+msgid "Rating"
+msgstr ""
+
+#: orb/views.py:82
+msgid "Update date"
+msgstr ""
+
+#: orb/views.py:177
+msgid ""
+"This resource is not yet approved by the ORB Content Review Team, so is not "
+"yet available for all users to view"
+msgstr ""
+
+#: orb/views.py:190
+msgid "Send to MEP"
+msgstr ""
+
+#: orb/views.py:239 orb/views.py:302 orb/views.py:681
+msgid "You need to be logged in to add a resource."
+msgstr ""
