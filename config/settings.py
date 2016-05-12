@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'crispy_forms',
     'orb',
+    'modeltranslation',
     'tastypie',
     'tinymce',
     'django_wysiwyg',
@@ -105,11 +106,13 @@ USE_TZ = True
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'orb/locale'),
 ]
+gettext = lambda s: s
 LANGUAGES = [
     ('en', u'English'),
     ('es', u'Español'),
     ('pt-br', u'Português'),
 ]
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 #####################################################################
 
 
