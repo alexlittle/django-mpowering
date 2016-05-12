@@ -107,7 +107,7 @@ LOCALE_PATHS = [
 LANGUAGES = [
     ('en', u'English'),
     ('es', u'Español'),
-    ('pt_BR', u'Português'),
+    ('pt-br', u'Português'),
 ]
 #####################################################################
 
