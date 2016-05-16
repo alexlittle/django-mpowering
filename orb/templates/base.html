@@ -49,7 +49,11 @@
 </div>
 <div class="container-fluid">
     <div class="main" style="max-width: 1000px; margin: 20px auto;">
-    {% include "includes/i18n.html" %}
+
+        <div class="lang-choice">
+            {% include "includes/i18n.html" %}
+        </div>
+
         {% if STAGING %}
             <div class="alert alert-danger">
                 This is the development server, anything added here will not be shared on the live

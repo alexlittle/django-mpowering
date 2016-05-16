@@ -409,3 +409,15 @@ div.profile {
     font-size: 1.5rem;
     margin: 1.5rem 0 1.5rem 0;
 }
+
+/*
+ * Language setting
+ */
+@media (min-width: 992px) {
+    .lang-choice {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        z-index: 1;
+    }
+}
