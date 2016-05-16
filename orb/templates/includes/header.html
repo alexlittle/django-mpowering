@@ -1,67 +1,91 @@
-{% load i18n %} 
+{% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="container-fluid">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse"
-			data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
-			<span class="icon-bar"></span> <span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="{% url 'orb_home' %}" style="margin-top:-20px;"><img src="{{ STATIC_URL }}orb/images/orb-logo-white-60px.png"/><small>by mPowering</small></a>
-	</div>
-	<div class="navbar-collapse collapse">
-		<ul class="nav navbar-nav navbar-right">
-			
-			<li><a href="{% url 'orb_home' %}">{% trans 'Home' %}</a></li>
-			<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{% trans 'Browse Resources' %} <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					{% for m in header_menu_categories %}
-						{% for t in m.tags %}
-							<li><a href="{% url 'orb_tags' t.slug %}">{{ t.name }}</a></li>
-						{% endfor %}
-					{% endfor %}
-					<li><a href="{% url 'orb_country_map' %}">{% trans 'Country Map' %}</a></li>
-					<li><a href="{% url 'orb_toolkits_home' %}">{% trans 'Toolkits' %}</a></li>
-				</ul>
-			</li>
-			
-			<li><a href="{% url 'orb_resource_create' %}">{% trans 'Add Resource' %}</a></li>
-			
-			{% if header_owns_tags or user.is_staff or reviewer %}
-				<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{% trans 'Analytics' %} <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				{% for h in header_owns_tags %}
-					<li><a href="{% url 'orb_analytics_tag' h.tag.id %}">{{ h.tag.name}}</a></li>
-				{% endfor %}
-				{% if user.is_staff %}
-						<li><a href="{% url 'orb_analytics_home' %}">{% trans 'Site analytics' %}</a></li>
-						<li><a href="{% url 'orb_analytics_visitor' %}">{% trans 'Monthly Analytics' %}</a></li>
-						<li><a href="{% url 'orb_analytics_map' %}">{% trans 'Activity Map' %}</a></li>						
-				{% endif %}
-				{% if user.is_staff or reviewer %}
-						<li><a href="{% url 'orb_analytics_review' %}">{% trans 'Pending Resources' %}</a></li>					
-				{% endif %}
-				</ul>
-			{% endif %}
-			
-			{% if user.is_authenticated %}
-				<li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">{% trans 'My ORB' %} <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="{% url 'my_profile_view' %}">{% trans 'View Profile' %}</a></li>
-						<li><a href="{% url 'my_profile_edit' %}">{% trans 'Edit Profile' %}</a></li>
-						<li><a href="{% url 'my_ratings_view' %}">{% trans 'Rated' %}</a></li>
-						<li><a href="{% url 'my_bookmarks_view' %}">{% trans 'Bookmarks' %}</a></li>
-						<li><a href="{% url 'django.contrib.auth.views.logout' %}">{% trans 'Logout' %}</a></li>
-					</ul>
-				</li>
-			{% else %}
-				<li><a href="{% url 'profile_login' %}">{% trans 'Login' %}</a></li>
-				<li><a href="{% url 'profile_register' %}">{% trans 'Register' %}</a></li>
-			{% endif %}
-          </ul>
-	</div>
-</div>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'orb_home' %}" style="margin-top:-20px;"><img
+                    src="{{ STATIC_URL }}orb/images/orb-logo-white-60px.png"/>
+                <small>by mPowering</small>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="{% url 'orb_home' %}">{% trans 'Home' %}</a></li>
+                <li class="dropdown"><a href="#" data-toggle="dropdown"
+                                        class="dropdown-toggle">{% trans 'Browse Resources' %} <b
+                        class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for m in header_menu_categories %}
+                            {% for t in m.tags %}
+                                <li><a href="{% url 'orb_tags' t.slug %}">{{ t.name }}</a></li>
+                            {% endfor %}
+                        {% endfor %}
+                        <li><a href="{% url 'orb_country_map' %}">{% trans 'Country Map' %}</a></li>
+                        <li><a href="{% url 'orb_toolkits_home' %}">{% trans 'Toolkits' %}</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="{% url 'orb_resource_create' %}">{% trans 'Add Resource' %}</a></li>
+
+                {% if header_owns_tags or user.is_staff or reviewer %}
+                    <li class="dropdown"><a href="#" data-toggle="dropdown"
+                                            class="dropdown-toggle">{% trans 'Analytics' %} <b
+                        class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        {% for h in header_owns_tags %}
+                            <li>
+                                <a href="{% url 'orb_analytics_tag' h.tag.id %}">{{ h.tag.name }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if user.is_staff %}
+                            <li>
+                                <a href="{% url 'orb_analytics_home' %}">{% trans 'Site analytics' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'orb_analytics_visitor' %}">{% trans 'Monthly Analytics' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'orb_analytics_map' %}">{% trans 'Activity Map' %}</a>
+                            </li>
+                        {% endif %}
+                        {% if user.is_staff or reviewer %}
+                            <li>
+                                <a href="{% url 'orb_analytics_review' %}">{% trans 'Pending Resources' %}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                    <li class="dropdown"><a href="#" data-toggle="dropdown"
+                                            class="dropdown-toggle">{% trans 'My ORB' %} <b
+                            class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'my_profile_view' %}">{% trans 'View Profile' %}</a>
+                            </li>
+                            <li><a href="{% url 'my_profile_edit' %}">{% trans 'Edit Profile' %}</a>
+                            </li>
+                            <li><a href="{% url 'my_ratings_view' %}">{% trans 'Rated' %}</a></li>
+                            <li><a href="{% url 'my_bookmarks_view' %}">{% trans 'Bookmarks' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'django.contrib.auth.views.logout' %}">{% trans 'Logout' %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{% url 'profile_login' %}">{% trans 'Login' %}</a></li>
+                    <li><a href="{% url 'profile_register' %}">{% trans 'Register' %}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 
 {% endblock content %}
 
