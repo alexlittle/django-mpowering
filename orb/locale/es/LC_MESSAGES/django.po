@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-10 17:53+0000\n"
+"POT-Creation-Date: 2016-05-16 22:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -194,87 +194,97 @@ msgid ""
 "for this resource"
 msgstr ""
 
-#: orb/forms.py:150
+#: orb/forms.py:121 orb/templates/orb/resource/view.html:247
+msgid "Study Time"
+msgstr ""
+
+#: orb/forms.py:152
 msgid "Continue &gt;&gt;"
 msgstr ""
 
-#: orb/forms.py:159
+#: orb/forms.py:161
 msgid "You have entered a study time, but not selected a unit."
 msgstr ""
 
-#: orb/forms.py:167
+#: orb/forms.py:169
 #, python-brace-format
 msgid ""
 "You have entered {no_words} words, please enter no more than {max_words}"
 msgstr ""
 
-#: orb/forms.py:185
+#: orb/forms.py:187
 msgid "You have entered already submitted a resource with this title."
 msgstr ""
 
-#: orb/forms.py:214
+#: orb/forms.py:216
 msgid "Add"
 msgstr ""
 
-#: orb/forms.py:225
+#: orb/forms.py:227
 msgid "Please correct the errors below and resubmit the form."
 msgstr ""
 
-#: orb/forms.py:229
+#: orb/forms.py:231
 msgid "Please submit a file and/or a url for this resource"
 msgstr ""
 
-#: orb/forms.py:240
+#: orb/forms.py:242
 #, python-format
 msgid "Currently, ORB does not allow uploading of '%s' files"
 msgstr ""
 
-#: orb/forms.py:243
+#: orb/forms.py:245
 #, python-format
 msgid ""
 "Please keep filesize under %(max_size)s. Current filesize %(actual_size)s"
 msgstr ""
 
-#: orb/forms.py:256
+#: orb/forms.py:258
 msgid "This does not appear to be a valid Url"
 msgstr ""
 
-#: orb/forms.py:263 orb/forms.py:282 orb/forms.py:305
+#: orb/forms.py:265 orb/forms.py:284 orb/forms.py:309
 msgid "Please enter something to search for"
 msgstr ""
 
-#: orb/forms.py:274
+#: orb/forms.py:275
 msgid "Go"
 msgstr ""
 
-#: orb/forms.py:295 orb/forms.py:352 orb/templates/orb/search.html:5
+#: orb/forms.py:296 orb/forms.py:356 orb/templates/orb/search.html:5
 #: orb/templates/orb/search.html.py:9
 msgid "Search"
 msgstr ""
 
-#: orb/forms.py:304
+#: orb/forms.py:300
+#, fuzzy
+#| msgid "Advanced Search"
+msgid "Advanced search"
+msgstr "Búsqueda Avanzada"
+
+#: orb/forms.py:308
 msgid "Search terms"
 msgstr ""
 
-#: orb/forms.py:374
+#: orb/forms.py:378
 msgid "Please select at least a search term or a tag"
 msgstr ""
 
-#: orb/forms.py:387
+#: orb/forms.py:391
 msgid "Please enter a reason as to why the resource has been rejected"
 msgstr ""
 
-#: orb/forms.py:388
+#: orb/forms.py:392
 msgid ""
 "The text you enter here will be included in the email to the submitter of "
 "the resource, so please bear this in mind when explaining your reasoning."
 msgstr ""
 
-#: orb/forms.py:389
+#: orb/forms.py:393
 msgid "Reason for rejection"
 msgstr ""
 
-#: orb/forms.py:402
+#: orb/forms.py:406
 msgid "Submit"
 msgstr ""
 
@@ -514,7 +524,7 @@ msgid "Please note that your username and password are case-sensitive."
 msgstr ""
 
 #: orb/profile/forms.py:41 orb/profile/views.py:45
-#: orb/templates/includes/header.html:59
+#: orb/templates/includes/header.html:83
 msgid "Login"
 msgstr ""
 
@@ -589,7 +599,7 @@ msgid "Subscribe to mPowering update emails"
 msgstr ""
 
 #: orb/profile/forms.py:136 orb/profile/views.py:108
-#: orb/templates/includes/header.html:60
+#: orb/templates/includes/header.html:84
 msgid "Register"
 msgstr ""
 
@@ -693,83 +703,83 @@ msgstr ""
 msgid "ORB"
 msgstr ""
 
-#: orb/templates/base.html:66
+#: orb/templates/base.html:70
 msgid "Contact Us"
 msgstr ""
 
-#: orb/templates/base.html:70
+#: orb/templates/base.html:74
 msgid "Follow Us"
 msgstr ""
 
-#: orb/templates/base.html:71 orb/templates/orb/profile/view.html:73
+#: orb/templates/base.html:75 orb/templates/orb/profile/view.html:73
 msgid "Twitter"
 msgstr ""
 
-#: orb/templates/base.html:72
+#: orb/templates/base.html:76
 msgid "Blog"
 msgstr ""
 
-#: orb/templates/base.html:75
+#: orb/templates/base.html:79
 msgid "About Us"
 msgstr ""
 
-#: orb/templates/base.html:76 orb/templates/orb/about.html:4
+#: orb/templates/base.html:80 orb/templates/orb/about.html:4
 #: orb/templates/orb/profile/view.html:51
 msgid "About"
 msgstr ""
 
-#: orb/templates/base.html:77 orb/templates/orb/about.html:45
+#: orb/templates/base.html:81 orb/templates/orb/about.html:45
 msgid "Content Review Team"
 msgstr ""
 
-#: orb/templates/base.html:78 orb/templates/orb/about.html:58
+#: orb/templates/base.html:82 orb/templates/orb/about.html:58
 msgid "Medical Expert Panel"
 msgstr ""
 
-#: orb/templates/base.html:79 orb/templates/orb/partners.html:5
+#: orb/templates/base.html:83 orb/templates/orb/partners.html:5
 #: orb/templates/orb/partners.html.py:10
 msgid "Content Partners"
 msgstr ""
 
-#: orb/templates/base.html:80 orb/templates/orb/how_to.html:4
+#: orb/templates/base.html:84 orb/templates/orb/how_to.html:4
 #: orb/templates/orb/how_to.html.py:9
 msgid "How to use ORB resources"
 msgstr ""
 
-#: orb/templates/base.html:81 orb/templates/orb/developers.html:4
+#: orb/templates/base.html:85 orb/templates/orb/developers.html:4
 #: orb/templates/orb/developers.html:9
 msgid "Developers Area"
 msgstr ""
 
-#: orb/templates/base.html:86 orb/templates/orb/terms.html:4
+#: orb/templates/base.html:90 orb/templates/orb/terms.html:4
 msgid "Terms and Privacy Policy"
 msgstr ""
 
-#: orb/templates/includes/header.html:16
+#: orb/templates/includes/header.html:19
 msgid "Home"
 msgstr ""
 
-#: orb/templates/includes/header.html:17
+#: orb/templates/includes/header.html:21
 msgid "Browse Resources"
 msgstr ""
 
-#: orb/templates/includes/header.html:24
+#: orb/templates/includes/header.html:29
 #: orb/templates/orb/viz/country_map.html:3
 #: orb/templates/orb/viz/country_map.html:103
 msgid "Country Map"
 msgstr ""
 
-#: orb/templates/includes/header.html:25 orb/templates/orb/toolkits/home.html:4
+#: orb/templates/includes/header.html:30 orb/templates/orb/toolkits/home.html:4
 #: orb/templates/orb/toolkits/home.html:7
 msgid "Toolkits"
 msgstr ""
 
-#: orb/templates/includes/header.html:29
+#: orb/templates/includes/header.html:34
 #: orb/templates/orb/resource/create_step1.html:8
 msgid "Add Resource"
 msgstr ""
 
-#: orb/templates/includes/header.html:32
+#: orb/templates/includes/header.html:38
 #: orb/templates/orb/analytics/home.html:4
 #: orb/templates/orb/analytics/home.html:77
 #: orb/templates/orb/analytics/resource.html:3
@@ -777,15 +787,15 @@ msgstr ""
 msgid "Analytics"
 msgstr ""
 
-#: orb/templates/includes/header.html:38
+#: orb/templates/includes/header.html:48
 msgid "Site analytics"
 msgstr ""
 
-#: orb/templates/includes/header.html:39
+#: orb/templates/includes/header.html:51
 msgid "Monthly Analytics"
 msgstr ""
 
-#: orb/templates/includes/header.html:40
+#: orb/templates/includes/header.html:54
 #: orb/templates/orb/analytics/home.html:86
 #: orb/templates/orb/analytics/home.html:242
 #: orb/templates/orb/analytics/map.html:3
@@ -793,35 +803,39 @@ msgstr ""
 msgid "Activity Map"
 msgstr ""
 
-#: orb/templates/includes/header.html:43
+#: orb/templates/includes/header.html:59
 #: orb/templates/orb/analytics/review.html:4
 #: orb/templates/orb/analytics/review.html:8
 msgid "Pending Resources"
 msgstr ""
 
-#: orb/templates/includes/header.html:49
+#: orb/templates/includes/header.html:67
 msgid "My ORB"
 msgstr ""
 
-#: orb/templates/includes/header.html:51
+#: orb/templates/includes/header.html:70
 msgid "View Profile"
 msgstr ""
 
-#: orb/templates/includes/header.html:52
+#: orb/templates/includes/header.html:72
 msgid "Edit Profile"
 msgstr ""
 
-#: orb/templates/includes/header.html:53
+#: orb/templates/includes/header.html:74
 msgid "Rated"
 msgstr ""
 
-#: orb/templates/includes/header.html:54
+#: orb/templates/includes/header.html:75
 #: orb/templates/orb/profile/bookmarks.html:7
 msgid "Bookmarks"
 msgstr ""
 
-#: orb/templates/includes/header.html:55
+#: orb/templates/includes/header.html:78
 msgid "Logout"
+msgstr ""
+
+#: orb/templates/includes/i18n.html:2
+msgid "Change language"
 msgstr ""
 
 #: orb/templates/orb/about.html:9
@@ -2139,10 +2153,6 @@ msgstr ""
 
 #: orb/templates/orb/resource/view.html:237
 msgid "This resource is included in the following collections:"
-msgstr ""
-
-#: orb/templates/orb/resource/view.html:247
-msgid "Study Time"
 msgstr ""
 
 #: orb/templates/orb/resource/view.html:288
