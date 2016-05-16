@@ -6,7 +6,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.utils.html import strip_tags
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _
 from django.template.defaultfilters import filesizeformat
 
 from crispy_forms.helper import FormHelper
@@ -293,8 +293,10 @@ class HeaderSearchForm(forms.Form):
         self.helper.layout = Layout(
             FieldWithButtons('q', Submit('submit', _(
                 u'Search'), css_class='btn btn-default')),
-            Row(HTML('<a href="' + reverse('orb_search_advanced') +
-                     '">Advanced search</a>'), css_class='advanced-search-link'),
+            Row(HTML(u"<a href='{0}'>{1}</a>".format(
+                reverse('orb_search_advanced'),
+                _("Advanced search"),
+            )), css_class="advanced-search-link")
         )
 
 
