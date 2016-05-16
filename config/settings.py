@@ -35,6 +35,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'crispy_forms',
     'orb',
-    'modeltranslation',
     'tastypie',
     'tinymce',
     'django_wysiwyg',
@@ -106,7 +106,7 @@ USE_TZ = True
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'orb/locale'),
 ]
-gettext = lambda s: s
+gettext = lambda s: s  # noqa
 LANGUAGES = [
     ('en', u'English'),
     ('es', u'Español'),
