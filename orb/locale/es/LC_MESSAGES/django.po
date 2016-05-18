@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-05-16 22:28+0000\n"
+"POT-Creation-Date: 2016-05-18 15:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -524,7 +524,7 @@ msgid "Please note that your username and password are case-sensitive."
 msgstr ""
 
 #: orb/profile/forms.py:41 orb/profile/views.py:45
-#: orb/templates/includes/header.html:83
+#: orb/templates/includes/header.html:85
 msgid "Login"
 msgstr ""
 
@@ -599,7 +599,7 @@ msgid "Subscribe to mPowering update emails"
 msgstr ""
 
 #: orb/profile/forms.py:136 orb/profile/views.py:108
-#: orb/templates/includes/header.html:84
+#: orb/templates/includes/header.html:86
 msgid "Register"
 msgstr ""
 
@@ -703,83 +703,83 @@ msgstr ""
 msgid "ORB"
 msgstr ""
 
-#: orb/templates/base.html:70
+#: orb/templates/base.html:67
 msgid "Contact Us"
 msgstr ""
 
-#: orb/templates/base.html:74
+#: orb/templates/base.html:71
 msgid "Follow Us"
 msgstr ""
 
-#: orb/templates/base.html:75 orb/templates/orb/profile/view.html:73
+#: orb/templates/base.html:72 orb/templates/orb/profile/view.html:73
 msgid "Twitter"
 msgstr ""
 
-#: orb/templates/base.html:76
+#: orb/templates/base.html:73
 msgid "Blog"
 msgstr ""
 
-#: orb/templates/base.html:79
+#: orb/templates/base.html:76
 msgid "About Us"
 msgstr ""
 
-#: orb/templates/base.html:80 orb/templates/orb/about.html:4
+#: orb/templates/base.html:77 orb/templates/orb/about.html:4
 #: orb/templates/orb/profile/view.html:51
 msgid "About"
 msgstr ""
 
-#: orb/templates/base.html:81 orb/templates/orb/about.html:45
+#: orb/templates/base.html:78 orb/templates/orb/about.html:45
 msgid "Content Review Team"
 msgstr ""
 
-#: orb/templates/base.html:82 orb/templates/orb/about.html:58
+#: orb/templates/base.html:79 orb/templates/orb/about.html:58
 msgid "Medical Expert Panel"
 msgstr ""
 
-#: orb/templates/base.html:83 orb/templates/orb/partners.html:5
+#: orb/templates/base.html:80 orb/templates/orb/partners.html:5
 #: orb/templates/orb/partners.html.py:10
 msgid "Content Partners"
 msgstr ""
 
-#: orb/templates/base.html:84 orb/templates/orb/how_to.html:4
+#: orb/templates/base.html:81 orb/templates/orb/how_to.html:4
 #: orb/templates/orb/how_to.html.py:9
 msgid "How to use ORB resources"
 msgstr ""
 
-#: orb/templates/base.html:85 orb/templates/orb/developers.html:4
+#: orb/templates/base.html:82 orb/templates/orb/developers.html:4
 #: orb/templates/orb/developers.html:9
 msgid "Developers Area"
 msgstr ""
 
-#: orb/templates/base.html:90 orb/templates/orb/terms.html:4
+#: orb/templates/base.html:87 orb/templates/orb/terms.html:4
 msgid "Terms and Privacy Policy"
 msgstr ""
 
-#: orb/templates/includes/header.html:19
-msgid "Home"
+#: orb/templates/includes/header.html:15
+msgid "Language"
 msgstr ""
 
-#: orb/templates/includes/header.html:21
+#: orb/templates/includes/header.html:23
 msgid "Browse Resources"
 msgstr ""
 
-#: orb/templates/includes/header.html:29
+#: orb/templates/includes/header.html:31
 #: orb/templates/orb/viz/country_map.html:3
 #: orb/templates/orb/viz/country_map.html:103
 msgid "Country Map"
 msgstr ""
 
-#: orb/templates/includes/header.html:30 orb/templates/orb/toolkits/home.html:4
+#: orb/templates/includes/header.html:32 orb/templates/orb/toolkits/home.html:4
 #: orb/templates/orb/toolkits/home.html:7
 msgid "Toolkits"
 msgstr ""
 
-#: orb/templates/includes/header.html:34
+#: orb/templates/includes/header.html:36
 #: orb/templates/orb/resource/create_step1.html:8
 msgid "Add Resource"
 msgstr ""
 
-#: orb/templates/includes/header.html:38
+#: orb/templates/includes/header.html:40
 #: orb/templates/orb/analytics/home.html:4
 #: orb/templates/orb/analytics/home.html:77
 #: orb/templates/orb/analytics/resource.html:3
@@ -787,15 +787,15 @@ msgstr ""
 msgid "Analytics"
 msgstr ""
 
-#: orb/templates/includes/header.html:48
+#: orb/templates/includes/header.html:50
 msgid "Site analytics"
 msgstr ""
 
-#: orb/templates/includes/header.html:51
+#: orb/templates/includes/header.html:53
 msgid "Monthly Analytics"
 msgstr ""
 
-#: orb/templates/includes/header.html:54
+#: orb/templates/includes/header.html:56
 #: orb/templates/orb/analytics/home.html:86
 #: orb/templates/orb/analytics/home.html:242
 #: orb/templates/orb/analytics/map.html:3
@@ -803,38 +803,38 @@ msgstr ""
 msgid "Activity Map"
 msgstr ""
 
-#: orb/templates/includes/header.html:59
+#: orb/templates/includes/header.html:61
 #: orb/templates/orb/analytics/review.html:4
 #: orb/templates/orb/analytics/review.html:8
 msgid "Pending Resources"
 msgstr ""
 
-#: orb/templates/includes/header.html:67
+#: orb/templates/includes/header.html:69
 msgid "My ORB"
 msgstr ""
 
-#: orb/templates/includes/header.html:70
+#: orb/templates/includes/header.html:72
 msgid "View Profile"
 msgstr ""
 
-#: orb/templates/includes/header.html:72
+#: orb/templates/includes/header.html:74
 msgid "Edit Profile"
 msgstr ""
 
-#: orb/templates/includes/header.html:74
+#: orb/templates/includes/header.html:76
 msgid "Rated"
 msgstr ""
 
-#: orb/templates/includes/header.html:75
+#: orb/templates/includes/header.html:77
 #: orb/templates/orb/profile/bookmarks.html:7
 msgid "Bookmarks"
 msgstr ""
 
-#: orb/templates/includes/header.html:78
+#: orb/templates/includes/header.html:80
 msgid "Logout"
 msgstr ""
 
-#: orb/templates/includes/i18n.html:2
+#: orb/templates/includes/i18n.html:5
 msgid "Change language"
 msgstr ""
 
@@ -1645,13 +1645,12 @@ msgid ""
 "us.\n"
 msgstr ""
 
-#: orb/templates/orb/home.html:16
+#: orb/templates/orb/home.html:17
 msgid ""
-"\n"
-"<h3 style=\"text-align: center\">Connecting Frontline Health Workers\n"
-"\tto resources and each other to expand their knowledge, organize content\n"
-"\tinto courses, and share their learning with the community.</h3>\n"
-msgstr ""
+"Connecting Frontline Health Workers to resources and each other to expand "
+"their knowledge, organize content into courses, and share their learning "
+"with the community."
+msgstr "Conexión de los trabajadores de salud de primera línea a los recursos y entre sí para ampliar sus conocimientos, organizar el contenido en los cursos, y compartir su aprendizaje con la comunidad."
 
 #: orb/templates/orb/how_to.html:11
 msgid "Find Resources"
