@@ -12,11 +12,13 @@
                     src="{{ STATIC_URL }}orb/images/orb-logo-white-60px.png"/>
                 <small>by mPowering</small>
             </a>
+            <p class="navbar-text navbar-language visible-xs">{%  trans 'Language' %}:</p>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
 
-                <li><a href="{% url 'orb_home' %}">{% trans 'Home' %}</a></li>
+                {% include "includes/i18n.html" %}
+
                 <li class="dropdown"><a href="#" data-toggle="dropdown"
                                         class="dropdown-toggle">{% trans 'Browse Resources' %} <b
                         class="caret"></b></a>

@@ -298,7 +298,7 @@ class HeaderSearchForm(forms.Form):
             Row(HTML(u"<a href='{0}'>{1}</a>".format(
                 reverse('orb_search_advanced'),
                 _(u"Advanced search"),
-            )), css_class="advanced-search-link")
+            )), css_class="advanced-search-link hidden-xs")
         )
 
 

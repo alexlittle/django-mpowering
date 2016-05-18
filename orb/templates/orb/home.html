@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %} 
+{% load i18n %}
 {% load thumbnail %}
 
 {% block extra_head_title %}{% trans 'ORB by mPowering' %}{% endblock extra_head_title %}
@@ -31,13 +31,13 @@
 			{% endthumbnail %}
 			<h3 class="homepage">{{ t.tag.name }}</h3>
 			{{ t.resource_count }} resource{{ t.resource_count|pluralize }}
-		</a> 
+		</a>
 		{% else %}
 		<a href="{{ t.url }}">
 			<img src="{{ STATIC_URL }}orb/images/{{ t.image }}" width="220" height="150">
 			<h3 class="homepage">{{ t.title }}</h3>
 			{{ t.resource_count }} resource{{ t.resource_count|pluralize }}
-		</a> 
+		</a>
 		{% endif %}
 	</div>
 {% endfor %}
