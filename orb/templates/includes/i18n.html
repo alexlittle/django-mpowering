@@ -1,11 +1,12 @@
-{% load i18n %}
+{% load i18n %}{% spaceless %}
+{% get_available_languages as languages %}
+{% if languages|length > 1 %}
 <form action="{% url 'set_language' %}" method="post" id="i18n-form"
       class="form-inline navbar-form navbar-right">
     {% csrf_token %}
     <label class="sr-only">{% trans 'Change language' %}</label>
     <input name="next" type="hidden" value="{{ redirect_to }}"/>
     <select name="language" class="form-control" id="i18n">
-        {% get_available_languages as languages %}
         {% for language in languages %}
             <option value="{{ language.0 }}"{% if language.0 == LANGUAGE_CODE %}
                     selected="selected"{% endif %}>
@@ -14,3 +15,4 @@
         {% endfor %}
     </select>
 </form>
+{% endif %}{% endspaceless %}
