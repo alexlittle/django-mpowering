@@ -438,8 +438,8 @@ select#i18n {
     border: 1px solid #111;
     color: white;
    background: transparent;
-   width: 150px;
-   padding: 5px 35px 5px 5px;
+   width: 100px;
+   padding: 5px 5px 5px 5px;
    font-size: 16px;
    border: 1px solid #ccc;
    height: 34px;
