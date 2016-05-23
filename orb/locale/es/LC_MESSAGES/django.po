@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: orb/api/error_codes.py:31
 msgid "You have already uploaded a resource with this title"
@@ -256,8 +257,10 @@ msgid "Search"
 msgstr ""
 
 #: orb/forms.py:300
+#, fuzzy
+#| msgid "Advanced Search"
 msgid "Advanced search"
-msgstr ""
+msgstr "Búsqueda Avanzada"
 
 #: orb/forms.py:308
 msgid "Search terms"
@@ -1647,7 +1650,7 @@ msgid ""
 "Connecting Frontline Health Workers to resources and each other to expand "
 "their knowledge, organize content into courses, and share their learning "
 "with the community."
-msgstr ""
+msgstr "Conexión de los trabajadores de salud de primera línea a los recursos y entre sí para ampliar sus conocimientos, organizar el contenido en los cursos, y compartir su aprendizaje con la comunidad."
 
 #: orb/templates/orb/how_to.html:11
 msgid "Find Resources"
@@ -2173,7 +2176,7 @@ msgstr ""
 
 #: orb/templates/orb/search_advanced.html:5
 msgid "Advanced Search"
-msgstr ""
+msgstr "Búsqueda Avanzada"
 
 #: orb/templates/orb/search_advanced.html:9
 msgid "Advanced Search & Filter"

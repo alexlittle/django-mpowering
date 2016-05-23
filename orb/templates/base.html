@@ -38,7 +38,6 @@
 
     <link rel="shortcut icon" type="image/png"
           href="{{ STATIC_URL }}orb/images/icon-white.png"/>
-    <script src="{{ STATIC_URL }}orb/js/jquery-1.11.0.min.js"></script>
     {% block extra_styles %}{% endblock extra_styles %}
     {% block extra_scripts %}{% endblock extra_scripts %}
 </head>
@@ -50,6 +49,8 @@
 </div>
 <div class="container-fluid">
     <div class="main" style="max-width: 1000px; margin: 20px auto;">
+
+
         {% if STAGING %}
             <div class="alert alert-danger">
                 This is the development server, anything added here will not be shared on the live
@@ -87,8 +88,9 @@
         </div>
     </div>
 
-    <script
-            src="{{ STATIC_URL }}orb/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+    <script src="{{ STATIC_URL }}orb/js/jquery-1.11.0.min.js"></script>
+    <script src="{{ STATIC_URL }}orb/bootstrap-3.1.1/js/bootstrap.min.js"></script>
+    <script>$("#i18n").change(function() { this.form.submit(); });</script>
 
     <script>
         (function (i, s, o, g, r, a, m) {

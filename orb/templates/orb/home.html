@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %} 
+{% load i18n %}
 {% load thumbnail %}
 
 {% block extra_head_title %}{% trans 'ORB by mPowering' %}{% endblock extra_head_title %}
@@ -13,11 +13,9 @@
 
 {% include 'orb/includes/search_bar.html' %}
 
-{% blocktrans %}
-<h3 style="text-align: center">Connecting Frontline Health Workers
-	to resources and each other to expand their knowledge, organize content
-	into courses, and share their learning with the community.</h3>
-{% endblocktrans %}
+<h3 style="text-align: center">
+    {% trans 'Connecting Frontline Health Workers to resources and each other to expand their knowledge, organize content into courses, and share their learning with the community.' %}
+</h3>
 
 <div style="position: relative; margin: 20px auto; overflow: hidden; text-align: center;">
 {% for t in topics %}
@@ -31,13 +29,13 @@
 			{% endthumbnail %}
 			<h3 class="homepage">{{ t.tag.name }}</h3>
 			{{ t.resource_count }} resource{{ t.resource_count|pluralize }}
-		</a> 
+		</a>
 		{% else %}
 		<a href="{{ t.url }}">
 			<img src="{{ STATIC_URL }}orb/images/{{ t.image }}" width="220" height="150">
 			<h3 class="homepage">{{ t.title }}</h3>
 			{{ t.resource_count }} resource{{ t.resource_count|pluralize }}
-		</a> 
+		</a>
 		{% endif %}
 	</div>
 {% endfor %}

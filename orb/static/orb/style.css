@@ -409,3 +409,53 @@ div.profile {
     font-size: 1.5rem;
     margin: 1.5rem 0 1.5rem 0;
 }
+
+/*
+ * Language setting
+ */
+@media (min-width: 992px) {
+    .lang-choice {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        z-index: 1;
+    }
+}
+
+
+.navbar-language {
+    float: right;
+    margin-right: 20px;
+    color: white !important;
+    font-weight: bold;
+}
+
+/* select#i18n { width: 50px; } */
+
+
+select#i18n {
+   /* margin: 50px; */
+    border: 1px solid #111;
+    color: white;
+   background: transparent;
+   width: 100px;
+   padding: 5px 5px 5px 5px;
+   font-size: 16px;
+   border: 1px solid #ccc;
+   height: 34px;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+
+select#i18n:hover {
+    border: 1px solid #EF485B;
+}
+
+/*target Internet Explorer 9 and Internet Explorer 10:*/
+@media screen and (min-width:0\0) {
+    select#i18n {
+        background:none;
+        padding: 5px;
+    }
+}
