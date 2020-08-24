@@ -200,7 +200,7 @@ def resource_create_step1_view(request):
                     "study_time_number")
                 resource.study_time_unit = form.cleaned_data.get(
                     "study_time_unit")
-            if request.FILES.has_key('image'):
+            if 'image' in request.FILES:
                 resource.image = request.FILES["image"]
             resource.attribution = form.cleaned_data.get("attribution")
             resource.save()
@@ -258,7 +258,7 @@ def resource_create_step2_view(request, id):
         if form.is_valid():
             title = form.cleaned_data.get("title")
             # add file and url
-            if request.FILES.has_key('file'):
+            if 'file' in request.FILES:
                 rf = ResourceFile(
                     resource=resource, create_user=request.user, update_user=request.user)
                 rf.file = request.FILES["file"]
@@ -466,7 +466,7 @@ def resource_edit_view(request, resource_id):
                 resource.image = None
                 resource.save()
 
-            if request.FILES.has_key('image'):
+            if 'image' in request.FILES:
                 resource.image = request.FILES["image"]
                 resource.save()
 
@@ -573,7 +573,7 @@ def resource_edit_step2_view(request, resource_id):
         if form.is_valid():
             title = form.cleaned_data.get("title")
             # add file and url
-            if request.FILES.has_key('file'):
+            if 'file' in request.FILES:
                 rf = ResourceFile(
                     resource=resource, create_user=request.user, update_user=request.user)
                 rf.file = request.FILES["file"]

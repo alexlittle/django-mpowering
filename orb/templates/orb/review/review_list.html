@@ -56,6 +56,7 @@
                         <th>{% trans 'Submitter' %}</th>
                         <th>{% trans 'Submitted' %}</th>
                         <th>{% trans 'Title' %}</th>
+                        <th>{% trans 'Category' %}</th>
                         <th>{% trans 'Organisation' %}</th>
                         <th colspan="3">{% trans 'Options' %}</th>
                     </tr>
@@ -66,6 +67,17 @@
                             <td><a href="mailto:{{ resource.create_user.email }}">{{ resource.create_user.get_full_name }}</a></td>
                             <td>{{ resource.create_date|date }}</td>
                             <td>{{ resource.title }}</td>
+                            <td>
+                                {% for category in resource.get_display_categories %}
+                                    {% if category.name == 'Health Domain' %}
+                                        {% for tag in category.tags %}
+                                            {{ tag.name }} {% if forloop.last is False %} , {% endif %}
+                                        {% endfor %}
+                                    {% endif%}
+
+                                {% endfor %}
+
+                            </td>
                             <td>
                                 {% for organisation in resource.get_organisations %}
                                     {{ organisation.name }}
@@ -120,6 +132,7 @@
                     <th>{% trans 'Submitter' %}</th>
                     <th>{% trans 'Submitted' %}</th>
                     <th>{% trans 'Title' %}</th>
+                    <th>{% trans 'Category' %}</th>
                     <th>{% trans 'Organisation' %}</th>
                     <th colspan="{% if user.is_staff %}4{% else %}2{% endif %}">{% trans 'Options' %}</th>
                 </tr>
@@ -130,6 +143,17 @@
                         <td><a href="mailto:{{ resource.create_user.email }}">{{ resource.create_user.get_full_name }}</a></td>
                         <td>{{ resource.create_date|date }}</td>
                         <td>{{ resource.title }}{% status_labels resource %}</td>
+                        <td>
+                            {% for category in resource.get_display_categories %}
+                                {% if category.name == 'Health Domain' %}
+                                    {% for tag in category.tags %}
+                                        {{ tag.name }} {% if forloop.last is False %} , {% endif %}
+                                    {% endfor %}
+                                {% endif%}
+
+                            {% endfor %}
+
+                        </td>
                         <td>
                             {% for organisation in resource.get_organisations %}
                                 {{ organisation.name }}

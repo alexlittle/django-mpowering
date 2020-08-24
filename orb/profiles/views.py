@@ -123,7 +123,7 @@ def edit(request):
                 user_profile = UserProfile()
                 user_profile.user = request.user
 
-            if request.FILES.has_key('photo'):
+            if 'photo' in request.FILES:
                 user_profile.photo = request.FILES["photo"]
 
             if form.cleaned_data.get("organisation").strip() != '':
