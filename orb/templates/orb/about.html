@@ -1,67 +1,44 @@
-{% extends "base.html" %} 
-{% load i18n %} 
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %}  {% endcomment %}
+
+{% load i18n %}
+
 {% block extra_head_title %}
 	{% trans 'About' %}
-{% endblock extra_head_title %} 
+{% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'About' %}{% endblock %}
 {% block content %}
+	<h2>{% trans 'About COVID-19 Library' %}</h2>
+	{% url 'orb_terms' as orb_terms %}
+	{% blocktrans %}
 
-<h2>{% trans 'About ORB' %}</h2>
-{% url 'orb_terms' as orb_terms %}
-{% blocktrans %}
+	<p>COVID-19 Library offers community-based health workers and trainers access to
+		quality assured openly licensed content that can be used on mobile devices
+		and shared with local communities globally.</p>
 
-<p>ORB offers frontline health workers and trainers access to
-	quality assured openly licensed content that can be used on mobile devices
-	and shared virally amongst communities.</p>
+	<p>COVID-19 Library has three unique features:</p>
+	<ol>
+		<li>Brings into one space quality-assured, multimedia materials
+			from multiple content developers.</li>
+		<li>Adaptation of existing content: COVID-19 Library allows training
+			implementers to re-use and adapt quality-assured training materials,
+			saving costs and time.</li>
+		<li>A global collaborative network of organizations to share and
+			review content, integrate content into programs and share
+			user-experience.</li>
+	</ol>
 
-<p>ORB has three unique features:</p>
-<ol>
-	<li>Brings into one space quality-assured, multimedia materials
-		from multiple content developers, with a focus on maternal and child
-		health.</li>
-	<li>Adaptation of existing content: ORB allows training
-		implementers to re-use and adapt quality-assured training materials,
-		saving costs and time.</li>
-	<li>A global collaborative network of organizations to share and
-		review content, integrate content into programs and share
-		user-experience.</li>
-</ol>
+	<p>By improving access to health content and mobile learning, COVID-19 Library
+		helps health workers access the vital content they need to do their
+		work effectively and confidently.</p>
 
-<p>By improving access to health content and mobile learning, ORB
-	helps health workers access the vital content they need to do their
-	work effectively and confidently.</p>
+	<p>By using the site, you are agreeing to our <a href="{{ orb_terms }}">Terms and Privacy
+		Policy</a> and that the content on this site <a href="{{ orb_terms }}#not-medical">does not constitute medical
+		advice</a>.</p>
+	<p>
+		COVID-19 Library is powered by ORB technology.
+	</p>
 
-<p>By using the site, you are agreeing to our <a href="{{ orb_terms }}">Terms and Privacy
-	Policy</a> and that the content on this site <a href="{{ orb_terms }}#not-medical">does not constitute medical
-	advice</a>.</p>
-<p>
-	ORB has been developed by the <a href="http://mpoweringhealth.org">mPowering
-		Frontline Health Workers</a> partnership.
-</p>
-
-{% endblocktrans %}
-
-
-<hr/>
-<h4>{% trans 'Homepage Photo Credits' %}</h4>
-{% blocktrans %}
-<ul>
-	<li>Open University HEAT Program</li>
-	<li>Ye Tun Oo, Courtesy of Photoshare</li>
-	<li>UNICEF South Africa</li>
-	<li>Lesley-Anne Long</li>
-	<li>Grand Challenges in Global Health</li>
-	<li><a href="//commons.wikimedia.org/w/index.php?title=User:Piki-photow&amp;action=edit&amp;redlink=1" class="new" title="User:Piki-photow (page does not exist)">T.K. Naliaka</a> - <span class="int-own-work" lang="en">Own work</span>, <a title="Creative Commons Attribution-Share Alike 4.0" href="http://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, https://commons.wikimedia.org/w/index.php?curid=36622513</li>
-	<li>Beth.herlin (Own work) [<a href="http://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File%3AZIKA.png">via Wikimedia Commons</a></li>
-	<li>Peter Roberts, <a href="https://www.photoshare.org/photo/15604-2">Courtesy of Photoshare</a></li>
-</ul>
-{% endblocktrans %} 
-
-<h4>{% trans 'Other Credits' %}</h4>
-{% blocktrans %}
-<ul>
-	<li>Country flag icons provided by Wikipedia (public domain)</li>
-</ul>
-{% endblocktrans %}
-
+	{% endblocktrans %}
 {% endblock content %}

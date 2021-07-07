@@ -1,6 +1,8 @@
-from django.conf.urls import url
-from orb.courses import views
+from __future__ import unicode_literals
 
+from django.conf.urls import url
+
+from orb.courses import views
 
 urlpatterns = [
     url(r"^$", view=views.CoursesListView.as_view(), name="courses_list"),

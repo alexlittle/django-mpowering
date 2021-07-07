@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% if not page.object_list %}
+    {% if not is_geo_tag %}
+        <p>{% trans 'There are no resources tagged with ' %}{{ tag.name }}.</p>
+    {% else %}
+        {% url 'orb_resource_create' as add_resource_url %}
+        {% url 'profile_register' as registration_url %}
+        {% blocktrans with tag.name as name %}
+            <p>There are no resources yet for {{ name }}.</p>
+            <p>
+                Do you have resources relevant to {{ name }}?
+                You can <a href="{{ add_resource_url }}">add openly licensed content resources</a> and improve
+                the knowledge base for community-based health workers and trainers.
+            </p>
+            <a href="{{ add_resource_url }}">Add your resource &raquo;</a>
+            <p>If you have not yet registered, please <a href="{{ registration_url }}">take a moment to do so</a> first.</p>
+        {% endblocktrans %}
+    {% endif %}
+{% endif %}

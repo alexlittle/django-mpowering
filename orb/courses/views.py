@@ -20,10 +20,10 @@ from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
 from django.views import generic
 from django.views.decorators.csrf import csrf_exempt
+from six import text_type
 
 from orb import mixins
-from orb.courses import forms
-from orb.courses import models
+from orb.courses import forms, models
 
 logger = logging.getLogger(__name__)
 
@@ -39,14 +39,14 @@ def response_messages(key):
         models.CourseStatus.archived.name: _("Your course has been removed."),
     }
     try:
-        return unicode(messages.get(key))
+        return text_type(messages.get(key))
     except KeyError:
         logger.error("No such message key '{}'".format(key))
         return key
 
 
 def course_save_message(original_status, updated_status):
-    # type: (unicode, unicode) -> unicode
+    # type: (str, str) -> str
     """Returns a message suitable for saving a course"""
     status = "same" if original_status == updated_status else updated_status
     return response_messages(status)

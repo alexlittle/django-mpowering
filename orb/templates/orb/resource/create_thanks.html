@@ -1,13 +1,21 @@
-{% extends "base.html" %}
-{% load i18n %} 
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% load i18n %}
+
 {% block extra_head_title %}{% trans 'Resource Submitted' %}{% endblock extra_head_title %}
+
+{% block content_title %}
+{% trans 'Resource Submitted' %}
+{% endblock %}
+
 {% block content %}
-
-<h2>{% trans 'Resource Submitted' %}</h2>
-
-<div class="alert alert-success">{% blocktrans with resource.title as r_title%} Thank you for submitting 
-'{{ r_title }}' as a resource to the ORB Platform{% endblocktrans %}</div>	
-
-<div class="alert alert-info">{% blocktrans %}Your submission with be reviewed by the Content Review Team and our Medical Expert Panel before it will be made available publicly on this site.{% endblocktrans %}</div>	
+<div
+    class="FormView-notice motif:tint type:base--face:hed--weight:700"
+    at-base="pad:xyEq100 rhy:yStart50"
+    at-extended="rhy:yStart100"
+>
+    <p>{% blocktrans with resource.title as r_title%} Thank you for submitting '{{ r_title }}' as a resource to the COVID-19 Library{% endblocktrans %}</p>
+    <p>{% blocktrans %}Your submission with be reviewed by the Content Review Team before it will be made available publicly on this site.{% endblocktrans %}</p>
+</div>
 
 {% endblock %}

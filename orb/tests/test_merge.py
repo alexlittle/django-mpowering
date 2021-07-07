@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 import pytest
+
+from orb.models import ResourceTag, Tag, TagTracker
 from orb.resources.tests.factory import resource_factory
 from orb.tags.tests.factory import tag_factory
-from orb.models import Tag, ResourceTag, TagTracker
 
 
 @pytest.mark.django_db

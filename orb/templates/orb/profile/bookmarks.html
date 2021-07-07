@@ -1,23 +1,74 @@
-{% extends "base.html" %}
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load i18n %}
 {% load thumbnail %}
 {% block extra_head_title %}{{ user.first_name }} {{ user.last_name }} - {% trans 'bookmarks' %}{% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'Bookmarks' %}{% endblock %}
+{% block content_overview %}{% trans 'Bookmarks' %}{% endblock %}
 {% block content %}
-<h2>{% trans 'Bookmarks' %}</h2>
 
 {% if bookmarks %}
-	{% blocktrans %}<p>You have bookmarked the following resources:</p>{% endblocktrans %}
+	<p
+		at-base="flex:h--p:start--s:start pad:xyEq50"
+		at-standard="pad:xEq150"
+		class="motif:tint fx:shift"
+	>
+	{% blocktrans %}You have bookmarked the following resources:{% endblocktrans %}
+	</p>
+
 	{% for resource in bookmarks %}
-		<div class="row"> 
-			
-			<div class="col-md-10">
-		 		{% include "orb/includes/resource_row.html" %}
+		<div
+			at-economy="flex:h--p:start--s:middle flex:h--p:start--s:start"
+		>
+			<div
+				at-economy="aspect:xEq80--pct"
+			>
+		 		{% comment %} {% include "orb/includes/resource_row.html" %} {% endcomment %}
+				 <article at-base="grid:v" class="ResourceCard edge:xStart--set:edgePrimary">
+				 	<header at-base="module:static--area:1 flex:v--p:start--s:start pad:xyEq50 rhy:yStart25" class="ResourceCard-header">
+					 	<h3 class="type:major--face:hed--weight:900 color:shade fx:shift">
+						 	<a href="{% url 'orb_resource' resource.slug %}">{{ resource.title }}</a>
+						</h3>
+						<h4 class="type:minor--face:copy color:neutral">
+							{% for t in resource.get_type_tags %}
+							<span class="type:minor--face:hed--weight:900 color:primary--shade fx:shift">{{ t.name }}{% if not forloop.last %}, {% endif %}</span>
+							{% endfor %}
+							{% for o in resource.get_organisations %}
+							<span> {% trans 'from ' %}</span>
+							<span class="type:minor--face:hed--weight:900 color:primary--shade fx:shift">{{ o.name }}{% if not forloop.last %}, {% endif %}</span>
+							{% endfor %}
+						</h4>
+					</header>
+					<div class="type--face:hed--weight:400" at-base="module:static--area:2 pad:xyEq50" class="ResourceCard-body">
+						<p>{{ resource.description|striptags|truncatewords:40 }}</p>
+					</div>
+					<dl at-base="module:static--area:4 flex:v pad:xyEq50 rhy:yStart50" class="ResourceCard-metaList">
+						{% if resource.study_time_number %}
+						<div at-base="flex:h--p:end--s:middle rhy:xStart50">
+							<dt>
+								<svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" at-base="module:static aspect:xyEq150--rhy" class="color:primary"><path d="M32.25 21.375C32.25 29.454 25.704 36 17.625 36S3 29.454 3 21.375c0-7.313 5.365-13.373 12.375-14.45V4.5h-1.969a.846.846 0 01-.844-.844V.844c0-.464.38-.844.844-.844h8.438c.464 0 .843.38.843.844v2.812c0 .464-.38.844-.843.844h-1.969v2.426a14.536 14.536 0 017.01 3.136l1.934-1.934a.845.845 0 011.195 0l1.99 1.99c.33.33.33.865 0 1.195l-2.067 2.067-.043.043a14.478 14.478 0 012.356 7.952zm-12.375 2.531V13.254a.846.846 0 00-.844-.844H16.22a.846.846 0 00-.844.844v10.652c0 .464.38.844.844.844h2.812c.464 0 .844-.38.844-.844z"></path></svg>
+								<span class="optics:a11y">{% trans 'Study time:' %}</span>
+							</dt>
+							<dd class="type:chrome--face:hed--weight:900 color:dark" at-base="module:static iflex:v--p:start--s:start">{{ resource.study_time_number }}&thinsp;{{ resource.study_time_unit }}</dd>
+						</div>
+						{% endif %}
+					</dl>
+					<div class="ResourceCard-world edge:yStart--set:edgeTint" at-base="flex:h--p:start--s:middle rhy:xStart100 pad:yEq50">{% if resource.get_geographies.count is not 0 %}<dl at-base="iflex:h--p:start--s:middle rhy:xStart25"><dt class="type:minor--face:hed--weight:700">Region:</dt>{% for c in resource.get_geographies %}<dd class="type:chrome--face:hed--weight:900 color:primary--shade">{{ c.name }}</dd>{% endfor %}</dl>{% endif %}{% if resource.get_languages.count is not 0 %}<dl at-base="iflex:h--p:start--s:middle rhy:xStart25"><dt class="type:minor--face:hed--weight:700">Language:</dt>{% for c in resource.get_languages %}<dd class="type:chrome--face:hed--weight:900 color:primary--shade">{{ c.name }}</dd>{% endfor %}</dl> {% endif %}</div></article>
 		 	</div>
-		 	<div class="col-md-1"> 
-				<a class="btn btn-primary btn-default" href="{% url 'orb_bookmark_remove'  resource.id %}">{% trans 'Remove<br/> Bookmark' %}</a>
+		 	<div
+			 	at-base="flex:v"
+			 	at-economy="flex:h--p:end--s:middle aspect:xEq20--pct"
+			>
+				<a
+					class="color:primary--shade fx:shift edge:xyEq--set:edgePrimary"
+					at-base="module:static pad:xEq100 pad:yEq50"
+					href="{% url 'orb_bookmark_remove'  resource.id %}"
+				>
+					{% trans 'Remove Bookmark' %}
+				</a>
 			</div>
-		</div> 
+		</div>
 	{% endfor %}
 {% else %}
 	{% blocktrans %}<p>You haven't bookmarked any resources yet.</p>{% endblocktrans %}

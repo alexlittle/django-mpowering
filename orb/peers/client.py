@@ -2,6 +2,8 @@
 A Django-specific layer around the ORB API client
 """
 
+from __future__ import unicode_literals
+
 from orb_api import OrbClient
 
 
@@ -25,4 +27,3 @@ class ORMClient(OrbClient):
         Returns:
 
         """
-

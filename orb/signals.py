@@ -3,9 +3,10 @@ Signal definitions for ORB
 
 Should not contain any other handler or task functions
 """
+from __future__ import unicode_literals
+
 import django.dispatch
 from django.dispatch import Signal
-
 
 resource_viewed = Signal(providing_args=["resource", "request", "type"])
 resource_workflow = Signal(

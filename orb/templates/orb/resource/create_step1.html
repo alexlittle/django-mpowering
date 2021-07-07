@@ -1,29 +1,33 @@
-{% extends "base.html" %}
+{% extends "covid/form.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load i18n static crispy_forms_tags wysiwyg %}
 
-{% block extra_scripts %}
-{% wysiwyg_setup %}
-    <link rel="stylesheet" type="text/css" href="{% static 'orb/jquery.tagsinput.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'orb/jquery.autocomplete.css' %}" />
-{% endblock extra_scripts %}
-
 {% block extra_head_title %}{% trans 'Add Resource' %}{% endblock extra_head_title %}
+
+{% block content_title %}
+{% trans 'Add Resource - Step 1' %}
+{% endblock %}
+
+{% block content_overview %}
+<p>For more information and guidance about uploading resources, see the
+<a href="{% url 'orb_upload_instructions' %}" target="_blank">Uploading Instructions</a>.</p>
+{% endblock %}
+
 {% block content %}
-
-<h2>{% trans 'Add Resource - Step 1' %}</h2>
-
-<div class="alert alert-info alert-dismissable">
-	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-    {% blocktrans with settings.ORB_INFO_EMAIL as email %}<strong>Lots of resources to add?</strong> Please <a href="mailto:{{ email }}" class="alert-link">contact us</a> about using our API to make it easier for you to upload and maintain your resources on ORB.{% endblocktrans %}
-</div>
-
 {% crispy form %}
 {% wysiwyg_editor "id_description" %}
 <div id='form-errors'>{{ form_errors }}</div>
-
 {% endblock %}
 
 
+{% block extra_scripts %}
+{% wysiwyg_setup %}
+<link rel="stylesheet" type="text/css" href="{% static 'orb/jquery.tagsinput.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'orb/jquery.autocomplete.css' %}" />
+{% endblock extra_scripts %}
+
 {% block footer_js %}
+<script src="{% static 'orb/js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'orb/bootstrap-3.1.1/js/bootstrap.min.js' %}"></script>
 {% include "orb/includes/tag_autocomplete_init.html" %}
 {% endblock %}

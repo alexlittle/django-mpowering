@@ -1,0 +1,230 @@
+{% load i18n %}
+{% comment %}
+
+{% comment %} {% if category_tags|length != 1 %}
+    <li style="padding: 3px 20px;"><strong>{{ category }}</strong></li>
+{% endif %} {% endcomment %}
+
+<script id="NAVIGATION" type="application/json">
+    {
+        "HOME": {
+            "routes": [
+                { "route": "{% url 'orb_home' %}" }
+            ]
+        },
+
+        "ADVANCED_SEARCH": {
+            "routes" : [
+                {
+                    "label": "Expand Your Search",
+                    "route": "{% url 'orb_search_advanced' %}"
+                }
+            ]
+        },
+
+        "ORG": {
+            "routes": [
+                {
+                    "label": "COVID-19 Digital Classroom",
+                    "route": "http://covid-19digitalclassroom.org"
+                }
+            ]
+        },
+
+        "TERMS": {
+            "routes": [
+                {
+                    "label": "Terms & Privacy Policy",
+                    "route": "{% url 'orb_terms' %}"
+                }
+            ]
+        },
+
+        "CATEGORIES": {
+            "routes": [
+                {% for category, category_tags in header_menu_categories.items %}
+                    {% for t in category_tags %}
+                        {
+                            "label": "{{ t.name }}",
+                            "route": "{% url 'orb_tags' t.slug %}"
+                        }{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                {% endfor %}
+            ]
+        },
+
+        "PRIMARY_PUBLIC": {
+            "routes": [
+                {
+                    "label": "Browse Resources",
+                    "subnav": "CATEGORIES"
+                },
+                {
+                    "label": "Add a Resource",
+                    "route": "{% url 'orb_resource_create' %}"
+                },
+                {
+                    "label": "Help",
+                    "route": "#",
+                    "subnav": "HELP"
+                },
+                {% if header_owns_tags or user.is_staff %}
+                {
+                    "label": "{% trans 'Analytics' %}",
+                    "route": "#",
+                    "subnav": "ANALYTICS"
+                },
+                {% endif %}
+                {% if user.is_authenticated %}
+                {
+                    "label": "{% trans 'My COVID-19 Library' %}",
+                    "route": "#",
+                    "subnav": "ACCOUNT"
+                }
+                {% else %}
+                {
+                    "label": "Log In",
+                    "route": "{% url 'profile_login' %}"
+                },
+                {
+                    "label": "Register",
+                    "route": "{% url 'profile_register' %}"
+                }
+                {% endif %}
+            ]
+        },
+        {% if header_owns_tags or user.is_staff %}
+        "ANALYTICS": {
+            "routes": [
+                {% for h in header_owns_tags %}
+                {
+                    "label": "{{ h.tag.name }}",
+                    "route": "{% url 'orb_analytics_tag' h.tag.id %}"
+                },
+                {% endfor %}
+                {% if user.is_staff %}
+                {
+                    "label": "{% trans 'Site analytics' %}",
+                    "route": "{% url 'orb_analytics_home' %}"
+                },
+                {
+                    "label": "{% trans 'Monthly Analytics' %}",
+                    "route": "{% url 'orb_analytics_visitor' %}"
+                },
+                {
+                    "label": "{% trans 'KPI Report' %}",
+                    "route": "{% url 'orb_analytics_kpi' %}"
+                },
+                {% endif %}
+                {% if user.is_staff or reviewer %}
+                {
+                    "label": "{% trans 'Pending Resources' %}",
+                    "route": "{% url 'orb_pending_resources' %}"
+                },
+                {% endif %}
+                {}
+            ]
+        },
+        {% endif %}
+
+        "ACCOUNT": {
+            "routes": [
+                {
+                    "label": "{% trans 'View Profile' %}",
+                    "route": "{% url 'my_profile_view' %}"
+                },
+                {
+                    "label": "{% trans 'Edit Profile' %}",
+                    "route": "{% url 'my_profile_edit' %}"
+                },
+                {
+                    "label": "{% trans 'Rated' %}",
+                    "route": "{% url 'my_ratings_view' %}"
+                },
+                {% if user.userprofile.is_reviewer %}
+                    {
+                        "label": "{% trans 'Resource Reviews' %}",
+                        "route": "{% url 'orb_user_reviews' %}"
+                    },
+                {% endif %}
+                {
+                    "label": "{% trans 'Bookmarks' %}",
+                    "route": "{% url 'my_bookmarks_view' %}"
+                },
+                {% if user.is_superuser %}
+                    {
+                        "label": "{% trans 'Django Admin' %}",
+                        "route": "{% url 'admin:index' %}"
+                    },
+                {% endif %}
+                {
+                    "label": "{% trans 'Logout' %}",
+                    "route": "{% url 'profile_logout' %}"
+                }
+            ]
+        },
+
+        "HELP": {
+            "routes": [
+                {
+                    "label": "How to use COVID-19 Library",
+                    "route": "{% url 'orb_how_to' %}"
+                },
+                {
+                    "label": "Resource Guidelines",
+                    "route": "{% url 'orb_guidelines' %}"
+                },
+                {
+                    "label": "Content Review Process",
+                    "route": "{% url 'orb_content_review_process' %}"
+                },
+                {
+                    "label": "Creative Commons FAQs",
+                    "route": "{% url 'orb_cc_faq' %}"
+                }
+            ]
+        },
+
+        "COLOPHON_ABOUT": {
+            "routes": [
+                {
+                    "label": "About COVID-19 Library",
+                    "route": "{% url 'orb_about' %}"
+                },
+                {
+                    "label": "How to use COVID-19 Library",
+                    "route": "{% url 'orb_how_to' %}"
+                },
+                {
+                    "label": "Creative Commons FAQs",
+                    "route": "{% url 'orb_cc_faq' %}"
+                },
+                {
+                    "label": "Resource Guidelines",
+                    "route": "{% url 'orb_guidelines' %}"
+                },
+                {
+                    "label": "Content Review Process",
+                    "route": "{% url 'orb_content_review_process' %}"
+                }
+            ]
+        },
+
+        "COLOPHON_CONTACT": {
+            "routes": [
+                {
+                    "label": "Twitter",
+                    "route": "https://twitter.com/C19DigitalClass"
+                },
+                {
+                    "label": "Website",
+                    "route": "http://covid-19digitalclassroom.org"
+                },
+                {
+                    "label": "info@covid-19digitalclassroom.org",
+                    "route": "mailto:info@covid-19digitalclassroom.org"
+                }
+            ]
+        }
+    }
+</script>

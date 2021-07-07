@@ -1,5 +1,8 @@
+from __future__ import unicode_literals
+
 from django.contrib.syndication.views import Feed
 from django.shortcuts import get_object_or_404
+
 from orb.models import Resource, Tag
 
 
@@ -11,7 +14,7 @@ class LatestTagEntries(Feed):
         return get_object_or_404(Tag, slug=tag_slug)
 
     def title(self, obj):
-        return "'%s' ORB resources" % obj.name
+        return "'%s' COVID-19 Library resources" % obj.name
 
     def description(self, obj):
         return "Resources recently tagged with  %s" % obj.name
@@ -28,9 +31,9 @@ class LatestTagEntries(Feed):
 
 class LatestEntries(Feed):
     description_template = 'feeds/resource.html'
-    title = "ORB latest resources"
+    title = "COVID-19 Library latest resources"
     link = "/"
-    description = "Latest resources added to ORB."
+    description = "Latest resources added to COVID-19 Library."
 
     def items(self):
         return Resource.objects.filter(status=Resource.APPROVED).order_by('-update_date')[:20]

@@ -3,6 +3,7 @@
 """
 Tests for ORB tag views
 """
+from __future__ import unicode_literals
 
 import pytest
 
@@ -17,7 +18,7 @@ def test_tag_view_loads(client, sample_tag):
 @pytest.mark.skip("Fixture problems when run in full test suite")
 @pytest.mark.django_db
 def test_loads_with_ordering(client, sample_tag):
-    url = u"{}?order=-create_date".format(sample_tag.get_absolute_url())
+    url = "{}?order=-create_date".format(sample_tag.get_absolute_url())
     response = client.get(url)
     assert response.status_code == 200
 
@@ -26,6 +27,6 @@ def test_loads_with_ordering(client, sample_tag):
 @pytest.mark.regression_test
 @pytest.mark.django_db
 def test_loads_with_bad_value(client, sample_tag):
-    url = u"{}?order=discount".format(sample_tag.get_absolute_url())
+    url = "{}?order=discount".format(sample_tag.get_absolute_url())
     response = client.get(url)
     assert response.status_code == 200

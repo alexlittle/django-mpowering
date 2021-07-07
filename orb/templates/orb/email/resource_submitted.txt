@@ -3,5 +3,9 @@
 
 {{ firstname }} {{ lastname }} has just submitted a new resource '{{ title }}'.
 
+Assign reviewers: {{ assign_reviewers_link }}
+
+Preview the resource: {{ resource_link }}
+
 {% endblocktrans %}
 {% include 'orb/email/footer.txt' %}

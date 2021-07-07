@@ -17,31 +17,36 @@ an interface for managing the state of the review as well as associated
 side effects of changing the status.
 """
 
+from __future__ import unicode_literals
+
 from datetime import date, timedelta
 
 from django.conf import settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.dispatch import receiver
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
-from django_fsm import FSMField, transition, TransitionNotAllowed
+from django_fsm import FSMField, TransitionNotAllowed, transition
 
 import orb.signals
-from orb.models import TimestampBase, Resource, ReviewerRole, ResourceCriteria
+from orb.models import Resource, ResourceCriteria, ReviewerRole, TimestampBase
 from orb.review import signals, tasks
-
 
 REVIEW_OVERDUE = 10
 
 
+@python_2_unicode_compatible
 class ReviewLogEntry(TimestampBase):
     """
     Model class used to track individual actions made with regard
     to a resource's content review.
 
     """
-    review = models.ForeignKey('ContentReview', related_name="log_entries")
+    review = models.ForeignKey('ContentReview', related_name="log_entries",
+                               on_delete=models.CASCADE,
+                               )
     review_status = models.CharField(editable=False, max_length=20)
     action = models.CharField(max_length=200)
 
@@ -49,8 +54,8 @@ class ReviewLogEntry(TimestampBase):
         verbose_name = _("review log entry")
         verbose_name_plural = _("review log entries")
 
-    def __unicode__(self):
-        return u"{0}: {1}".format(self.review, self.review_status)
+    def __str__(self):
+        return "{0}: {1}".format(self.review, self.review_status)
 
 
 class ReviewQueryset(models.QuerySet):
@@ -89,17 +94,24 @@ class ReviewQueryset(models.QuerySet):
         return review
 
 
+@python_2_unicode_compatible
 class ContentReview(TimestampBase):
     """
     Model class used to assign a content review for a resource to
     a content reviewer and to capture the review result.
     """
-    resource = models.ForeignKey('orb.Resource', related_name="content_reviews")
+    resource = models.ForeignKey('orb.Resource', related_name="content_reviews",
+                                 on_delete=models.CASCADE,
+                                 )
     status = FSMField(default=Resource.PENDING)
-    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL)
+    reviewer = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 on_delete=models.CASCADE,
+                                 )
     notes = models.TextField(blank=True)
     criteria = models.ManyToManyField('orb.ResourceCriteria', blank=True)
-    role = models.ForeignKey(ReviewerRole, related_name="reviews")
+    role = models.ForeignKey(ReviewerRole, related_name="reviews",
+                             on_delete=models.CASCADE,
+                             )
 
     reviews = ReviewQueryset.as_manager()
     objects = reviews
@@ -113,8 +125,8 @@ class ContentReview(TimestampBase):
             ('resource', 'role'),
         )
 
-    def __unicode__(self):
-        return u"{0}: {1}".format(self.reviewer, self.resource)
+    def __str__(self):
+        return "{0}: {1}".format(self.reviewer, self.resource)
 
     def save(self, **kwargs):
         super(ContentReview, self).save(**kwargs)

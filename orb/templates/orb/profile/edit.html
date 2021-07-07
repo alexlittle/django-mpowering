@@ -1,21 +1,35 @@
-{% extends "base.html" %}
+{% extends "covid/profile/edit.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n %}
 {% load thumbnail %}
 {% load crispy_forms_tags %}
+
 {% block extra_head_title %}{% trans 'Your Profile' %}{% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'Your Profile' %}{% endblock %}
+
+{% block export_route %}{% url 'profile_export_data' %}{% endblock %}
+{% block export_route_label %}{% trans 'Export Data' %}{% endblock %}
+
+{% block delete_route %}{% url 'profile_delete_account' %}{% endblock %}
+{% block delete_route_label %}{% trans 'Delete Account' %}{% endblock %}
+
+{% block profile_image %}
+{% thumbnail user.userprofile.photo "80x80" format="PNG" padding=True %}
+{% endblock %}
+
 {% block content %}
+{% include "includes/messages.html" %}
+{% crispy form %}
+{% endblock %}
+
+{% block contentx %}
+
 
 <h2>{% trans 'Your Profile' %}</h2>
 
-{% include "includes/messages.html" %}	
 
-{% if user.userprofile.photo %}
-	{% thumbnail user.userprofile.photo "80x80" format="PNG" padding=True as im %}
-		<div class="col-lg-2">&nbsp;</div>
-		<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="thumbnail profile-image" >
-	{% endthumbnail %}	
-{% endif %}
 
 {% crispy form %}
 

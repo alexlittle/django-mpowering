@@ -2,9 +2,9 @@
 {% blocktrans %}
 Dear {{ firstname }} {{ lastname }},
 
-Thank you for submitting "{{ title }}" to the ORB platform.
+Thank you for submitting "{{ title }}" to the COVID-19 Library platform.
 
-Unfortunately, your resource did not meet the following criteria to be included on ORB:
+Unfortunately, your resource did not meet the following criteria to be included on COVID-19 Library:
 {% endblocktrans %}
     {% for criterion in rejected_criteria %}
 * {{ criterion }}

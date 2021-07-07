@@ -9,13 +9,13 @@ from __future__ import unicode_literals
 
 import hashlib
 import time
+from typing import Dict  # noqa
+from typing import Text  # noqa
 
 import markdown
 from autoslugged.settings import slugify
 from django.utils.functional import cached_property
 from six import text_type
-from typing import Dict  # noqa
-from typing import Text  # noqa
 
 
 def format_page_as_markdown(activity):

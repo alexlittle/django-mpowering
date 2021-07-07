@@ -1,11 +1,12 @@
 
+from __future__ import unicode_literals
+
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from tastypie.authentication import ApiKeyAuthentication
 
 from orb.api.error_codes import *
 from orb.models import Resource, ResourceFile
-
-from tastypie.authentication import ApiKeyAuthentication
 
 
 @csrf_exempt

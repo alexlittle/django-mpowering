@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.conf.urls import include, url
 from django.views.generic import TemplateView
 
@@ -15,7 +17,7 @@ urlpatterns = [
     url(r'^how-to/$', TemplateView.as_view(template_name="orb/how_to.html"), name="orb_how_to"),
     url(r'^cc-faq/$', TemplateView.as_view(template_name="orb/cc-faq.html"), name="orb_cc_faq"),
     url(r'^partners/$', views.partner_view, name="orb_partners"),
-    url(r'^taxonomy/$', views.taxonomy_view, name="orb_taxonomy"),
+    url(r'^upload-instructions/$', views.upload_instructions_view, name="orb_upload_instructions"),
     url(r'^terms/$', TemplateView.as_view(template_name="orb/terms.html"), name="orb_terms"),
 
     url(r'^profile/', include('orb.profiles.urls')),
@@ -37,13 +39,12 @@ urlpatterns = [
     url(r'^opensearch/$', TemplateView.as_view(template_name="search/opensearch.html"), name="orb_opensearch"),
 
     url(r'^api/', include('orb.api.urls')),
-    url(r'^courses/', include('orb.courses.urls')),
+
+    # url(r'^courses/', include('orb.courses.urls')),
 
     url(r'^resource/rate/', include('orb.rating.urls')),
     url(r'^resource/bookmark/', include('orb.bookmark.urls')),
     url(r'^resource/', include('orb.resources.urls')),
     url(r'^review/', include('orb.review.urls')),
-    url(r'^viz/', include('orb.viz.urls')),
-    url(r'^toolkits/', include('orb.toolkits.urls')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]

@@ -1,0 +1,45 @@
+{% extends "covid_base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block bodyAttrs %}
+
+{% endblock %}
+
+{% block app %}
+<div id="app" x-data="{ extNavOpen: false }" at-base="module:fill flex:v--p:start--s:start" data-server-rendered="true" class="motif:bright"><div at-base="optics:empty module:static--index:init flex:v--p:start" class="SiteAlerts">{% block alerts %}
+{% include 'covid_includes/alerts.html' %}
+{% endblock %}
+</div><header at-base="module:static--index:start flex:h--p:middle--s:middle pad:xEq100 pad:yEq250" at-economy="optics:a11y pad:xyEq0" class="Masthead"><a href="{% url 'orb_home' %}" at-compressed="type:xhed" at-economy="type:subhed" at-base="module:static iflex:h--p:start--s:middle rhy:xStart50 iso:xEndAuto" at-enhanced="type:major" at-extended="type:subhed" at-standard="type:hed" at-wide="type:xhed" class="Masthead-mediaFrame type:subhed--face:hed--weight:700"><img style="width:180px !important;max-width:180px !important" src="{% static 'orb/images/red-logo.png' %}"/>
+</a>
+<button type="button" x-on:click="extNavOpen = !extNavOpen" class="color:primary--shade fx:shift">
+<svg viewBox="0 0 24 24" at-base="aspect:xyEq150--rhy" at-compressed="aspect:xyEq200--rhy">
+<path d="M2 5h20v2H2V5zM2 11h20v2H2v-2zM2 17h20v2H2v-2z"></path></svg><span at-base="optics:a11y">Menu</span></button></header><main at-base="module:balance--index:next flex:v--p:start" at-enhanced="grid:v" class="Category"><article class="Category-overview motif:bright" at-base="pad:xyEq100 rhy:yStart200" at-economy="pad:yStart300" at-enhanced="motif:tint flex:v--p:start--s:start pad:yStart200" at-standard="pad:xyEq150" at-wide="pad:xStartFull"><header class="color:dark" at-base="flex:h--p:start--s:middle rhy:xStart50" at-economy="rhy:xStart100"><!----><h1 at-economy="type:hed" at-enhanced="type:major--weight:700" at-standard="type:hed--weight:400" at-wide="type:xhed" class="type:subhed--face:hed--weight:400--lead:base--set:typePreWrap" style="max-width:420px;">{% block content_title %}
+
+{% endblock %}
+</h1></header><div at-base="rhy:yStart100" at-economy="type:base--lead:expand pad:xStart350 rhy:yStart200" at-enhanced="type:minor--lead:expand pad:xStart250" at-standard="type:base--lead:expand pad:xStart350" class="Category-content type:minor--face:hed--weight:400--lead:expand">{% block content_overview %}
+
+{% endblock %}
+</div></article><div class="Category-body" at-base="module:balance flex:v--p:start--s:middle pad:xEq50 pad:yEq100 pad:yEnd200" at-compressed="pad:xEq0" at-economy="pad:xEq100" at-standard="pad:xStart150" at-wide="pad:xEndFull"><section at-base="flex:v pad:xyEq50 rhy:yStart50" at-compressed="rhy:yStart150" class="Category-resources"><form id="params-form" method="GET" action="." at-base="flex:h--p:end--s:middle rhy:xStart50"><p class="type:minor--face:hed--weight:700 color:dark">{% trans 'Order by: ' %}</p>{{ params_form.order }}{% if show_filter_link == True %}<a href="{% url 'orb_search_advanced' %}" class="type:minor--face:hed--weight:700 control:action fx:shift" at-base="pad:xEq100 pad:yEq50">{% trans 'Advanced search &amp; filter' %}</a>{% endif %}{{ params_form.page }}</form><!---->{% if not page.object_list %}<aside at-base="spad:xyEq100 rhy:yStart50" class="Category-emptySlot optics:empty motif:tint type:minor--face:hed--weight:700">{% block emptyResults %}
+covid_includes/empty_tag_results.html
+{% endblock %}
+</aside>{% endif %}{% if page.object_list %}{% for resource in page.object_list %}
+<article at-base="grid:v" class="ResourceCard edge:xStart--set:edgePrimary">
+<header at-base="module:static--area:1 flex:v--p:start--s:start pad:xyEq50 rhy:yStart25" class="ResourceCard-header">
+<h2 class="type:major--face:hed--weight:900 color:shade fx:shift">
+<a href="{% url 'orb_resource' resource.slug %}">{{ resource.title|safe }}</a></h2>
+<h4 class="type:minor--face:copy color:neutral">{% for t in resource.get_type_tags %}
+<span class="type:minor--face:hed--weight:900 color:primary--shade fx:shift">
+{{ t.name }}{% if not forloop.last %}, {% endif %}</span>
+{% endfor %}{% for o in resource.get_organisations %}<span> {% trans 'from ' %}</span>
+<span class="type:minor--face:hed--weight:900 color:primary--shade fx:shift">
+{{ o.name }}{% if not forloop.last %}, {% endif %}</span>{% endfor %}</h4>
+</header>
+<div class="type--face:hed--weight:400" at-base="module:static--area:2 pad:xyEq50" class="ResourceCard-body"><p>{{ resource.description|striptags|safe|truncatewords:40 }}</p></div><dl at-base="module:static--area:4 flex:v pad:xyEq50 rhy:yStart50" class="ResourceCard-metaList">{% if resource.study_time_number %}<div at-base="flex:h--p:end--s:middle rhy:xStart50"><dt><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" at-base="module:static aspect:xyEq150--rhy" class="color:primary"><path d="M32.25 21.375C32.25 29.454 25.704 36 17.625 36S3 29.454 3 21.375c0-7.313 5.365-13.373 12.375-14.45V4.5h-1.969a.846.846 0 01-.844-.844V.844c0-.464.38-.844.844-.844h8.438c.464 0 .843.38.843.844v2.812c0 .464-.38.844-.843.844h-1.969v2.426a14.536 14.536 0 017.01 3.136l1.934-1.934a.845.845 0 011.195 0l1.99 1.99c.33.33.33.865 0 1.195l-2.067 2.067-.043.043a14.478 14.478 0 012.356 7.952zm-12.375 2.531V13.254a.846.846 0 00-.844-.844H16.22a.846.846 0 00-.844.844v10.652c0 .464.38.844.844.844h2.812c.464 0 .844-.38.844-.844z"></path></svg><span class="optics:a11y">{% trans 'Study time:' %}</span></dt><dd class="type:chrome--face:hed--weight:900 color:dark" at-base="module:static iflex:v--p:start--s:start">{{ resource.study_time_number }}&thinsp;{{ resource.study_time_unit }}</dd></div>{% endif %}</dl><div class="ResourceCard-world edge:yStart--set:edgeTint" at-base="flex:h--p:start--s:middle rhy:xStart100 pad:yEq50">{% if resource.get_geographies.count is not 0 %}<dl at-base="iflex:h--p:start--s:middle rhy:xStart25"><dt class="type:minor--face:hed--weight:700">Region:</dt>{% for c in resource.get_geographies %}<dd class="type:chrome--face:hed--weight:900 color:primary--shade">{{ c.name }}</dd>{% endfor %}</dl>{% endif %}{% if resource.get_languages.count is not 0 %}<dl at-base="iflex:h--p:start--s:middle rhy:xStart25"><dt class="type:minor--face:hed--weight:700">Language:</dt>{% for c in resource.get_languages %}<dd class="type:chrome--face:hed--weight:900 color:primary--shade">{{ c.name }}</dd>{% endfor %}</dl> {% endif %}</div></article>{% endfor %}{% endif %}</section></div></main>
+
+{% include 'covid/nav.html' %}
+
+{% include 'covid/footer.html' %}
+{% endblock %}

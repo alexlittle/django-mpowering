@@ -1,8 +1,9 @@
-from django.conf.urls import url
-from orb.review.views import (review_resource, resource_review_list, reject_resource,
-                              assign_review, delete_resource, staff_review, start_assignment,
-                              user_review_list)
+from __future__ import unicode_literals
 
+from django.conf.urls import url
+
+from orb.review.views import (assign_review, delete_resource, reject_resource, resource_review_list, review_resource,
+                              staff_review, start_assignment, user_review_list)
 
 urlpatterns = [
     url(r'^$', view=resource_review_list, name="orb_pending_resources"),

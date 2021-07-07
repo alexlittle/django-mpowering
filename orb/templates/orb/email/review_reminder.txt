@@ -2,7 +2,7 @@
 {% blocktrans %}
 Dear {{ reviewer_name }},
 
-This is a reminder that you have an ORB content resource awaiting your review.
+This is a reminder that you have an COVID-19 Library content resource awaiting your review.
 
 You can access the content and make your review on the content dashboard: {{ reviews_link }}
 {% endblocktrans %}

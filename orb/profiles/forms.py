@@ -1,22 +1,17 @@
 from __future__ import unicode_literals
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Div
-from crispy_forms.layout import HTML
-from crispy_forms.layout import Layout
-from crispy_forms.layout import Submit
+from crispy_forms.layout import HTML, Div, Layout, Submit
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm as BaseUserCreationForm
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.validators import validate_email
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
-from orb.models import Category
-from orb.models import Tag
-from orb.models import UserProfile
+from orb.models import Category, Tag, UserProfile
 
 
 class LoginForm(forms.Form):
@@ -40,18 +35,15 @@ class LoginForm(forms.Form):
         super(LoginForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = reverse('profile_login')
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-2'
-        self.helper.field_class = 'col-lg-4'
         self.helper.layout = Layout(
             'username',
             'password',
             'next',
             Div(
-                Submit('submit', _('Login'), css_class='btn btn-default'),
-                HTML('<a class="btn btn-default" href="%s">%s</a>' % (
+                HTML('<button class="control--primary" type="submit"><span>%s</span></button>' % (_('Login'))),
+                HTML('<a class="control--text" href="%s">%s</a>' % (
                     reverse('profile_reset'), _('Forgotten password?'))),
-                css_class='col-lg-offset-2 col-lg-4',
+                css_class='form-controls',
             ),
         )
 
@@ -129,14 +121,14 @@ class RegisterForm(forms.Form):
 
     terms = forms.BooleanField(
         label=_(
-            "Please tick the box to confirm that you have read the <a href='/terms/' target='_blank' class='prominent'>terms</a> about registering with ORB"),
+            "Please tick the box to confirm that you have read the <a href='/terms/' target='_blank' class='prominent'>terms</a> about registering with COVID-19 Library"),
         required=True,
         error_messages={'required': _('Please tick the box to confirm that you have read the terms')})
     mailing = forms.BooleanField(
-        label=_("Subscribe to mPowering update emails"),
+        label=_("Subscribe to COVID-19 Digital Classroom update emails"),
         required=False)
     survey = forms.BooleanField(
-        label=_("I allow mPowering to ask me to participate in surveys about my usage of ORB resources"),
+        label=_("I allow COVID-19 Digital Classroom to ask me to participate in surveys about my usage of COVID-19 Library resources"),
         required=False,
         initial=True,
     )
@@ -155,9 +147,6 @@ class RegisterForm(forms.Form):
 
         self.helper = FormHelper()
         self.helper.form_action = reverse('profile_register')
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-2'
-        self.helper.field_class = 'col-lg-4'
         self.helper.layout = Layout(
             'email',
             'password',
@@ -174,13 +163,12 @@ class RegisterForm(forms.Form):
             'terms',
             'next',
             Div(
-                Submit(
-                    'submit',
-                    _('Register'),
-                    css_class='btn btn-default',
-                    onClick="ga('send', 'event', 'Registration', 'submit', '');",
+                HTML('<button class="control--primary" type="submit" onClick="%s"><span>%s</span></button>' % (
+                    "ga('send', 'event', 'Registration', 'submit', '')",
+                    _('Register')
+                    )
                 ),
-                css_class='col-lg-offset-2 col-lg-4',
+                css_class='form-controls',
             ),
         )
 
@@ -264,16 +252,13 @@ class ResetForm(forms.Form):
         super(ResetForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = reverse('profile_reset')
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-2'
-        self.helper.field_class = 'col-lg-4'
         self.helper.layout = Layout(
             'username',
             Div(
-                Submit('submit', _('Reset password'),
-                       css_class='btn btn-default'),
-                css_class='col-lg-offset-2 col-lg-4',
+                HTML('<button class="control--primary" type="submit"><span>%s</span></button>' % (_('Reset password'))),
+                css_class='form-controls',
             ),
+
         )
 
     def clean(self):
@@ -361,7 +346,7 @@ class ProfileForm(forms.Form):
         error_messages={'required': _('Please select a gender')},
     )
     mailing = forms.BooleanField(
-        label=_("Please tick the box to subscribe to mPowering update emails"),
+        label=_("Please tick the box to subscribe to COVID-19 Digital Classroom update emails"),
         required=False)
 
     website = forms.CharField(
@@ -410,9 +395,9 @@ class ProfileForm(forms.Form):
             ),
             'api_key',
             Div(
-                Submit('submit', _('Save'), css_class='btn btn-default'),
-                css_class='col-lg-offset-2 col-lg-4',
-            ),
+                HTML('<button class="control--primary" type="submit"><span>%s</span></button>' % (_('Save'))),
+                css_class='form-controls',
+            )
         )
 
     def clean(self):
@@ -444,10 +429,10 @@ class DeleteProfileForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'readonly': 'readonly'}),
                                required=True)
     password = forms.CharField(widget=forms.PasswordInput,
-                               error_messages={'required': _(u'Please enter your password.'),},
+                               error_messages={'required': _('Please enter your password.'),},
                                required=True)
     delete_resources = forms.BooleanField(
-                            label=_(u"Permanently delete the resources I have uploaded to ORB"),
+                            label=_("Permanently delete the resources I have uploaded to COVID-19 Library"),
                             required=False)
 
     def __init__(self, resources_count, *args, **kwargs):
@@ -465,7 +450,7 @@ class DeleteProfileForm(forms.Form):
             self.helper.layout.append('delete_resources')
         self.helper.layout.append(
             Div(
-                Submit('submit', _(u'Delete Account'), css_class='btn btn-default'),
+                Submit('submit', _('Delete Account'), css_class='btn btn-default'),
                 HTML("""<a role="button" class="btn btn-default"
                         href="{% url "my_profile_edit" %}">Cancel</a>"""),
                 css_class='col-lg-offset-2 col-lg-4',
@@ -480,6 +465,5 @@ class DeleteProfileForm(forms.Form):
 
         user = authenticate(username=username, password=password)
         if user is None or not user.is_active:
-            raise forms.ValidationError(_(u"Invalid password. Please try again."))
+            raise forms.ValidationError(_("Invalid password. Please try again."))
         return cleaned_data
-

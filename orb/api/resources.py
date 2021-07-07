@@ -1,8 +1,10 @@
+from __future__ import unicode_literals
+
 import re
 
 from django.conf.urls import url
-from django.core.paginator import Paginator, InvalidPage
-from django.core.urlresolvers import reverse
+from django.core.paginator import InvalidPage, Paginator
+from django.urls import reverse
 from django.http.response import Http404
 from django.utils.html import strip_tags
 from haystack.query import SearchQuerySet
@@ -14,13 +16,12 @@ from tastypie.resources import ModelResource
 from tastypie.throttle import CacheDBThrottle
 from tastypie.utils import trailing_slash
 
-from orb.api.authorization import (ORBResourceAuthorization, ORBAuthorization,
-                                   ORBResourceTagAuthorization)
+from orb.api.authorization import ORBAuthorization, ORBResourceAuthorization, ORBResourceTagAuthorization
 from orb.api.error_codes import *
 from orb.api.exceptions import ORBAPIBadRequest
 from orb.api.serializers import PrettyJSONSerializer, ResourceSerializer
-from orb.models import (Resource, ResourceFile, ResourceURL, ResourceTag, User,
-                        Tag, Category, ResourceTracker, SearchTracker)
+from orb.models import (Category, Resource, ResourceFile, ResourceTag, ResourceTracker, ResourceURL, SearchTracker,
+                        Tag, User)
 from orb.signals import resource_viewed, search
 from orb.views import resource_can_edit
 

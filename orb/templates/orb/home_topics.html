@@ -2,10 +2,10 @@
 {% load thumbnail %}
 {% load static %}
 {% for t in topics %}
-	<div style="display:inline-block; min-width:270px; min-height:240px; text-align:center; margin: auto;">
+	<div style="display:inline-block; min-width:270px; max-width:300px; min-height:240px; text-align:center; margin: auto;">
 		{% if not t.custom %}
 		<a href="{% url 'orb_tags' t.tag.slug %}">
-			{% thumbnail t.tag.image "220x150" crop="center" as im %}
+			{% thumbnail t.tag.image "220x150" format="PNG" crop="center" as im %}
 				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
 			{% empty %}
     			<p>No image</p>

@@ -1,9 +1,12 @@
+from __future__ import unicode_literals
+
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
+from six import text_type
 
 from orb.emailer import send_orb_email
 from orb.review.utils import unmet_criteria
@@ -22,7 +25,7 @@ def reverse_fqdn(url_name, *args, **kwargs):
         the whole URL
 
     """
-    return u"{protocol}://{domain}{path}".format(
+    return "{protocol}://{domain}{path}".format(
         protocol=getattr(settings, "SITE_HTTP_PROTOCOL", "http"),
         domain=Site.objects.get_current().domain,
         path=reverse(url_name, args=args, kwargs=kwargs),
@@ -43,7 +46,7 @@ def send_review_assignment_email(review):
     return send_orb_email(
         template_html="orb/email/review_assignment.html",
         template_text="orb/email/review_assignment.txt",
-        subject=_(u"Content Review for: ") + unicode(review.resource),
+        subject=_("Content Review for: ") + text_type(review.resource),
         recipients=[review.reviewer.email],
         reviewer_name=review.reviewer.get_full_name(),
         resource_title=review.resource.title,
@@ -66,7 +69,7 @@ def send_review_reminder_email(review):
     return send_orb_email(
         template_html="orb/email/review_reminder.html",
         template_text="orb/email/review_reminder.txt",
-        subject=_(u"Resource review reminder: ") + unicode(review.resource),
+        subject=_("Resource review reminder: ") + text_type(review.resource),
         recipients=[review.reviewer.email],
         reviewer_name=review.reviewer.get_full_name(),
         resource_title=review.resource.title,
@@ -107,7 +110,7 @@ def send_resource_approved_email(resource):
     return send_orb_email(
         template_html="orb/email/resource_approved.html",
         template_text="orb/email/resource_approved.txt",
-        subject=_(u"Resource Submission") + ": " + resource.title,
+        subject=_("Resource Submission") + ": " + resource.title,
         recipients=[resource.create_user.email],
         title=resource.title,
         firstname=resource.create_user.first_name,
@@ -121,7 +124,7 @@ def send_resource_rejected_email(resource):
     return send_orb_email(
         template_html="orb/email/resource_rejected.html",
         template_text="orb/email/resource_rejected.txt",
-        subject=_(u"Resource Submission") + ": " + resource.title,
+        subject=_("Resource Submission") + ": " + resource.title,
         recipients=[resource.create_user.email],
         title=resource.title,
         firstname=resource.create_user.first_name,
@@ -141,7 +144,7 @@ def send_review_complete_email(resource, **kwargs):
     return send_orb_email(
         template_html="orb/email/review_complete.html",
         template_text="orb/email/review_complete.txt",
-        subject=_(u"Resource Review Complete") + ": " + resource.title,
+        subject=_("Resource Review Complete") + ": " + resource.title,
         recipients=[settings.ORB_INFO_EMAIL],
         title=resource.title,
         firstname=resource.create_user.first_name,

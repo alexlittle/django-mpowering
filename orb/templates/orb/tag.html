@@ -1,13 +1,125 @@
-{% extends "base.html" %}
+{% extends "covid/tag.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n %}
+{% load static %}
 {% load add_get_parameter %}
 {% load thumbnail %}
 
 {% block extra_head_title %}{{ tag.name }}{% endblock extra_head_title %}
+
 {% block extra_head_feed %}
     <link rel="alternate" type="application/rss+xml" title="RSS"
           href="{% url 'orb_tag_feed' tag.slug %}">
 {% endblock extra_head_feed %}
+
+{% block content_title %}
+{{ tag.name }}
+{% endblock %}
+
+{% block content_overview %}
+{% if tag.description %}{{ tag.description|safe }}{% endif %}
+{% endblock %}
+
+{% block emptyResults %}{% endblock %}
+
+{% comment %} {% block app %}
+<script id="CURRENT_CATEGORY" type="application/json">
+{
+    "id": "{{ tag.slug }}",
+    "title": "{{ tag.name }}",
+    {% if tag.parent_tag %}
+        "parentSlug": "{% url 'orb_tags' tag.parent_tag.slug %}",
+        "parentTag": "{{ tag.parent_tag.name }}",
+    {% endif %}
+    "media": "{% thumbnail tag.image '70x70' format='PNG' padding=True as im %}{{ im.url }}{% endthumbnail %}",
+    "description": "{% if tag.description %}{{ tag.description|escapejs }}{% endif %}",
+    {% if tag.external_url %}
+    "extRoute": {
+        "groupTitle": "{% trans 'Website:' %}",
+        "label": "{{ tag.external_url }}"
+        "route": "{% url 'orb_tag_view_link' tag.id %}",
+    },
+    {% endif %}
+    "resourceCount": "{% blocktrans count resource_count as resource_count %}{{ resource_count }} resource{% plural %}{{ resource_count }} resources{% endblocktrans %}",
+    "contact": {
+        {% if tag.contact_email %}
+        "groupTitle": "{% trans 'Email:' %}",
+        "email": "{{ tag.contact_email }}"
+        {% endif %}
+    }
+}
+</script>
+{% if page.object_list %}
+<script id="CURRENT_RESOURCES" type="application/json">
+[
+{% for resource in page.object_list %}
+    {
+        "id": "{{ resource.slug }}",
+        "title": "{{ resource.title }}",
+        "route": "{% url 'orb_resource' resource.slug %}",
+		"rating": {
+            "userCount": {{resource.get_rating.count}},
+            "minUserCount": {{ ORB_RESOURCE_MIN_RATINGS }},
+            "score": "{{ resource.get_rating.rating|default_if_none:'' }}"
+        },
+        "typeTags": [
+            {% for t in resource.get_type_tags %}
+			"{{ t.name }}"{% if not forloop.last %}, {% endif %}
+		    {% endfor %}
+        ],
+        "orgs": [
+            {% for o in resource.get_organisations %}
+            {% if forloop.first %}"{% trans 'from ' %} ",{% endif %}
+			"{{ o.name }}"{% if not forloop.last %}, {% endif %}
+		    {% endfor %}
+        ],
+        "description": "{{ resource.description|striptags|truncatewords:40|escapejs }}",
+        "languages": [
+            {% for c in resource.get_languages %}
+                {
+                    "name": "{{ c.name }}",
+                    "media": "{% thumbnail c.image "30x30"  crop="center" format="PNG" padding=True as im %}{{ im.url }}{% endthumbnail %}"
+                }{% if not forloop.last %}, {% endif %}
+			{% endfor %}
+        ],
+        "reviewTime": {
+            "label": "{% trans 'Study time:' %}",
+            "time": "{% if resource.study_time_number %}{{ resource.study_time_number }} {{ resource.study_time_unit }}{% endif %}"
+        },
+        "geographies": [
+            {% for c in resource.get_geographies %}
+                {
+                    "label": "{{ c.name }}",
+                    "media": "{% thumbnail c.image "30x30"  crop="center" format="PNG" padding=True as im %}{{ im.url }}{% endthumbnail %}"
+                }{% if not forloop.last %}, {% endif %}
+			{% endfor %}
+        ]
+    }{% if not forloop.last %}, {% endif %}
+{% endfor %}
+]
+</script>
+{% else %}
+    <div id="addResourceBlock" at-base="pad:xyEq100 rhy:yStart50" class="Category-emptySlot motif:tint type:minor--face:hed--weight:700">
+        {% if not is_geo_tag %}
+            <p>{% trans 'There are no resources tagged with ' %}{{ tag.name }}.</p>
+        {% else %}
+            {% url 'orb_resource_create' as add_resource_url %}
+            {% url 'profile_register' as registration_url %}
+            {% blocktrans with tag.name as name %}
+                <p>There are no resources yet for {{ name }}.</p>
+                <p>
+                    Do you have resources relevant to {{ name }}?
+                    You can <a href="{{ add_resource_url }}">add openly licensed content resources</a> and improve
+                    the knowledge base for community-based health workers and trainers.
+                </p>
+                <a href="{{ add_resource_url }}">Add your resource &raquo;</a>
+                <p>If you have not yet registered, please <a href="{{ registration_url }}">take a moment to do so</a> first.</p>
+            {% endblocktrans %}
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock %}
 
 {% block content %}
 
@@ -69,7 +181,7 @@
                 <p>There are no resources yet for {{ name }}.</p>
                 <p>Do you have resources relevant to {{ name }}?
                     You can <a href="{{ add_resource_url }}">add openly licensed content resources</a> and improve
-                    the knowledge base for frontline health workers.</p>
+                    the knowledge base for community-based health workers and trainers</p>
                 <a href="{{ add_resource_url }}">
                     <button type="button" class="btn btn-primary">Add your resource &raquo;</button>
                 </a>
@@ -78,8 +190,7 @@
         {% endif %}
         </div>
     {% endif %}
-
-{% endblock %}
+{% endblock %} {% endcomment %}
 
 {% block footer_js %}
 <script>

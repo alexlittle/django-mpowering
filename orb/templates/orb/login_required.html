@@ -1,6 +1,21 @@
-{% extends "base.html" %}
-{% load i18n %} 
+{% extends "covid/logout.html" %}
+
+{% load i18n %}
+
 {% block extra_head_title %}{% trans 'Login required' %}{% endblock extra_head_title %}
+
+{% block content_title %}{% trans 'Login required' %}{% endblock %}
+
+{% block notice %}
+<p>{{ message }}</p>
+{% url 'profile_login' as login %}
+{% url 'profile_register' as register %}
+<p>{% blocktrans with request.path as nextpath %}Please <a href="{{ login }}?next={{ nextpath }}" class="alert-link">login</a> or <a href="{{ register }}" class="alert-link">register</a>{% endblocktrans %}</p>
+{% endblock %}
+
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% comment %}
 {% block content %}
 
 <h2>{% trans 'Login required' %}</h2>
@@ -14,4 +29,4 @@
 <p>{% blocktrans with request.path as nextpath %}Please <a href="{{ login }}?next={{ nextpath }}" class="alert-link">login</a> or <a href="{{ register }}" class="alert-link">register</a>{% endblocktrans %}</div>
 
 
-{% endblock %}
+{% endblock %} {% endcomment %}

@@ -1,6 +1,7 @@
 """
 Utility functions isolated to prevent circular dependencies
 """
+from __future__ import unicode_literals
 
 
 def unmet_criteria(resource):

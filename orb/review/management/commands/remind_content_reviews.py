@@ -7,6 +7,8 @@ tasks module.
 The command should be run once per day.
 """
 
+from __future__ import unicode_literals
+
 from django.core.management.base import BaseCommand
 
 from orb.review.tasks import remind_reviewers

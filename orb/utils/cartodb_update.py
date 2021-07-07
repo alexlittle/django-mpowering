@@ -5,10 +5,12 @@
  https://oppiamobile.readthedocs.org/en/latest/
 """
 
+from __future__ import unicode_literals
+
+import argparse
+import json
 import time
 import urllib
-import json
-import argparse
 
 from django.db.models import Sum
 
@@ -26,7 +28,6 @@ def run(cartodb_account, cartodb_key, source_site):
     u = urllib.urlopen(url)
     data = u.read()
     carto_db_data = json.loads(data)
-    # print carto_db_data
 
     # update any existing points in the carto db
     for c in carto_db_data['rows']:
@@ -34,7 +35,7 @@ def run(cartodb_account, cartodb_key, source_site):
             lat=c['lat'], lng=c['lng']).aggregate(total=Sum('hits'))
         if location['total'] != None and c['total_hits'] != location['total']:
             # update
-            print "found - will update"
+            print("found - will update")
             cartodb_id = c['cartodb_id']
             sql = "UPDATE %s SET total_hits=%d WHERE cartodb_id=%d AND source_site='%s'" % (
                 cartodb_table, location['total'], cartodb_id, source_site)
@@ -43,7 +44,7 @@ def run(cartodb_account, cartodb_key, source_site):
             u = urllib.urlopen(url)
             data = u.read()
             dataJSON = json.loads(data)
-            print dataJSON
+            print(dataJSON)
             time.sleep(1)
 
     # add any new points
@@ -57,7 +58,7 @@ def run(cartodb_account, cartodb_key, source_site):
                 found = True
 
         if not found:
-            print "not found - will insert"
+            print("not found - will insert")
             sql = "INSERT INTO %s (the_geom, lat, lng, total_hits, country_code, source_site) VALUES (ST_SetSRID(ST_Point(%f, %f),4326),%f,%f,%d ,'%s','%s')" % (
                 cartodb_table, l['lng'], l['lat'], l['lat'], l['lng'], l['total_hits'], l['country_code'], source_site)
             url = "http://%s.cartodb.com/api/v2/sql?q=%s&api_key=%s" % (
@@ -65,7 +66,7 @@ def run(cartodb_account, cartodb_key, source_site):
             u = urllib.urlopen(url)
             data = u.read()
             dataJSON = json.loads(data)
-            print dataJSON
+            print(dataJSON)
             time.sleep(1)
 
 if __name__ == "__main__":

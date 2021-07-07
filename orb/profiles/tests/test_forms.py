@@ -43,8 +43,8 @@ def test_form_validity(profile_info, use_email, password, use_password, confirm_
     """
 
     email = profile_info['mail'] if use_email else ''
-    password = password if use_password else ''
-    confirm_password = '' if not use_confirm_password else (password if match_confirm_password else confirm_password)
+    password = password.strip() if use_password else ''
+    confirm_password = '' if not use_confirm_password else (password if match_confirm_password else confirm_password.strip())
     first_name = first_name if use_first_name else ''
     last_name = last_name if use_last_name else ''
     organisation = organisation if use_organisiation else ''
@@ -112,11 +112,11 @@ def test_form_validity(profile_info, use_email, password, use_password, confirm_
     Tests with REQUIRED fields only
     """
     email = profile_info['mail'] if use_email else ''
-    password = password if use_password else ''
-    confirm_password = '' if not use_confirm_password else (password if match_confirm_password else confirm_password)
-    first_name = first_name if use_first_name else ''
-    last_name = last_name if use_last_name else ''
-    organisation = organisation if use_organisiation else ''
+    password = password.strip() if use_password else ''
+    confirm_password = '' if not use_confirm_password else (password if match_confirm_password else confirm_password.strip())
+    first_name = first_name.strip() if use_first_name else ''
+    last_name = last_name.strip() if use_last_name else ''
+    organisation = organisation.strip() if use_organisiation else ''
 
     data={
         'email': email,
@@ -134,10 +134,10 @@ def test_form_validity(profile_info, use_email, password, use_password, confirm_
         not email,
         password and len(password) < 6,
         password != confirm_password,
-        len(first_name) < 2,
-        len(first_name) > 100,
-        len(last_name) < 2,
-        len(last_name) > 100,
+        len(first_name.strip()) < 2,
+        len(first_name.strip()) > 100,
+        len(last_name.strip()) < 2,
+        len(last_name.strip()) > 100,
         len(organisation) < 1,
         len(organisation) > 100,
     ]):

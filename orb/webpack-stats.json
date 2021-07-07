@@ -1,0 +1,58 @@
+{
+    "status": "done",
+    "publicPath": "/",
+    "chunks": {
+        "app": [
+            {
+                "name": "covid/js/app.js",
+                "publicPath": "/static/covid/js/app.js"
+            }
+        ],
+        "page--src--apps--categories--category-view-vue": [
+            {
+                "name": "covid/js/page--src--apps--categories--category-view-vue.js",
+                "publicPath": "/static/covid/js/page--src--apps--categories--category-view-vue.js"
+            }
+        ],
+        "page--src--pages--404-vue": [
+            {
+                "name": "covid/js/page--src--pages--404-vue.js",
+                "publicPath": "/static/covid/js/page--src--pages--404-vue.js"
+            }
+        ],
+        "page--src--pages--content-vue": [
+            {
+                "name": "covid/js/page--src--pages--content-vue.js",
+                "publicPath": "/static/covid/js/page--src--pages--content-vue.js"
+            }
+        ],
+        "page--src--pages--index-vue": [
+            {
+                "name": "covid/js/page--src--pages--index-vue.js",
+                "publicPath": "/static/covid/js/page--src--pages--index-vue.js"
+            }
+        ],
+        "vendors~page--src--apps--categories--category-view-vue~page--src--pages--category-vue~page--src--pag~090b819a": [
+            {
+                "name": "covid/js/vendors~page--src--apps--categories--category-view-vue~page--src--pages--category-vue~page--src--pag~090b819a.js",
+                "publicPath": "/static/covid/js/vendors~page--src--apps--categories--category-view-vue~page--src--pages--category-vue~page--src--pag~090b819a.js"
+            }
+        ],
+        "vendors~page--src--apps--categories--category-view-vue~page--src--pages--category-vue~page--src--pag~394609fe": [
+            {
+                "name": "covid/js/vendors~page--src--apps--categories--category-view-vue~page--src--pages--category-vue~page--src--pag~394609fe.js",
+                "publicPath": "/static/covid/js/vendors~page--src--apps--categories--category-view-vue~page--src--pages--category-vue~page--src--pag~394609fe.js"
+            }
+        ],
+        "styles": [
+            {
+                "name": "covid/css/styles.styles.css",
+                "publicPath": "/static/covid/css/styles.styles.css"
+            },
+            {
+                "name": "covid/js/styles.js",
+                "publicPath": "/static/covid/js/styles.js"
+            }
+        ]
+    }
+}

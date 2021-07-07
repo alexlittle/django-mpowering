@@ -1,8 +1,10 @@
+from __future__ import unicode_literals
+
 from django.db.models import Count, Max, Min
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
-from orb.models import Tag, Resource, TagTracker
+from orb.models import Resource, Tag, TagTracker
 from orb.signals import tag_viewed
 
 
@@ -10,7 +12,7 @@ def text_tag_list(request, **filters):
     """
     Returns a text list of cateogry names, newline separated
     """
-    content = u"\n".join([tag.name for tag in Tag.tags.filter(**filters)])
+    content = "\n".join([tag.name for tag in Tag.tags.filter(**filters)])
     return HttpResponse(content=content, content_type="text/plain; charset=utf-8")
 
 

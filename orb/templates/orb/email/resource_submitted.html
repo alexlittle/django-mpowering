@@ -2,5 +2,9 @@
 {% blocktrans %}
 <p>{{ firstname }} {{ lastname }} has just submitted a new resource '{{ title }}'.</p>
 
+<p>Assign reviewers: <a href="{{ assign_reviewers_link }}">{{ assign_reviewers_link }}</a></p>
+
+<p>Preview the resource: <a href="{{ resource_link }}">{{ resource_link }}</a></p>
+
 {% endblocktrans %}
 {% include 'orb/email/footer.html' %}

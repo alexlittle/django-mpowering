@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 
-from django.test import TestCase
 from django.core import mail
+from django.test import TestCase
 
 from orb.emailer import send_orb_email
 
@@ -15,7 +16,7 @@ class BaseEmailTests(TestCase):
             recipients=["bob@example.com"],
             template_html="orb/email/password_reset.html",
             template_text="orb/email/password_reset.txt",
-            subject=u"Tu contraseña ha sido restablecida.",
+            subject="Tu contraseña ha sido restablecida.",
         )
         self.assertEqual(count + 1, len(mail.outbox))
 
@@ -26,6 +27,6 @@ class BaseEmailTests(TestCase):
             recipients=["bob@example.com", "sue@example.com"],
             template_html="orb/email/password_reset.html",
             template_text="orb/email/password_reset.txt",
-            subject=u"Tu contraseña ha sido restablecida.",
+            subject="Tu contraseña ha sido restablecida.",
         )
         self.assertEqual(count + 1, len(mail.outbox))

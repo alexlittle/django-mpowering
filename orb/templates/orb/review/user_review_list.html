@@ -1,12 +1,14 @@
-{% extends "base.html" %}
+{% extends "covid/form.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n review_tags %}
 
 {% block extra_head_title %}{% trans 'Pending Resources' %}{% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'My Reviews' %}{% endblock %}
+
 {% block content %}
 
-
-    <h2>{% trans 'My Reviews' %}</h2>
     <h3>{% trans 'Pending Resources' %}</h3>
     {% if review_assignments %}
         <div class="table-responsive">

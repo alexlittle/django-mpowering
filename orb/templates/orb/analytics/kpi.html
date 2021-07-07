@@ -1,114 +1,14 @@
-{% extends "base.html" %}
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n %}
 {% load humanize %}
 
-{% block extra_scripts %}
-	<script type='text/javascript' src='https://www.google.com/jsapi'></script>
-	<script type="text/javascript">
-	
-	// Load the Visualization API and the piechart package.
-	google.load('visualization', '1.0', {'packages':['corechart']});
-
-	// Set a callback to run when the Google Visualization API is loaded.
-	google.setOnLoadCallback(drawChart);
-	function drawChart() {
-
-		var data = new google.visualization.DataTable();
-		data.addColumn('string', "{% trans 'Date' %}");
-		data.addColumn('number', "{% trans 'Total' %}");
-		data.addRows( {{ table_data|length }} );
-		
-		{% for td in table_data %}
-			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
-			data.setValue({{ forloop.counter0 }},1,{{ td.downloads }});
-		{% endfor %}
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('downloads_chart_div'));
-        chart.draw(data, {	width: "100%", 
-                			height: 400,
-                			vAxis: {title: "{% trans '# downloads' %}"},
-                			pointSize:5,
-                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
-                			backgroundColor: 'transparent',
-                			legend: {position:'right'}
-							});
-        
-        var data = new google.visualization.DataTable();
-		data.addColumn('string', "{% trans 'Date' %}");
-		data.addColumn('number', "{% trans 'Total' %}");
-		data.addRows( {{ table_data|length }} );
-		
-		{% for td in table_data %}
-			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
-			data.setValue({{ forloop.counter0 }},1,{{ td.users }});
-		{% endfor %}
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('users_chart_div'));
-        chart.draw(data, {	width: "100%", 
-                			height: 400,
-                			vAxis: {title: "{% trans '# users' %}"},
-                			pointSize:5,
-                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
-                			backgroundColor: 'transparent',
-                			legend: {position:'right'}
-							});
-        
-        var data = new google.visualization.DataTable();
-		data.addColumn('string', "{% trans 'Date' %}");
-		data.addColumn('number', "{% trans 'Total' %}");
-		data.addRows( {{ table_data|length }} );
-		
-		{% for td in table_data %}
-			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
-			data.setValue({{ forloop.counter0 }},1,{{ td.resources }});
-		{% endfor %}
-
-        var chart = new google.visualization.ColumnChart(document.getElementById('resources_chart_div'));
-        chart.draw(data, {	width: "100%", 
-                			height: 400,
-                			vAxis: {title: "{% trans '# users' %}"},
-                			pointSize:5,
-                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
-                			backgroundColor: 'transparent',
-                			legend: {position:'right'}
-							});
-        
-        var data = new google.visualization.DataTable();
-		data.addColumn('string', "{% trans 'Date' %}");
-		data.addColumn('number', "{% trans 'Downloads' %}");
-		data.addColumn('number', "{% trans 'Users' %}");
-		data.addColumn('number', "{% trans 'Resources' %}");
-		data.addRows( {{ table_data|length }} );
-		
-		{% for td in table_data %}
-			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
-			data.setValue({{ forloop.counter0 }},1,{{ td.downloads }});
-			data.setValue({{ forloop.counter0 }},2,{{ td.users }});
-			data.setValue({{ forloop.counter0 }},3,{{ td.resources }});
-		{% endfor %}
-
-        var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
-        chart.draw(data, {	width: "100%", 
-                			height: 400,
-                			vAxis: {title: "{% trans 'Activity' %}"},
-                			pointSize:5,
-                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
-                			backgroundColor: 'transparent',
-                			legend: {position:'right'}
-							});
-      }
-</script>
-{% endblock extra_scripts %}
-
-
-
 {% block extra_head_title %}{% trans 'Facts and Figures' %}{% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'Facts and Figures' %} ({% now "d M Y" %}){% endblock %}
 
 {% block content %}
-
-<h2>{% trans 'Facts and Figures' %} ({% now "d M Y" %})</h2>
-
 <table class="table table-condensed">
     <thead>
         <tr>
@@ -123,7 +23,7 @@
             <td><strong>{{ indicators.reg_users|intcomma }}</strong></td>
             <td>
             	<ul>
-            		<li>{% blocktrans %}Until 22nd Feb 2018, users only need to register if they wanted to upload content, after this date users have been required to register to download a resource.{% endblocktrans %}</li>
+            		<li></li>
 				</ul>
 			</td>
         </tr>
@@ -134,12 +34,12 @@
             	<ul>
             		<li>{% blocktrans %}The anonymous visitors is based on the IP address, so each IP address in the figures counts only once{% endblocktrans %}</li>
 					<li>{% blocktrans %}This figure does not show how many times a person revisits the site from the same IP address.{% endblocktrans %}</li>
-					<li>{% blocktrans %}This figure does not show if multiple people use the same IP address (e.g. more than one health worker accessing the same tablet to see content on ORB).{% endblocktrans %}</li>
+					<li>{% blocktrans %}This figure does not show if multiple people use the same IP address (e.g. more than one health worker accessing the same tablet to see content on COVID-19 Library).{% endblocktrans %}</li>
 				</ul>
 			</td>
         </tr>
         <tr>
-			<td><strong>{% trans 'Resources on ORB' %}</strong></td>
+			<td><strong>{% trans 'Resources on COVID-19 Library' %}</strong></td>
             <td><strong>{{ indicators.no_resources_uniq|intcomma }} ({{ indicators.no_resources_total|intcomma }})</strong></td>
             <td>
             	<ul>
@@ -151,9 +51,9 @@
         <tr>
 			<td><strong>{% trans 'Resource views' %}</strong></td>
             <td><strong>{{ indicators.resource_views|intcomma }}</strong></td>
-            <td> 
+            <td>
             	<ul>
-            		<li>{% blocktrans %}This excludes any views from the mPowering team/ORB administrators/staff{% endblocktrans %}</li>
+            		<li>{% blocktrans %}This excludes any views from the COVID-19 Digital Classroom team/COVID-19 Library administrators/staff{% endblocktrans %}</li>
 					<li>{% blocktrans %}This figure includes some views from search bots, although we filter these out as much as is possible{% endblocktrans %}</li>
 				</ul>
             </td>
@@ -163,7 +63,7 @@
             <td><strong>{{ indicators.countries|intcomma }}</strong></td>
             <td>
             	<ul>
-            		<li>{% blocktrans %}Number of distinct countries users have visited ORB from{% endblocktrans %}</li>
+            		<li>{% blocktrans %}Number of distinct countries users have visited COVID-19 Library from{% endblocktrans %}</li>
 				</ul>
 			</td>
         </tr>
@@ -176,101 +76,6 @@
 				</ul>
             </td>
         </tr>
-	</tbody>
-</table>
-    
-    
-<h3>{% trans 'Activity Map' %}</h3>
-
-<iframe width='100%' height='520' frameborder='0'
-	src='https://mpowering.cartodb.com/viz/accaec34-03e6-11e5-a245-0e4fddd5de28/embed_map?title=false&#038;description=false&#038;search=false&#038;shareable=true&#038;cartodb_logo=true&#038;layer_selector=false&#038;legends=false&#038;scrollwheel=true&#038;fullscreen=true&#038;sublayer_options=1&#038;sql='
-	allowfullscreen webkitallowfullscreen mozallowfullscreen
-	oallowfullscreen msallowfullscreen></iframe>
-    
-    
-<h3>{% trans 'Resource Download Questionnaire Data' %}</h3>
-
-<p>{% blocktrans %}On 22nd Feb 2018 ORB was updated to require users to register and provide information on their intended use, before being able to download resources.{% endblocktrans %}</p>
-
-
-<table class="table table-condensed">
-    <thead>
-        <tr>
-			<th rowspan="2">{% trans 'Period' %}</th>
-            <th rowspan="2">{% trans '# downloads' %}</th>
-            <th rowspan="2">{% trans '# different users' %}</th>
-            <th rowspan="2">{% trans '# different resources' %}</th>
-            <th colspan="4">{% trans 'Intended Use' %}</th>
-        </tr>
-        <tr>
-            <th>{% trans 'Browsing' %}</th>
-            <th>{% trans 'Own learning' %}</th>
-            <th>{% trans 'Training' %} <sup><a href="#training">1</a></sup></th>
-            <th>{% trans 'Other' %} <sup><a href="#other">2</a></sup></th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for td in table_data %}
-    	<tr>
-    		<td>{{ td.date }}</td>
-            <td>{{ td.downloads|intcomma }}</td>
-            <td>{{ td.users|intcomma }}</td>
-            <td>{{ td.resources|intcomma }}</td>
-            <td>
-            	{% if td.browsing > 0%}{{ td.browsing }}{% else %}--{% endif %}
-            </td>
-            <td>{% if td.own_learning > 0%}{{ td.own_learning }}{% else %}--{% endif %}</td>
-            <td>{% if td.training > 0%}{{ td.training }}{% else %}--{% endif %}</td>
-            <td>{% if td.other > 0%}{{ td.other }}{% else %}--{% endif %}</td>
-    	</tr>
-    {% endfor %}
-    
-    </tbody>
-</table>
-
-<h4><a name="training" class="named-anchor"></a>{% trans '1. Training data breakdown' %}</h4>
-<table class="table table-condensed">
-    <thead>
-        <tr>
-			<th>{% trans 'Period' %}</th>
-            <th>{% trans '#' %}</th>
-            <th>{% trans 'Cadre' %}</th>
-        </tr>
-	</thead>
-	<tbody>
-		{% for td in table_data %}
-			{% if td.training > 0%}
-				{% for train in td.training_data %}
-				<tr>
-					<td>{{ td.date }}</td>
-					<td>{{ train.survey_health_worker_count}}</td>
-					<td>{{ train.survey_health_worker_cadre }}</td>
-				</tr>
-				{% endfor %}
-			{% endif %}
-		{% endfor %}
-	</tbody>
-</table>
-
-<h4><a name="other" class="named-anchor"></a>{% trans '2. Other data breakdown' %}</h4>
-<table class="table table-condensed">
-    <thead>
-        <tr>
-			<th>{% trans 'Period' %}</th>
-            <th>{% trans 'Reason' %}</th>
-        </tr>
-	</thead>
-	<tbody>
-		{% for td in table_data %}
-			{% if td.other > 0%}
-				{% for ot in td.other_data %}
-				<tr>
-					<td>{{ td.date }}</td>
-					<td>{{ ot.survey_intended_use_other}}</td>
-				</tr>
-				{% endfor %}
-			{% endif %}
-		{% endfor %}
 	</tbody>
 </table>
 
@@ -288,5 +93,103 @@
 
 <h4>{% trans 'Line chart of above 3 graphs' %}</h4>
 <div id="line_chart_div" class="graph">{% trans 'graph_generating'%}</div>
-
 {% endblock %}
+
+
+{% block extra_scripts %}
+	<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+	<script type="text/javascript">
+
+	// Load the Visualization API and the piechart package.
+	google.load('visualization', '1.0', {'packages':['corechart']});
+
+	// Set a callback to run when the Google Visualization API is loaded.
+	google.setOnLoadCallback(drawChart);
+	function drawChart() {
+
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', "{% trans 'Date' %}");
+		data.addColumn('number', "{% trans 'Total' %}");
+		data.addRows( {{ table_data|length }} );
+
+		{% for td in table_data %}
+			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
+			data.setValue({{ forloop.counter0 }},1,{{ td.downloads }});
+		{% endfor %}
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('downloads_chart_div'));
+        chart.draw(data, {	width: "100%",
+                			height: 400,
+                			vAxis: {title: "{% trans '# downloads' %}"},
+                			pointSize:5,
+                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
+                			backgroundColor: 'transparent',
+                			legend: {position:'right'}
+							});
+
+        var data = new google.visualization.DataTable();
+		data.addColumn('string', "{% trans 'Date' %}");
+		data.addColumn('number', "{% trans 'Total' %}");
+		data.addRows( {{ table_data|length }} );
+
+		{% for td in table_data %}
+			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
+			data.setValue({{ forloop.counter0 }},1,{{ td.users }});
+		{% endfor %}
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('users_chart_div'));
+        chart.draw(data, {	width: "100%",
+                			height: 400,
+                			vAxis: {title: "{% trans '# users' %}"},
+                			pointSize:5,
+                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
+                			backgroundColor: 'transparent',
+                			legend: {position:'right'}
+							});
+
+        var data = new google.visualization.DataTable();
+		data.addColumn('string', "{% trans 'Date' %}");
+		data.addColumn('number', "{% trans 'Total' %}");
+		data.addRows( {{ table_data|length }} );
+
+		{% for td in table_data %}
+			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
+			data.setValue({{ forloop.counter0 }},1,{{ td.resources }});
+		{% endfor %}
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('resources_chart_div'));
+        chart.draw(data, {	width: "100%",
+                			height: 400,
+                			vAxis: {title: "{% trans '# users' %}"},
+                			pointSize:5,
+                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
+                			backgroundColor: 'transparent',
+                			legend: {position:'right'}
+							});
+
+        var data = new google.visualization.DataTable();
+		data.addColumn('string', "{% trans 'Date' %}");
+		data.addColumn('number', "{% trans 'Downloads' %}");
+		data.addColumn('number', "{% trans 'Users' %}");
+		data.addColumn('number', "{% trans 'Resources' %}");
+		data.addRows( {{ table_data|length }} );
+
+		{% for td in table_data %}
+			data.setValue({{ forloop.counter0 }},0,'{{ td.date }}');
+			data.setValue({{ forloop.counter0 }},1,{{ td.downloads }});
+			data.setValue({{ forloop.counter0 }},2,{{ td.users }});
+			data.setValue({{ forloop.counter0 }},3,{{ td.resources }});
+		{% endfor %}
+
+        var chart = new google.visualization.LineChart(document.getElementById('line_chart_div'));
+        chart.draw(data, {	width: "100%",
+                			height: 400,
+                			vAxis: {title: "{% trans 'Activity' %}"},
+                			pointSize:5,
+                			chartArea:{left:100,top:50,width:"70%",height:"70%"},
+                			backgroundColor: 'transparent',
+                			legend: {position:'right'}
+							});
+      }
+</script>
+{% endblock extra_scripts %}

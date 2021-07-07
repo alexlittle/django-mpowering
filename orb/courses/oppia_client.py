@@ -3,11 +3,9 @@
 
 from __future__ import unicode_literals
 
+from typing import BinaryIO, Dict, Text, Union
+
 import requests
-from typing import BinaryIO
-from typing import Dict
-from typing import Text
-from typing import Union
 
 
 def oppia_response_message(response, default=""):

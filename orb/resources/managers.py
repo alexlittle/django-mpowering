@@ -2,16 +2,12 @@
 Manager classes for resource-related models
 """
 
+from __future__ import unicode_literals
+
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.db import models
-from django.db.models import Avg
-from django.db.models import Case
-from django.db.models import CharField
-from django.db.models import Count
-from django.db.models import Q
-from django.db.models import Value
-from django.db.models import When
+from django.db.models import Avg, Case, CharField, Count, Q, Value, When
 
 
 def approved_queryset(queryset, user=AnonymousUser, status="approved", relation=""):
@@ -36,7 +32,7 @@ def approved_queryset(queryset, user=AnonymousUser, status="approved", relation=
     creator_filter = {"{0}create_user".format(relation): user}
     updater_filter = {"{0}update_user".format(relation): user}
 
-    if not user.is_authenticated():
+    if not user.is_authenticated:
         return queryset.filter(**status_filter)
     if user.is_staff:
         return queryset

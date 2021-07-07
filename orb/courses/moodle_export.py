@@ -26,10 +26,14 @@ Incoming course content is expected to look like this:
 The MoodleCourse class is used to export to a Moodle backup format
 
 """
+from __future__ import unicode_literals
+
 import hashlib
 import sys
 import time
 from StringIO import StringIO
+from typing import Dict  # noqa
+from typing import List  # noqa
 from zipfile import ZipFile
 
 from dicttoxml import dicttoxml
@@ -37,12 +41,8 @@ from django.template.loader import render_to_string
 from django.utils.functional import cached_property
 from django.utils.html import escape
 from django.utils.safestring import SafeText  # noqa
-from typing import Dict  # noqa
-from typing import List  # noqa
 
-from orb.courses.export import sequenced_string
-from orb.courses.export import format_page_as_markdown
-from orb.courses.export import CourseExport
+from orb.courses.export import CourseExport, format_page_as_markdown, sequenced_string
 
 
 class MoodleCourse(CourseExport):
@@ -409,7 +409,7 @@ class MoodleCourse(CourseExport):
   <hiddensections>0</hiddensections>
   <coursedisplay>0</coursedisplay>
   <category id="50">
-    <name>mPowering ORB</name>
+    <name>CHA</name>
     <description></description>
   </category>
   <tags>

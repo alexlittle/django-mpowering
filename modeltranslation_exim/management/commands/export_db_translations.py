@@ -23,10 +23,10 @@ value of 12, and also in the `title` field of the `OtherModel` model for
 primary key 12.
 
 """
+from __future__ import unicode_literals
 
-from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from optparse import make_option
+from django.core.management.base import BaseCommand, CommandError
 
 from modeltranslation_exim import DatabaseTranslations
 
@@ -70,7 +70,7 @@ class Command(BaseCommand):
         fields = options.get('fields', [])
         if language and language not in [i[0] for i in settings.LANGUAGES]:
             raise CommandError(
-                u"'{}' is not one of the available language choices for this installation.".format(language))
+                "'{}' is not one of the available language choices for this installation.".format(language))
 
         exported = DatabaseTranslations.from_paths(language, *fields)
         exported.save()

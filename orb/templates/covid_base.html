@@ -1,0 +1,105 @@
+{% load render_bundle from webpack_loader %}
+
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+
+<!DOCTYPE html>
+<html {% block htmlAttrs %}{% endblock %}>
+    <head>
+        {% if page_title %}
+            <title>{% trans 'COVID resources' %}</title>
+        {% else %}
+            <title>{% block extra_head_title %}{% endblock extra_head_title %}
+                - {% trans 'COVID' %}</title>
+        {% endif %}
+        {% block head %}{% endblock %}
+
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+        <meta name="description"
+            content="Community-based health workers and trainers provide critical care to
+            millions of people around the world. COVID-19 Library is a global online library helping
+            them access the information, training and support they need."/>
+        <meta name="keywords"
+            content="COVID-19 Digital Classroom, COVID-19, coronavirus, corona, virus, 
+            community-based health workers and trainers, orb, open resource bank,
+            online resource bank, platform, health,
+            quiz, assessment, mobile, android, learning, video, media,
+            {% block extra_head_keywords %}{% endblock extra_head_keywords %}"/>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:image"
+          content="{{ BASE_URL }}{% static 'orb/images/covid-logo.png' %}">
+        <link rel="search" type="application/opensearchdescription+xml"
+            href="{% url 'orb_opensearch' %}" title="Add COVID-19 Library search">
+        <link rel="shortcut icon" type="image/png"
+            href="{% static 'orb/images/covid-logo.png' %}"/>
+        {% block extra_head_feed %}{% endblock extra_head_feed %}
+
+        <!-- Bootstrap -->
+        <link
+            href="{% static 'orb/bootstrap-3.1.1/css/bootstrap.min.css' %}"
+            rel="stylesheet"
+        />
+        <link href="{% static 'orb/style.css' %}?t=202005191645" rel="stylesheet"/>
+
+        <link rel="stylesheet" href="{% static 'covid/css/covid.css' %}">
+        <link rel="stylesheet" href="{% static 'covid/css/covid_refresh.css' %}">
+
+
+        {% block extra_styles %}
+        {% endblock extra_styles %}
+
+        {% block extra_scripts %}{% endblock extra_scripts %}
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+    </head>
+    <body {% block bodyAttrs %}{% endblock %}>
+        {% block app %}{% endblock %}
+
+        {% comment %}
+
+
+        <script>
+            $(".language-selection").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url : "{% url 'set_language' %}",
+                    type: "POST",
+                    data : {
+                        csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value,
+                        language: $(this).data("code"),
+                        next: window.location.href
+                    },
+                    dataType : "json",
+                    success: function(){
+                        location.reload();
+                    },
+                    error: function(){
+                        location.reload();
+                    }
+                });
+            });
+        </script> {% endcomment %}
+        <script src="{% static 'orb/js/jquery-1.11.0.min.js' %}"></script>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script',
+                    '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', '{{ ORB_GOOGLE_ANALYTICS_CODE }}', 'auto');
+            ga('send', 'pageview');
+        </script>
+        {% block scripts %}{% endblock %}
+        {% block footer_js %}{% endblock %}
+    </body>
+</html>

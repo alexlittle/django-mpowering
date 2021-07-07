@@ -1,93 +1,81 @@
-{% extends "base.html" %}
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %}  {% endcomment %}
+
 {% load i18n %}
 {% block extra_head_title %}
-  {% trans 'The mPowering Content Platform Review Process ' %}
+  {% trans 'The COVID-19 Digital Classroom Content Platform Review Process ' %}
 {% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'The COVID-19 Digital Classroom Content Platform Review Process ' %}{% endblock %}
+
 {% block content %}
+    <h2>{% trans 'The COVID-19 Digital Classroom Content Platform Review Process' %}</h2>
+      {% url 'orb_terms' as orb_terms %}
 
-  <h2>{% trans 'The mPowering Content Platform Review Process' %}</h2>
-  {% url 'orb_terms' as orb_terms %}
+      <h3><a name="background" class="named-anchor"></a>{% trans 'Background' %}</h3>
 
-  <h3><a name="background" class="named-anchor"></a>{% trans 'Background' %}</h3>
+      {% blocktrans %}
+        <p>
+          The team has designed a review process to ensure that the content is appropriate for training and supporting
+          community-based health workers and trainers based in low-resource settings, and in line with primary health care standards.
+        </p>
+      {% endblocktrans %}
 
-  {% blocktrans %}
-    <p>
-      The team has designed a review process to ensure that the content is appropriate for training and supporting
-      Frontline Health Workers based in low-resource settings, and in line with primary health care standards.
-    </p>
-  {% endblocktrans %}
+      <h3><a name="actors" class="named-anchor"></a>{% trans 'The Actors' %}</h3>
 
-  <h3><a name="actors" class="named-anchor"></a>{% trans 'The Actors' %}</h3>
+      {% blocktrans %}
+        <p>
+          The COVID-19 Digital Classroom COVID-19 Library review process involves health, technology and development experts with experience in
+          field-based digital health programs and content development.
+        </p>
+        <p>
+          <span class="bold">Organizations</span>: COVID-19 Digital Classroom welcomes interest from organizations with a track record for
+          creating high quality health content appropriate for training community-based health workers and trainers based in low-resource settings. We invite those organizations to upload content to the platform.
+        </p>
+        <p>
+          <span class="bold">COVID-19 Digital Classroom staff</span>: provides the support for the review process. This includes first review
+          of content submitted to the platform, supporting the Content Review Team, and uploading or linking to content
+          which has been approved.
+        </p>
+        <p>
+          <span class="bold">Content Review Team</span>: The Content Review Team is made up of highly qualified professionals in the
+          health sector as well as experts in e-learning, instructional design and mHealth. The team
+          members and their respective organizations contribute their time and effort to the content review process to
+          ensure that this platform is the ‘go-to’ source for quality training content and support tools for community-based health workers and trainers, 
+          their supervisors and training institutions.
+        </p>
+      {% endblocktrans %}
 
-  {% blocktrans %}
-    <p>
-      The mPowering ORB review process involves health, technology and development experts with experience in
-      field-based digital health programs and content development.
-    </p>
-    <p>
-      <span class="bold">Organizations</span>: mPowering welcomes interest from organizations with a track record for
-      creating high quality reproductive, maternal, newborn and child health content appropriate for training frontline
-      health workers based in low-resource settings. We invite those organizations to upload content to the platform.
-    </p>
-    <p>
-      <span class="bold">mPowering staff</span>: provides the support for the review process. This includes first review
-      of content submitted to the platform, supporting the Content Review Team, and uploading or linking to content
-      which has been approved.
-    </p>
-    <p>
-      <span class="bold">Content Review Team (CRT)</span>: The CRT is made up of highly qualified professionals in the
-      maternal and child health sector as well as experts in e-learning, instructional design and mHealth. The team
-      members and their respective organizations contribute their time and effort to the content review process to
-      ensure that this platform is the ‘go-to’ source for quality training content and support tools for frontline
-      health workers, their supervisors and training institutions.
-    </p>
-  {% endblocktrans %}
+      <h3><a name="summary" class="named-anchor"></a>{% trans 'Summary of the COVID-19 Library Review Process' %}</h3>
+      {% blocktrans %}
 
-  <h3><a name="summary" class="named-anchor"></a>{% trans 'Summary of the ORB Review Process' %}</h3>
-  {% blocktrans %}
+        <ol>
+          <li>
+            <span class="bold">Content Submission</span>: Reputable organizations submit, tag and summarize their content to
+            COVID-19 Library, confirming that it meets the COVID-19 Library criteria (https://covid-19library.org/resource/guidelines/). Upon
+            submission, the COVID-19 Digital Classroom staff receive an alert that new content is available for review.
+          </li>
+          <li>
+            <span class="bold">Initial review</span>: COVID-19 Digital Classroom staff conduct an initial review to ensure that the submitted
+            content is appropriate for community-based health workers and trainers and appears to meet the COVID-19 Library criteria. If it is, then
+            COVID-19 Digital Classroom assigns the content to the appropriate Content Review Team members for review.
+          </li>
+          <li>
+            <span class="bold">External review</span>: The assigned medical, technology and training experts from the Content Review Team
+            reviews the content to ensure the materials meet the standards for their area of expertise as well as the COVID-19 Library
+            quality standards. If the resource does not meet one of the criteria, then the reviewer provides an explanation.
+            The reviewer can then accept or reject the resource for inclusion into COVID-19 Library and notifies COVID-19 Digital Classroom.
+          </li>
+          <li>
+            <span class="bold">Approval</span>: COVID-19 Digital Classroom staff makes approved content available on COVID-19 Library.
+          </li>
 
-    <ol>
-      <li>
-        <span class="bold">Content Submission</span>: Reputable organizations submit, tag and summarize their content to
-        ORB, confirming that it meets the ORB criteria (http://www.health-orb.org/resource/guidelines/). Upon
-        submission, the mPowering staff receive an alert that new content is available for review.
-      </li>
-      <li>
-        <span class="bold">Initial review</span>: mPowering staff conduct an initial review to ensure that the submitted
-        content is appropriate for frontline health workers and appears to meet the ORB criteria. If it is, then
-        mPowering assigns the content to the appropriate CRT members for review.
-      </li>
-      <li>
-        <span class="bold">External review</span>: The assigned medical, technology and training experts from the CRT
-        reviews the content to ensure the materials meet the standards for their area of expertise as well as the ORB
-        quality standards. If the resource does not meet one of the criteria, then the reviewer provides an explanation.
-        The reviewer can then accept or reject the resource for inclusion into ORB and notifies mPowering.
-      </li>
-      <li>
-        <span class="bold">Approval</span>: mPowering staff makes approved content available on ORB.
-      </li>
+        </ol>
 
-    </ol>
+        <p>
+          If a resource has been rejected by one or more reviewers, COVID-19 Digital Classroom staff will share a summary of the
+          feedback/explanation to and liaise with the content submitter to discuss the decision.
+        </p>
 
-    <p>
-      If a resource has been rejected by one or more reviewers, mPowering staff will share a summary of the
-      feedback/explanation to and liaise with the content submitter to discuss the decision.
-    </p>
-
-    <p>
-      This process is also shown in this video:
-    </p>
-
-    <iframe
-      style="margin: 0 auto; display: block;"
-      width="560"
-      height="315"
-      src="https://www.youtube-nocookie.com/embed/D7dBrnGFurQ"
-      frameborder="0"
-      allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
-  {% endblocktrans %}
-
+      {% endblocktrans %}
 {% endblock content %}

@@ -2,12 +2,14 @@
 This is a debugging command designed to test emails on the system
 """
 
+from __future__ import unicode_literals
+
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 
+from orb.models import Resource
 from orb.review import tasks
 from orb.review.models import ContentReview
-from orb.models import Resource
-from django.conf import settings
 
 
 class Command(BaseCommand):
@@ -42,4 +44,3 @@ class Command(BaseCommand):
                     function(get_object(), *args, **kwargs)
             else:
                 function(get_object())
-

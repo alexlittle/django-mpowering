@@ -1,6 +1,8 @@
+from __future__ import unicode_literals
+
 import uuid
 
-from orb.models import Tag, Category
+from orb.models import Category, Tag
 
 
 def category_factory(**kwargs):

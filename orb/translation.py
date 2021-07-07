@@ -2,7 +2,9 @@
 Translation registration for django modeltranslation
 """
 
-from modeltranslation.translator import translator, TranslationOptions
+from __future__ import unicode_literals
+
+from modeltranslation.translator import TranslationOptions, translator
 
 from orb import models
 

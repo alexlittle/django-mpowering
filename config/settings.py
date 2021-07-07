@@ -1,18 +1,10 @@
 # -*- coding: utf-8 -*-
 
-"""
-Django settings for mpowering project.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
+from __future__ import unicode_literals
 
 import os
 
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -50,17 +42,18 @@ INSTALLED_APPS = [
     'haystack',
     'sorl.thumbnail',
     'orb',
-    'orb.courses',
+    # 'orb.courses',
     'orb.peers',
     'orb.review',
     'orb.analytics',
-    'orb.toolkits',
     'modeltranslation_exim',
     'django_extensions',
+    'ckeditor',
+    'webpack_loader',
 ]
 
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -123,9 +116,7 @@ LOCALE_PATHS = [
 ]
 gettext = lambda s: s  # noqa
 LANGUAGES = [
-    ('en', u'English'),
-    ('es', u'Español'),
-    ('pt-br', u'Português'),
+    ('en','English'),
 ]
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 #####################################################################
@@ -134,18 +125,28 @@ MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
 #####################################################################
 # Static assets & media uploads
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'orb/static')
+STATIC_ROOT = os.path.join(BASE_DIR, '..', 'static')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'media')
+
+# DJANGO WEBPACK BUNDLING
+WEBPACK_LOADER = {
+    "COVID_LIBRARY": {
+        "CACHE": not DEBUG,
+        # "CACHE": False,
+        "BUNDLE_DIR_NAME": 'covid/',  # must end with slash
+        "STATS_FILE": os.path.join(BASE_DIR, "orb/webpack-stats.json"),
+    },
+}
 #####################################################################
 
 
 #####################################################################
 # Email
-SERVER_EMAIL = 'ORB <orb@example.com>'
-EMAIL_SUBJECT_PREFIX = '[ORB]: '
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SERVER_EMAIL = 'COVID-19 Library <orb@example.com>'
+EMAIL_SUBJECT_PREFIX = '[COVID-19 Library]: '
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 EMAIL_FILE_PATH = '/tmp/'
 #####################################################################
 
@@ -223,15 +224,16 @@ LOGGING = {
 
 
 #####################################################################
-# ORB specific settings
+# COVID-19 Library specific settings
 ORB_RESOURCE_DESCRIPTION_MAX_WORDS = 150
 ORB_GOOGLE_ANALYTICS_CODE = ''
 ORB_INFO_EMAIL = 'orb@example.com'
 ORB_PAGINATOR_DEFAULT = 20
 ORB_RESOURCE_MIN_RATINGS = 3
-TASK_UPLOAD_FILE_TYPE_BLACKLIST = [u'application/vnd.android']
-TASK_UPLOAD_FILE_MAX_SIZE = "5242880"
+TASK_UPLOAD_FILE_TYPE_BLACKLIST = ['application/vnd.android']
+TASK_UPLOAD_FILE_MAX_SIZE = 20971520
 STAGING = False  # used for version context processor
+IP_STACK_API_KEY = '' # set this in your local_settings.py
 #####################################################################
 
 
@@ -247,12 +249,12 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # Simple settings flags for download features
-DOWNLOAD_LOGIN_REQUIRED = True
-DOWNLOAD_EXTRA_INFO = True
+DOWNLOAD_LOGIN_REQUIRED = False
+DOWNLOAD_EXTRA_INFO = False
 
 
 try:
-    from local_settings import *  # noqa
+    from .local_settings import *  # noqa
 except ImportError:
     import warnings
     warnings.warn("Using default settings. Add `config.local_settings.py` for custom settings.")

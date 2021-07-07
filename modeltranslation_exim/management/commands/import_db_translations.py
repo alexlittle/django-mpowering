@@ -24,6 +24,8 @@ primary key 12.
 
 """
 
+from __future__ import unicode_literals
+
 from optparse import make_option
 
 from django.core.management.base import BaseCommand, CommandError
@@ -54,4 +56,3 @@ class Command(BaseCommand):
         language = options.get('language')
         translator = POTranslations(filepath, language, output=self.stdout)
         translator.save()
-

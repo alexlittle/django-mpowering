@@ -1,88 +1,18 @@
-{% extends "base.html" %}
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load i18n %}
 
 {% block extra_head_title %}{% trans 'Analytics' %}{% endblock extra_head_title %}
 
-{% block extra_scripts %}
-    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-    <script type="text/javascript">
-
-        // Load the Visualization API and the piechart package.
-        google.load('visualization', '1.0', {'packages': ['corechart']});
-
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.setOnLoadCallback(drawChart);
-        function drawChart() {
-
-            // activity graph
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', "{% trans 'Date' %}");
-            data.addColumn('number', "{% trans 'Total' %}");
-            data.addColumn('number', "{% trans 'Resource Views' %}");
-            data.addColumn('number', "{% trans 'Resource File Views' %}");
-            data.addColumn('number', "{% trans 'Resource URL Views' %}");
-            data.addColumn('number', "{% trans 'Searches' %}");
-            data.addRows({{ recent_activity|length }});
-
-            {% for date,activity in recent_activity %}
-                data.setValue({{ forloop.counter0 }}, 0, '{{ date }}');
-                data.setValue({{ forloop.counter0 }}, 1, {{ activity.total }});
-                data.setValue({{ forloop.counter0 }}, 2, {{ activity.resource }});
-                data.setValue({{ forloop.counter0 }}, 3, {{ activity.resource_file }});
-                data.setValue({{ forloop.counter0 }}, 4, {{ activity.resource_url }});
-                data.setValue({{ forloop.counter0 }}, 5, {{ activity.search }});
-            {% endfor %}
-
-            var chart = new google.visualization.LineChart(document.getElementById('activity_chart_div'));
-            chart.draw(data, {
-                width: "100%",
-                height: 400,
-                vAxis: {title: "{% trans 'Activity' %}"},
-                pointSize: 5,
-                chartArea: {left: 50, top: 50, width: "70%", height: "70%"},
-                backgroundColor: 'transparent',
-                legend: {position: 'right'}
-            });
-
-            // registration graph
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', "{% trans 'Date' %}");
-            data.addColumn('number', "{% trans 'Users' %}");
-            data.addRows({{ user_registrations|length }});
-
-            {% for date,users in user_registrations %}
-                data.setValue({{ forloop.counter0 }}, 0, '{{ date }}');
-                data.setValue({{ forloop.counter0 }}, 1, {{ users }});
-            {% endfor %}
-
-            var chart = new google.visualization.LineChart(document.getElementById('registrations_chart_div'));
-            chart.draw(data, {
-                width: "100%",
-                height: 400,
-                vAxis: {title: "{% trans 'User Registrations' %}"},
-                pointSize: 5,
-                chartArea: {left: 50, top: 50, width: "70%", height: "70%"},
-                backgroundColor: 'transparent',
-                legend: {position: 'right'}
-            });
-
-        }
-
-    </script>
-{% endblock extra_scripts %}
-
+{% block content_title %}{% trans 'Analytics' %}{% endblock %}
 
 {% block content %}
-
-    <h2>{% trans 'Analytics' %}</h2>
-
     <p><a href="#ag">{% trans 'Activity Graph' %}</a>
         | <a href="#pc">{% trans 'Pending Review' %}</a>
         | <a href="#reg">{% trans 'User Registrations' %}</a>
         | <a href="#ps">{% trans 'Popular Searches' %}</a>
         | <a href="#pr">{% trans 'Popular Resources' %}</a>
-        | <a href="#o">{% trans 'Organisations' %}</a>
-        | <a href="#am">{% trans 'Activity Map' %}</a></p>
+        | <a href="#o">{% trans 'Organisations' %}</a></p>
 
     <a name="ag" class="named-anchor"></a>
     <h3>{% trans 'Activity Graph' %}</h3>
@@ -196,18 +126,70 @@
         {% endfor %}
     </ul>
 
-    <a name="am" class="named-anchor"></a>
-    <h3>{% trans 'Activity Map' %}</h3>
-    <iframe width='100%' height='520' frameborder='0'
-            src='https://mpowering.cartodb.com/viz/accaec34-03e6-11e5-a245-0e4fddd5de28/embed_map?title=false&#038;description=false&#038;search=false&#038;shareable=true&#038;cartodb_logo=true&#038;layer_selector=false&#038;legends=false&#038;scrollwheel=true&#038;fullscreen=true&#038;sublayer_options=1&#038;sql='
-            allowfullscreen webkitallowfullscreen mozallowfullscreen
-            oallowfullscreen msallowfullscreen></iframe>
-
-    <p>{% trans 'Countries' %}:</p>
-    <ol>
-        {% for c in countries %}
-            <li>{{ c }}</li>
-        {% endfor %}
-    </ol>
-
 {% endblock %}
+
+{% block extra_scripts %}
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type="text/javascript">
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1.0', {'packages': ['corechart']});
+
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // activity graph
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', "{% trans 'Date' %}");
+            data.addColumn('number', "{% trans 'Total' %}");
+            data.addColumn('number', "{% trans 'Resource Views' %}");
+            data.addColumn('number', "{% trans 'Resource File Views' %}");
+            data.addColumn('number', "{% trans 'Resource URL Views' %}");
+            data.addColumn('number', "{% trans 'Searches' %}");
+            data.addRows({{ recent_activity|length }});
+
+            {% for date,activity in recent_activity %}
+                data.setValue({{ forloop.counter0 }}, 0, '{{ date }}');
+                data.setValue({{ forloop.counter0 }}, 1, {{ activity.total }});
+                data.setValue({{ forloop.counter0 }}, 2, {{ activity.resource }});
+                data.setValue({{ forloop.counter0 }}, 3, {{ activity.resource_file }});
+                data.setValue({{ forloop.counter0 }}, 4, {{ activity.resource_url }});
+                data.setValue({{ forloop.counter0 }}, 5, {{ activity.search }});
+            {% endfor %}
+
+            var chart = new google.visualization.LineChart(document.getElementById('activity_chart_div'));
+            chart.draw(data, {
+                width: "100%",
+                height: 400,
+                vAxis: {title: "{% trans 'Activity' %}"},
+                pointSize: 5,
+                chartArea: {left: 50, top: 50, width: "70%", height: "70%"},
+                backgroundColor: 'transparent',
+                legend: {position: 'right'}
+            });
+
+            // registration graph
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', "{% trans 'Date' %}");
+            data.addColumn('number', "{% trans 'Users' %}");
+            data.addRows({{ user_registrations|length }});
+
+            {% for date,users in user_registrations %}
+                data.setValue({{ forloop.counter0 }}, 0, '{{ date }}');
+                data.setValue({{ forloop.counter0 }}, 1, {{ users }});
+            {% endfor %}
+
+            var chart = new google.visualization.LineChart(document.getElementById('registrations_chart_div'));
+            chart.draw(data, {
+                width: "100%",
+                height: 400,
+                vAxis: {title: "{% trans 'User Registrations' %}"},
+                pointSize: 5,
+                chartArea: {left: 50, top: 50, width: "70%", height: "70%"},
+                backgroundColor: 'transparent',
+                legend: {position: 'right'}
+            });
+        }
+    </script>
+{% endblock extra_scripts %}

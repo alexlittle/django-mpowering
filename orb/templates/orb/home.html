@@ -1,32 +1,23 @@
-{% extends "base.html" %}
+{% extends "covid/landing.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n %}
+{% load static %}
 {% load thumbnail %}
 
-{% block extra_head_title %}{% trans 'ORB by mPowering' %}{% endblock extra_head_title %}
+
+{% block extra_head_title %}{% trans 'COVID-19 Digital Classroom' %}{% endblock extra_head_title %}
+
+{% comment %} This is already wrapped in a <p> tag{% endcomment %}
+{% block intro %}
+      {% blocktrans %}
+      COVID-19 Library offers community-based health workers and trainers access
+      to quality assured openly licensed content that can be used on mobile
+      devices and shared with local communities globally.
+      {% endblocktrans %}
+{% endblock %}
 
 {% block extra_head_feed %}
 <link rel="alternate" type="application/rss+xml" title="RSS"
       href="{% url 'orb_feed' %}">
 {% endblock extra_head_feed %}
-
-{% block content %}
-
-{% include 'orb/includes/search_bar.html' %}
-
-<h3 style="text-align: center">
-    {% trans 'Connecting Frontline Health Workers to resources and each other to expand their knowledge, organize content into courses, and share their learning with the community.' %}
-</h3>
-
-<div style="position: relative; margin: 20px auto; overflow: hidden; text-align: center;">
-
-{% if organized_topics %}
-  {% include "orb/home_organized_topics.html" %}
-{% else %}
-  {% include "orb/home_topics.html" %}
-{% endif %}
-
-
-	<div style="clear:both"></div>
-</div>
-
-{% endblock %}

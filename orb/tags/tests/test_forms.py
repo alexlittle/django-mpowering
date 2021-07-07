@@ -4,17 +4,20 @@
 Tests for ORB tag forms
 """
 
-from hypothesis import strategies as st, given, example, settings
-import  pytest
+from __future__ import unicode_literals
+
+import pytest
+from hypothesis import example, given, settings
+from hypothesis import strategies as st
 
 from orb.tags.forms import TagPageForm
 
 
 @given(st.characters())
-@example(u'-create_date')
-@example(u'title')
-@example(u'-update_date')
-@example(u'-rating')
+@example('-create_date')
+@example('title')
+@example('-update_date')
+@example('-rating')
 def test_tag_order_validation(order_by):
     form = TagPageForm(data={'order': order_by, 'page': 1})
 

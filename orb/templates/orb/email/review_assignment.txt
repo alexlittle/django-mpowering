@@ -2,12 +2,12 @@
 {% blocktrans %}
 Dear {{ reviewer_name }},
 
-You have been assigned as the {{ reviewer_role }} reviewer for the following resource on ORB: {{ resource_title }}
+You have been assigned as the {{ reviewer_role }} reviewer for the following resource on COVID-19 Library: {{ resource_title }}
 
-You can view all the resources pending your review here on ORB: {{ reviews_link }}.
-Please review this resource within the next 10 business days.
+You can view all the resources pending your review here on COVID-19 Library: {{ reviews_link }}.
+Please review this resource within the next 5 business days.
 
-We appreciate your time and efforts in being part of the ORB content review team.
+We appreciate your time and efforts in being part of the COVID-19 Library content review team.
 
 {% endblocktrans %}
 {% include 'orb/email/footer.txt' %}

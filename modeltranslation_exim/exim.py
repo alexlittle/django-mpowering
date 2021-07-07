@@ -1,20 +1,14 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import unicode_literals
+
 import importlib
 import sys
-from collections import defaultdict, OrderedDict
+from collections import OrderedDict, defaultdict
 
 import polib
+import six
 from django.apps import apps
-
-
-class OrderedDefaultDict(OrderedDict, defaultdict):
-    """
-    A default dict that maintains the order of insertions
-    """
-    def __init__(self, default_factory=None, *args, **kwargs):
-        super(OrderedDefaultDict, self).__init__(*args, **kwargs)
-        self.default_factory = default_factory
 
 
 def translated_field_list(*args):
@@ -73,7 +67,7 @@ class DatabaseTranslations(object):
     translated values (msgstr) and occurrences.::
 
         {
-            u"Hello": {
+            "Hello": {
                 "msgstr": "Holá",
                 "occurrences": [
                     ("myapp.SomeModel.field_name", 12),
@@ -97,7 +91,7 @@ class DatabaseTranslations(object):
 
         """
         self.models_and_fields = model_fields
-        self.strings = OrderedDefaultDict(lambda: {"msgstr": u"", "occurrences": []})
+        self.strings = defaultdict(lambda: {"msgstr": "", "occurrences": []})
         self.target_language = language
         self.po = polib.POFile()
         self.po.metadata = self._meta()
@@ -189,7 +183,7 @@ class DatabaseTranslations(object):
         """
         Writes the po file contents to sys.stdout or file stream
         """
-        out.write(self.po.__unicode__().encode('utf-8'))
+        out.write(six.text_type(self.po).encode('utf-8'))
 
     def get_entries(self):
         for msgid, data in self.strings.items():
@@ -292,4 +286,3 @@ class POTranslations(object):
 
         if self.output:
             self.output.write("Finished! {0} rows updated".format(counter))
-

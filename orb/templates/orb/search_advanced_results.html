@@ -1,25 +1,53 @@
-{% extends "base.html" %}
+{% extends "covid/search_advanced_results.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+{% comment %}{% endcomment %}
+
 {% load i18n %}
 {% load add_get_parameter %}
+
 {% block extra_head_title %}{% trans 'Advanced Search Results' %}{% endblock extra_head_title %}
-{% block content %}
 
-{% include 'orb/includes/search_bar.html' %}
+{% block content_title %}{% trans 'Advanced Search Results' %}{% endblock %}
 
-<h2>{% trans 'Advanced Search Results' %}</h2>
+{% block content_resultCount %}
+     {% blocktrans count total_results as result_count %}
+          <strong class="type--weight:900 color:primary--shade">{{ result_count }}</strong>
+          <span>result for </span>
+          {% plural %}
+          <strong class="type--weight:900 color:primary--shade">{{ result_count }}</strong>
+          <span>results for </span>
+     {% endblocktrans %}
+     <strong class="type--weight:900 color:primary--shade">
+          {% if q %}'{{ q }}'{% endif %}
+          {% if q and filter_tags %}, {% endif %}
+          {% for tf in filter_tags %}{{ tf.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+          {% if q or filter_tags and license_tags %}, {% endif %}
+          {% for lt in license_tags  %}
+               {% if lt == 'NC' %}{% trans 'Commercial use allowed' %}{% endif %}
+               {% if lt == 'ND' %}{% trans 'Derivatives allowed' %}{% endif %}
+               {% if not forloop.last %}, {% endif %}
+          {% endfor %}
+     </strong>
+{% endblock %}
 
-<h3>{% blocktrans count total_results as result_count %}{{ result_count }} result for {% plural %}{{ result_count }} results for {% endblocktrans %}
-{% if q %}'{{ q }}'{% endif %}{% if q and filter_tags %}, {% endif %}{% for tf in filter_tags %}{{ tf.name }}{% if not forloop.last %}, {% endif %}{% endfor %}{% if q or filter_tags and license_tags %}, {% endif %}{% for lt in license_tags  %}{% if lt == 'NC' %}{% trans 'Commercial use allowed' %}{% endif %} {% if lt == 'ND' %}{% trans 'Derivatives allowed' %}{% endif %}{% if not forloop.last %}, {% endif %}{% endfor %}
-</h3>
-
-{% include "orb/includes/page_navigator.html" %}
-
+{% block content_empty_results %}{% trans 'No results found.' %}{% endblock %}
+{% block content_no_query %}
+{% trans 'Use our search bar to find resources or extend your search through our advanced filters.' %}
+{% endblock %}
+{% comment %}
+{% block content_results %}
 {% for resource in page.object_list %}
      {% include "orb/includes/resource_row.html" %}
 {% empty %}
 	{% trans 'Sorry, no resources were found matching your criteria.' %}
-{% endfor %}
+{% endfor %} {% endcomment %}
+
+{% comment %}
+{% include 'orb/includes/search_bar.html' %}
 
 {% include "orb/includes/page_navigator.html" %}
 
-{% endblock %}
+
+
+{% include "orb/includes/page_navigator.html" %} {% endcomment %}
+{% comment %} {% endblock %} {% endcomment %}

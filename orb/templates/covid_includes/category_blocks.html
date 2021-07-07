@@ -1,0 +1,36 @@
+{% for t in topics %}
+<article at-base="module:static" class="CategoryCard motif:bright">
+    <header at-base="module:fill flex:h--p:start--s:middle pad:xyEq50 rhy:xStart50" class="CategoryCard-header">
+        <svg
+            viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" alt="Emergency Response"
+            at-base="aspect:xyEq200--rhy" at-compressed="aspect:xyEq150--rhy" at-economy="aspect:xyEq200--rhy"
+            class="color:primary">
+        <path d="M0 7v22a3 3 0 003 3h3V4H3a3 3 0 00-3 3zm8 25h20V4H8v28zm4-15.5c0-.275.225-.5.5-.5H16v-3.5c0-.275.225-.5.5-.5h3c.275 0 .5.225.5.5V16h3.5c.275 0 .5.225.5.5v3c0 .275-.225.5-.5.5H20v3.5c0 .275-.225.5-.5.5h-3a.501.501 0 01-.5-.5V20h-3.5a.501.501 0 01-.5-.5v-3zM33 4h-3v28h3a3 3 0 003-3V7a3 3 0 00-3-3z"></path>
+        </svg>
+        <h3
+            at-compressed="type:chrome--set:typePreWrap"
+            at-economy="type:minor"
+            at-enhanced="type:base"
+            class="type:base--face:hed--weight:900 color:dark"
+        >Emergency Response</h3>
+    </header>
+    <footer at-base="flex:h grid:h" class="CategoryCard-footer motif:primary">
+        <p
+            at-base="module:fill flex:h--p:start--s:middle pad:xyEq50"
+            at-compressed="type:chrome"
+            at-economy="type:minor"
+            class="type:minor--face:hed--weight:700 color:dark"
+        >
+            1 resource
+        </p>
+        <a
+            at-base="flex:v--p:start--s:middle pad:xyEq50"
+            at-compressed="type:chrome"
+            at-economy="type:minor pad:xEq100 pad:yEq50"
+            class="type:base--face:hed--weight:900 control:primary--link fx:shift fx:bounds"
+        >
+            <span>Browse</span>
+        </a>
+    </footer>
+</article>
+{% endfor %}

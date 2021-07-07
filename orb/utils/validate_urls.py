@@ -1,12 +1,16 @@
 """
 Script to validate urls
 """
+from __future__ import unicode_literals
+
 import datetime
-import django
 import time
 import urllib2
-from orb.models import ResourceURL, Tag
+
+import django
+
 from orb.emailer import link_checker_results
+from orb.models import ResourceURL, Tag
 
 
 def run():
@@ -22,7 +26,7 @@ def run():
 
         time.sleep(10)
         req = urllib2.Request(
-            u.url, headers={'User-Agent': 'ORB Link Validator', })
+            u.url, headers={'User-Agent': 'COVID-19 Library Link Validator', })
         try:
             connection = opener.open(request)
             print u.url + " : " + str(connection.code)

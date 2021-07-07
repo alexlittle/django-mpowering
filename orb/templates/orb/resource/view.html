@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "covid/resource/view.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load i18n %}
 {% load thumbnail %}
 {% load display_functions %}
@@ -11,94 +12,370 @@
 {% block extra_head_keywords %}{% for c in resource.get_categories %}{% for t in c.tags %}{{ t.name }},{% endfor %}
 {% endfor %}{% endblock extra_head_keywords %}
 
-{% block extra_scripts %}
+{% block content_title %}{{ resource.title }}{% endblock %}
+{% block content_overview %}
+<div id="fb-root"></div>
+<header
+    class="color:dark"
+    at-base="flex:h--p:start--s:middle rhy:xStart50"
+    at-economy="rhy:xStart100"
+>
+    <h1
+        class="type:subhed--face:hed--weight:400"
+        at-economy="type:hed"
+        at-enhanced="type:major--weight:700"
+        at-standard="type:hed"
+        at-wide="type:broadside"
+    >
+        {{ resource.title }}
+    </h1>
+</header>
 
-    <script>
+<dl
+    at-base="flex:v"
+    style="--edge-primary: #ccc"
+>
+    {% if resource.get_rating.rating and resource.get_rating.count >= ORB_RESOURCE_MIN_RATINGS %}
+    <div>
+        <dd>
+            {% for i in "xxxxx" %}
+                {% if forloop.counter <= resource.get_rating.rating %}
+                    <img src="{% static 'orb/images/star-full-small.png' %}"/>
+                {% else %}
+                    <img src="{% static 'orb/images/star-empty-small.png' %}"/>
+                {% endif %}
+            {% endfor %}
+        </dd>
+        <dt>({{ resource.get_rating.count }} users)</dt>
+    </div>
+    {% endif %}
 
-        $.ajaxSetup({
-            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
-        });
+    {% if user.is_authenticated %}
+    <div
+        class="edge:yStart--set:edgePrimary"
+        at-base="flex:h--p:start--s:middle rhy:xStart50 pad:yEq50"
+        style="--edge-width: 4px"
+    >
+        <dt
+            class="type:minor--face:hed--weight:900--set:noWrap color:dark"
+            at-base="module:static"
+        >{% trans 'Your Rating' %}</dt>
+        <dd
+            class="type:minor--face:hed--weight:900"
+            at-base="module:static iflex:h--p:start--s:base rhy:xStart25"
+        >
+            {% include "orb/includes/user_rating.html" %}
+        </dd>
 
-        {% if user_rating %}
-            USER_RATING = {{ user_rating }};
-        {% else %}
-            USER_RATING = 0;
+        <dt
+            class="type:minor--face:hed--weight:900"
+            at-base="module:static iso:xStartAuto"
+        >
+            {% if bookmarked %}
+            {% trans 'Bookmarked' %}
+            {% else %}
+            {% trans 'Bookmark' %}
+            {% endif %}
+        </dt>
+
+        <dd>
+            {% if bookmarked %}
+            <img id="bookmark_image"
+                src="{% static 'orb/images/mono-bookmark.png' %}"
+                alt="{% trans 'Bookmarked' %}"
+                at-base="aspect:xyEq200--text"
+            />
+            {% else %}
+            <img id="bookmark_image"
+                onclick="bookmarkResource()"
+                src="{% static 'orb/images/mono-bookmark-add.png' %}"
+                alt="{% trans 'Bookmark this' %}"
+                at-base="aspect:xyEq200--text"
+            />
+            {% endif %}
+        </dd>
+    </div>
+    {% endif %}
+
+    <div
+        class="edge:yStart--set:edgePrimary"
+        at-base="flex:h--p:start--s:middle rhy:xStart25 pad:yEq50"
+        style="--edge-width: 1px;"
+    >
+        <dt
+            class="type:minor--face:hed--weight:900 color:dark"
+        >{% trans 'from' %}</dt>
+        {% for o in resource.get_organisations %}
+            <dd>
+                <a
+                    href="{% url 'orb_tags' o.slug %}"
+                    property="cc:attributionName"
+                    rel="cc:attributionURL dct:creator"
+                    class="type:minor--face:hed--weight:900 color:primary--shade fx:shift"
+                >
+                    {{ o.name }}
+                </a>
+                {% if not forloop.last %},{% endif %}
+            </dd>
+        {% endfor %}
+
+        {% if resource.study_time_number %}
+        <dt
+            class="type:minor--face:hed--weight:900 color:dark"
+            at-base="module:static iso:xStartAuto"
+        >
+            <img
+                src="{% static 'orb/images/study_time.png' %}"
+                at-base="aspect:xyEq200--text"
+            />
+            <span class="optics:a11y">{% trans 'Study Time' %}</span>
+        </dt>
+        <dd class="type:minor--face:hed--weight:900 color:dark">
+            {{ resource.study_time_number }} {{ resource.study_time_unit }}
+        </dd>
+        {% endif %}
+    </div>
+
+    {% if resource.get_display_categories %}
+        {% for c in resource.get_display_categories %}
+            <div
+                class="edge:yStart--set:edgePrimary"
+                at-base="flex:h--p:start--s:base rhy:xStart50 pad:yEq50"
+            >
+                <dt
+                    class="type:minor--face:hed--weight:900 color:dark"
+                    at-base="module:static aspect:xEq30--pct"
+                >
+                    {{ c.name }}
+                </dt>
+                <div>
+                    {% for t in c.tags %}
+                    <dd>
+                        <a
+                            href="{% url 'orb_tags' t.slug %}"
+                            class="type:minor--face:hed--weight:900 color:primary--shade fx:shift"
+                        >
+                            {{ t.name }}
+                            {% if t.summary %}
+                                - {{ t.summary }}
+                            {% endif %}
+                        </a>
+                    </dd>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if resource.get_license %}
+        <div
+            class="edge:yStart--set:edgePrimary"
+            at-base="flex:h--p:start--s:base rhy:xStart50 pad:yEq50"
+            style="--edge-width: 4px"
+        >
+            <dt
+                class="type:minor--face:hed--weight:900 color:dark"
+                at-base="module:static aspect:xEq30--pct"
+            >
+                {% trans 'License' %}
+            </dt>
+            {% with l=resource.get_license %}
+            <dd>
+                {% if l|tag_property:"url" %}
+                    <a href="{{ l|tag_property:'url' }}" rel="license">
+                        {% thumbnail l.image "x30" padding=True format="PNG" upscale=False as im %}
+                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                        {% endthumbnail %}
+                    </a>
+                {% endif %}
+                <a
+                    href="{% url 'orb_tags' l.slug %}"
+                    class="type:minor--face:hed--weight:900 color:primary--shade fx:shift"
+                >
+                    {{ l.name }}
+                </a>
+                {% if resource.attribution %}
+                <p class="type:minor--face:hed--weight:900 color:shade">
+                    {% trans 'Attribution' %}: {{ resource.attribution }}
+                </p>
+                {% endif %}
+            </dd>
+            {% endwith %}
         {% endif %}
 
-        function ratingOnHover(i) {
-            for (j = 1; j <= i; j++) {
-                $("#rating_" + j).attr('src', '{% static 'orb/images/star-full.png' %}');
-            }
-            for (j = i + 1; j <= 5; j++) {
-                $("#rating_" + j).attr('src', '{% static 'orb/images/star-empty.png' %}');
-            }
-        }
-
-        function ratingOffHover(i) {
-            for (j = 1; j <= i; j++) {
-                $("#rating_" + j).attr('src', '{% static 'orb/images/star-empty.png' %}');
-            }
-            for (j = 1; j <= USER_RATING; j++) {
-                $("#rating_" + j).attr('src', '{% static 'orb/images/star-full.png' %}');
-            }
-            for (j = USER_RATING + 1; j <= 5; j++) {
-                $("#rating_" + j).attr('src', '{% static 'orb/images/star-empty.png' %}');
-            }
-
-        }
-
-        function rateResource(i) {
-            $.post("{% url 'orb_rate' %}", {rating: i, resource: {{ resource.id }}},
-                function (data) {
-                    USER_RATING = i;
-                    if (data.no_ratings < data.ratings_required) {
-                        console.log(data.ratings_required)
-                        $("#rating-min-users").text(data.ratings_required);
-                        $("#rating-pending").show();
-                    } else {
-                        $("#rating-added").show();
-                    }
-                });
-        }
-
-        function bookmarkResource() {
-            $.post("{% url 'orb_bookmark' %}", {resource_id: {{ resource.id }}},
-                function (data) {
-                    $("#bookmark_text").text("{% trans 'Bookmarked' %}");
-                    $("#bookmark_image").attr('src', '{% static 'orb/images/mono-bookmark.png' %}');
-                });
-        }
-    </script>
-
-    <script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-    <script>
-        window.twttr = (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
-            if (d.getElementById(id)) return;
-            js = d.createElement(s);
-            js.id = id;
-            js.src = "https://platform.twitter.com/widgets.js";
-            fjs.parentNode.insertBefore(js, fjs);
-            t._e = [];
-            t.ready = function (f) {
-                t._e.push(f);
-            };
-            return t;
-        }(document, "script", "twitter-wjs"));
-    </script>
-
-{% endblock extra_scripts %}
+</dl>
+{% endblock %}
 
 
 {% block content %}
+{{ resource.description|safe }}
+{% endblock %}
+
+{% block sections %}
+    {% if resource.get_files %}
+        {% if not user.is_authenticated %}
+            {% register_or_login 'files' %}
+        {% endif %}
+
+        <header>
+            <h3 class="type:hed--face:hed--weight:700 color:neutral">
+                {% trans 'Resource Files' %}
+            </h3>
+        </header>
+
+        <ul
+            class="ResourceSection-list motif:tint"
+            at-base="flex:v pad:xyEq50 rhy:yStart50"
+            at-compressed="flex:h grid:vAuto rhy:yStart0"
+        >
+            {% for f in resource.get_files %}
+            <li>
+                <a name="file-{{ f.guid }}"></a>
+                <article at-base="module:static" class="FileCard motif:bright">
+                    <a {% resourcefile_link f '#files-notice' %}>
+                    <header
+                        class="FileCard-header"
+                        at-base="module:fill flex:h--p:start--s:middle pad:xyEq50 rhy:xStart50"
+                    >
+                        <h3
+                            class="type:base--face:hed--weight:900 color:dark"
+                            at-compressed="type:chrome"
+                            at-economy="type:minor"
+                            at-enhanced="type:base"
+                        >
+                            {% if f.description and f.description.strip %}
+                                {{ f.description }}:
+                            {% endif %}
+                            {% if f.title %}
+                                {{ f.title }}
+                            {% else %}
+                                {{ f.filename }}
+                            {% endif %}
+                        </h3>
+                    </header>
+                    <footer
+                        class="FileCard-footer motif:primary"
+                        at-base="flex:h grid:h"
+                    >
+                        <p
+                            class="type:minor--face:hed--weight:700 color:dark"
+                            at-base="module:fill flex:h--p:start--s:middle pad:xyEq50"
+                            at-compressed="type:chrome"
+                            at-economy="type:minor"
+                        >
+                            ({{ f.filesize|filesizeformat }})
+                        </p>
+                        <p
+                            class="type:base--face:hed--weight:900 control:primary--link fx:shift fx:bounds"
+                            at-base="flex:v--p:start--s:middle pad:xyEq50"
+                            at-compressed="type:chrome"
+                            at-economy="type:minor pad:xEq100 pad:yEq50"
+                        >
+                            <span>Download</span>
+                        </p>
+                    </footer>
+                    </a>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if resource.get_urls %}
+            {% if not user.is_authenticated %}
+                {% register_or_login 'urls' %}
+            {% endif %}
+
+            <header>
+                <h3 class="type:hed--face:hed--weight:700 color:neutral">
+                    {% trans 'Resource Links' %}
+                </h3>
+            </header>
+
+            <ul
+                class="ResourceSection-list motif:tint"
+                at-base="flex:v pad:xyEq50 rhy:yStart50"
+                at-compressed="flex:h grid:vAuto rhy:yStart0"
+            >
+                {% for u in resource.get_urls %}
+                <li>
+                    <article at-base="module:static" class="LinkCard motif:bright">
+                        <a {% resourceurl_link u '#links-notice' %}>
+                        <header
+                            class="LinkCard-header"
+                            at-base="module:fill flex:h--p:start--s:middle pad:xyEq50 rhy:xStart50"
+                        >
+                            <h3
+                                class="type:base--face:hed--weight:900 color:dark"
+                                at-compressed="type:chrome"
+                                at-economy="type:minor"
+                                at-enhanced="type:base"
+                            >
+                                {% if u.title %}
+                                    {{ u.title }}
+                                {% else %}
+                                    {{ u.url }}
+                                {% endif %}
+                            </h3>
+                        </header>
+                        <footer
+                            class="LinkCard-footer motif:primary"
+                            at-base="flex:h grid:h"
+                        >
+                            <span></span>
+                            <p
+                                class="type:base--face:hed--weight:900 control:primary--link fx:shift fx:bounds"
+                                at-base="flex:v--p:start--s:middle pad:xyEq50"
+                                at-compressed="type:chrome"
+                                at-economy="type:minor pad:xEq100 pad:yEq50"
+                            >
+                                <span>Visit</span>
+                            </p>
+                        </footer>
+                        </a>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% url 'profile_view' resource.create_user.id as create_user_url %}
+        {% url 'profile_view' resource.update_user.id as update_user_url %}
+
+        <div
+            at-base="rhy:yStart50 iso:yStart200"
+        >
+            <small
+                class="type:chrome--face:hed color:shade"
+            >
+                {% if resource.create_user %}
+                    {% blocktrans with resource.create_user.first_name as create_first_name and resource.create_user.last_name as create_last_name and resource.create_date as create_date %}
+                        Resource uploaded by <a href="{{ create_user_url }}">{{ create_first_name }} {{ create_last_name }}</a> ({{ create_date }})
+                    {% endblocktrans %}
+                {% else %}
+                    {% blocktrans with resource.create_date as create_date  %}
+                        Resource uploaded by [deleted user] ({{ create_date }})
+                    {% endblocktrans %}
+                {% endif %}
+                {% if resource.update_user %}
+                    {% blocktrans with resource.update_user.first_name as update_first_name and resource.update_user.last_name as update_last_name and resource.update_date as update_date %}
+                        and last updated by <a href="{{ update_user_url }}">{{ update_first_name }} {{ update_last_name }}</a> ({{ update_date }})
+                    {% endblocktrans %}
+                {% else %}
+                    {% blocktrans with resource.create_date as update_date  %}
+                        and last updated by [deleted user] ({{ update_date }})
+                    {% endblocktrans %}
+                {% endif %}
+            </small>
+            <p
+                class="type:chrome--face:hed color:neutral"
+            >
+                {% blocktrans with resource.get_no_hits as no_hits %}Resource viewed {{ no_hits }} times{% endblocktrans %}
+            </p>
+        </div>
+{% endblock %}
+
+{% block xcontent %}
     <div id="fb-root"></div>
 
     {% include 'orb/includes/search_bar.html' %}
@@ -149,13 +426,13 @@
 
         <div class="share-button">
             <div class="fb-share-button"
-                 data-href="http://health-orb.org{% url 'orb_resource' resource.slug %}"
+                 data-href="https://covid-19library.org{% url 'orb_resource' resource.slug %}"
                  data-layout="button_count"></div>
         </div>
         <div class="share-button">
             <a class="twitter-share-button" href="https://twitter.com/share"
-               data-url="http://health-orb.org{% url 'orb_resource' resource.slug %}"
-               data-via="mpoweringhealth"> Tweet </a>
+               data-url="https://covid-19library.org{% url 'orb_resource' resource.slug %}"
+               data-via="COVID-19 Library"> Tweet </a>
         </div>
         <div class="share-button">
             <script type="text/javascript" src="http://platform.linkedin.com/in.js"></script>
@@ -293,6 +570,7 @@
         {% if resource.get_display_categories %}
             {% for c in resource.get_display_categories %}
                 <hr/>
+                {% comment %} {{ c.slug }} {% endcomment %}
 
                 <h4>{{ c.name }}</h4>
                 <div class="category">
@@ -391,3 +669,90 @@
         ga('send', 'event', 'Resource', 'access', 'View', '{{ resource.pk }}');
     </script>
 {% endblock %}
+
+
+{% block extra_scripts %}
+
+    <script>
+
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}'},
+        });
+
+        {% if user_rating %}
+            USER_RATING = {{ user_rating }};
+        {% else %}
+            USER_RATING = 0;
+        {% endif %}
+
+        function ratingOnHover(i) {
+            for (j = 1; j <= i; j++) {
+                $("#rating_" + j).attr('src', '{% static 'orb/images/star-full.png' %}');
+            }
+            for (j = i + 1; j <= 5; j++) {
+                $("#rating_" + j).attr('src', '{% static 'orb/images/star-empty.png' %}');
+            }
+        }
+
+        function ratingOffHover(i) {
+            for (j = 1; j <= i; j++) {
+                $("#rating_" + j).attr('src', '{% static 'orb/images/star-empty.png' %}');
+            }
+            for (j = 1; j <= USER_RATING; j++) {
+                $("#rating_" + j).attr('src', '{% static 'orb/images/star-full.png' %}');
+            }
+            for (j = USER_RATING + 1; j <= 5; j++) {
+                $("#rating_" + j).attr('src', '{% static 'orb/images/star-empty.png' %}');
+            }
+
+        }
+
+        function rateResource(i) {
+            $.post("{% url 'orb_rate' %}", {rating: i, resource: {{ resource.id }}},
+                function (data) {
+                    USER_RATING = i;
+                    if (data.no_ratings < data.ratings_required) {
+                        console.log(data.ratings_required)
+                        $("#rating-min-users").text(data.ratings_required);
+                        $("#rating-pending").show();
+                    } else {
+                        $("#rating-added").show();
+                    }
+                });
+        }
+
+        function bookmarkResource() {
+            $.post("{% url 'orb_bookmark' %}", {resource_id: {{ resource.id }}},
+                function (data) {
+                    $("#bookmark_text").text("{% trans 'Bookmarked' %}");
+                    $("#bookmark_image").attr('src', '{% static 'orb/images/mono-bookmark.png' %}');
+                });
+        }
+    </script>
+
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+        window.twttr = (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            t._e = [];
+            t.ready = function (f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
+
+{% endblock extra_scripts %}

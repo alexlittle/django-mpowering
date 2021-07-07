@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
@@ -18,7 +20,7 @@ def content_reviewer(user, include_staff=True):
         PermissionDenied
 
     """
-    if not user.is_authenticated():
+    if not user.is_authenticated:
         return False
 
     is_staff = user.is_staff if include_staff else False

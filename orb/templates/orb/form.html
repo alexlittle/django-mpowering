@@ -1,11 +1,12 @@
-{% extends "base.html" %}
+{% extends "covid/form.html" %}
+
 {% load i18n %}
 {% load crispy_forms_tags %}
+
 {% block extra_head_title %}{{ title }}{% endblock extra_head_title %}
+
+{% block content_title %}{{ title }}{% endblock %}
+
 {% block content %}
-
-<h2>{{ title }}</h2>
-
 {% crispy form %}
-
 {% endblock %}

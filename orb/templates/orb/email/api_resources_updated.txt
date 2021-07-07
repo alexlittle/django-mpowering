@@ -1,6 +1,6 @@
 {% load i18n %}
 {% blocktrans %}
-The {{ peer }} ORB sync successfully resulted in:
+The {{ peer }} COVID-19 Library sync successfully resulted in:
 
     - {{ new_resources }} new resources require review
     - {{ updated_resources }} updated resources

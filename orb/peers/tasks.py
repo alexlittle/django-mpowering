@@ -1,3 +1,6 @@
+
+from __future__ import unicode_literals
+
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
@@ -14,7 +17,7 @@ def send_peer_sync_notification_email(peer, **kwargs):
     return send_orb_email(
         template_html="orb/email/api_resources_updated.html",
         template_text="orb/email/api_resources_updated.txt",
-        subject=_(u"Peer Sync Complete") + ": " + peer.name,
+        subject=_("Peer Sync Complete") + ": " + peer.name,
         recipients=[settings.ORB_INFO_EMAIL],
         peer=peer,
         **kwargs

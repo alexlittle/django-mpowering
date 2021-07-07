@@ -3,18 +3,18 @@
 {% load display_functions %}
 
 {% block extra_head_title %}
-	{% trans 'ORB Account Deleted' %}
+	{% trans 'COVID-19 Library Account Deleted' %}
 {% endblock extra_head_title %}
 
 {% block content %}
 
-<h2>{% trans 'ORB Account Deleted' %}</h2>
+<h2>{% trans 'COVID-19 Library Account Deleted' %}</h2>
 
 {% blocktrans %}
 <p>Your account and all your data has now been deleted.</p>
-<p>To access ORB again you will need to re-register to create a new profile</p>
+<p>To access COVID-19 Library again you will need to re-register to create a new profile</p>
 {% endblocktrans %}
 
-<p><a href="{% url 'orb_home' %}">{% trans 'Return to the ORB homepage' %}</a></p>
+<p><a href="{% url 'orb_home' %}">{% trans 'Return to the COVID-19 Library homepage' %}</a></p>
 
 {% endblock %}

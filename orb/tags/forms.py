@@ -1,19 +1,20 @@
 from __future__ import unicode_literals
+
 from django import forms
 from django.utils.translation import ugettext as _
 
 
 class TagPageForm(forms.Form):
 
-    CREATED = u'-create_date'
-    TITLE = u'title'
-    UPDATED = u'-update_date'
-    RATING = u'-rating'
+    CREATED ='-create_date'
+    TITLE ='title'
+    UPDATED ='-update_date'
+    RATING ='-rating'
     ORDER_OPTIONS = (
-        (CREATED, _(u'Create date')),
-        (TITLE, _(u'Title')),
-        (RATING, _(u'Rating')),
-        (UPDATED, _(u'Update date')),
+        (CREATED, _('Create date')),
+        (TITLE, _('Title')),
+        (RATING, _('Rating')),
+        (UPDATED, _('Update date')),
     )
 
     page = forms.CharField(widget=forms.HiddenInput, initial='1')

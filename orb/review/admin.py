@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.contrib import admin
 
 from .models import ContentReview, ReviewLogEntry
@@ -10,4 +12,4 @@ class ContentReviewAdmin(admin.ModelAdmin):
 
 @admin.register(ReviewLogEntry)
 class ReviewLogAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'create_date')
+    list_display = ('__str__', 'create_date')

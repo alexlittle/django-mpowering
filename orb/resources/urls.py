@@ -1,8 +1,9 @@
+from __future__ import unicode_literals
+
 from django.conf.urls import url
 
-from orb.resources.views import ResourceFileView
-from orb.resources.views import ResourceURLView
 from orb import views
+from orb.resources.views import ResourceFileView, ResourceURLView
 
 urlpatterns = [
     url(r'^create/1/$', views.resource_create_step1_view, name="orb_resource_create"),

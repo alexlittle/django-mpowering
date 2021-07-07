@@ -7,6 +7,7 @@ import logging
 
 from django.db import models
 from django.db.models import Q
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.timezone import now
 from orb_api.api import OrbClient
@@ -17,6 +18,23 @@ logger = logging.getLogger('orb')
 
 
 class PeersQuerySet(models.QuerySet):
+
+    def summary(self):
+        """
+        Returns data useful for summarizing available peers
+
+        Performance is largely irrelevant, even with hundreds of
+        rows this is little data and run briefly from management
+        commands
+        """
+        if not self:
+            return {}
+        return {
+            "inactive": self.inactive(),
+            "queryable": self.queryable(),
+            "unqueryable": self.active().unqueryable(),
+        }
+
     def active(self):
         return self.filter(active=True)
 
@@ -32,6 +50,7 @@ class PeersQuerySet(models.QuerySet):
         return self.filter(Q(active=False) | Q(api_user__isnull=True) | Q(api_key__isnull=True))
 
 
+@python_2_unicode_compatible
 class Peer(models.Model):
     """
     A peer ORB node
@@ -45,8 +64,12 @@ class Peer(models.Model):
     peers = PeersQuerySet.as_manager()
     objects = peers
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
+
+    def is_queryable(self):
+        return bool(self.api_key and self.api_user)
+    is_queryable.description = "Can the peer be queried?"
 
     @cached_property
     def client(self):
@@ -92,7 +115,7 @@ class Peer(models.Model):
 
         total_count, resource_list = self.client.list_resources(**filters)
 
-        for initial_api_resource in resource_list:
+        for count, initial_api_resource in enumerate(resource_list, start=1):
 
             if initial_api_resource.get('status', '') != Resource.APPROVED:
                 writer("Skipping '{}' because it is '{}'".format(
@@ -127,6 +150,7 @@ class Peer(models.Model):
         return resource_counts
 
 
+@python_2_unicode_compatible
 class PeerQueryLog(models.Model):
     """
     Model to log when a peer is queried for update and when the update finishes
@@ -134,7 +158,9 @@ class PeerQueryLog(models.Model):
 
     created = models.DateTimeField(editable=False, default=now)
     finished = models.DateTimeField(null=True, blank=True, editable=False)
-    peer = models.ForeignKey('Peer', related_name='logs')
+    peer = models.ForeignKey('Peer', related_name='logs',
+                             on_delete=models.CASCADE,
+                             )
     filtered_date = models.DateTimeField(blank=True, null=True)
     new_resources = models.PositiveIntegerField(null=True)
     skipped_local_resources = models.PositiveIntegerField(null=True)
@@ -147,7 +173,7 @@ class PeerQueryLog(models.Model):
     class Meta:
         get_latest_by = 'finished'
 
-    def __unicode__(self):
+    def __str__(self):
         return "{} - {}".format(self.peer, self.created)
 
     def finish(self, filtered_date=None, new_resources=0, skipped_local_resources=0,

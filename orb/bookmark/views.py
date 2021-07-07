@@ -1,13 +1,14 @@
 # orb/bookmark/views.py
 
+from __future__ import unicode_literals
+
 from django.contrib.auth.decorators import login_required
-from django.core.urlresolvers import reverse
-from django.http import HttpResponseBadRequest, HttpResponseRedirect
-from django.http import JsonResponse
+from django.urls import reverse
+from django.http import HttpResponseBadRequest, HttpResponseRedirect, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from orb.models import Resource, Collection, CollectionUser, CollectionResource
+from orb.models import Collection, CollectionResource, CollectionUser, Resource
 
 
 @login_required

@@ -1,0 +1,29 @@
+{% extends "covid_base.html" %}
+{% load i18n %}
+{% load thumbnail %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block bodyAttrs %}
+class="ContentViewLayout" data-vue-tag="%7B%22class%22:%7B%22ssr%22:%22ContentViewLayout%22%7D%7D"
+{% endblock %}
+
+{% block app %}
+<div id="app" x-data="{ extNavOpen: false }" at-base="module:fill flex:v--p:start--s:start" data-server-rendered="true" class="motif:bright"><div at-base="optics:empty module:static--index:init flex:v--p:start" class="SiteAlerts">{% block alerts %}
+{% include 'covid_includes/alerts.html' %}
+{% endblock %}
+</div><header at-base="module:static--index:start flex:h--p:middle--s:middle pad:xEq100 pad:yEq250" at-economy="optics:a11y pad:xyEq0" class="Masthead"><a href="{% url 'orb_home' %}" at-compressed="type:xhed" at-economy="type:subhed" at-base="module:static iflex:h--p:start--s:middle rhy:xStart50 iso:xEndAuto" at-enhanced="type:major" at-extended="type:subhed" at-standard="type:hed" at-wide="type:xhed" class="Masthead-mediaFrame type:subhed--face:hed--weight:700">
+    
+    
+    <img style="width:180px !important;max-width:180px !important" src="{% static 'orb/images/red-logo.png' %}"/>
+    
+    </a><button type="button" x-on:click="extNavOpen = !extNavOpen" class="color:primary--shade fx:shift"><svg viewBox="0 0 24 24" at-base="aspect:xyEq150--rhy" at-compressed="aspect:xyEq200--rhy"><path d="M2 5h20v2H2V5zM2 11h20v2H2v-2zM2 17h20v2H2v-2z"></path></svg><span at-base="optics:a11y">Menu</span></button></header><main at-base="module:balance--index:next flex:v--p:start" at-enhanced="grid:v" class="ContentView"><div class="motif:bright" at-base="pad:xyEq100 rhy:yStart200" at-economy="pad:yStart300" at-enhanced="motif:tint flex:v--p:start--s:start pad:yStart200" at-standard="pad:xyEq150" at-wide="pad:xStartFull" class="ContentView-overview"><h1 at-base="flex:h--p:start--s:middle" at-extended="type:xhed--lead:base" at-standard="type:display--lead:base" class="type:hed--face:hed--weight:700--lead:base color:dark">{% block content_title %}
+
+{% endblock %}
+</h1></div><article at-base="module:balance flex:v--p:start--s:start pad:xEq50 pad:yEq100 pad:yEnd200 rhy:yStart100" at-compressed="pad:xEq0" at-economy="type:base--lead:expand pad:xStart350 rhy:yStart200 pad:xEq100" at-enhanced="type:base--lead:expand pad:xStart350 type:minor--lead:expand pad:xStart250" at-standard="pad:xStart150 pad:yStart175" at-wide="pad:xEndFull" class="ContentView-content type:minor--face:hed--weight:400--lead:expand">{% block content %}
+
+{% endblock %}
+</article></main>
+{% include 'covid/nav.html' %}
+{% include 'covid/footer.html' %}
+{% endblock %}

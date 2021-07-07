@@ -3,13 +3,14 @@ Forms specific to working directly with resources
 """
 from __future__ import unicode_literals
 
+from collections import OrderedDict
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Layout, Submit
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
 from orb.models import Tag
-from collections import OrderedDict
 
 
 class ResourceAccessForm(forms.Form):
@@ -61,7 +62,7 @@ class ResourceAccessForm(forms.Form):
             'survey_health_worker_count',
             'survey_health_worker_cadre',
             Div(
-                Submit('submit', _(u'Continue &gt;&gt;'),
+                Submit('submit', _('Continue &gt;&gt;'),
                        css_class='btn btn-default'),
                 css_class='col-lg-offset-2 col-lg-8',
             ),
@@ -83,7 +84,7 @@ class ResourceAccessForm(forms.Form):
                 del data[field]
 
         use_other = data.get('survey_intended_use_other')
-        worker_count = data.get('survey_health_worker_count', 0)
+        worker_count = data.get('survey_health_worker_count', 0) or 0  # Enforce 0 if '' or None
         worker_cadre = data.get('survey_health_worker_cadre')
 
         if intended_use == 'training':

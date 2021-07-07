@@ -3,17 +3,20 @@
 
 {% for i in "xxxxx"%}
 	{% if forloop.counter <= user_rating %}
-		<img id="rating_{{forloop.counter}}" src="{% static 'orb/images/star-full.png' %}" 
-			onmouseover="ratingOnHover({{forloop.counter}});" 
+		<img id="rating_{{forloop.counter}}" src="{% static 'orb/images/star-full.png' %}"
+			onmouseover="ratingOnHover({{forloop.counter}});"
 			onmouseout="ratingOffHover({{forloop.counter}});"
-			class="rating-star"
-			onclick="rateResource({{forloop.counter}})"/>
+			onclick="rateResource({{forloop.counter}})"
+			at-base="aspect:xyEq100--text"
+		/>
 	{% else %}
-		<img id="rating_{{forloop.counter}}" src="{% static 'orb/images/star-empty.png' %}" 
-			onmouseover="ratingOnHover({{forloop.counter}});" 
+		<img id="rating_{{forloop.counter}}" src="{% static 'orb/images/star-empty.png' %}"
+			onmouseover="ratingOnHover({{forloop.counter}});"
 			onmouseout="ratingOffHover({{forloop.counter}});"
 			class="rating-star"
-			onclick="rateResource({{forloop.counter}})"/>
+			onclick="rateResource({{forloop.counter}})"
+			at-base="aspect:xyEq100--text"
+		/>
 	{% endif %}
 {% endfor %}
 
@@ -24,5 +27,3 @@
 <div class="alert alert-info" id="rating-pending" style="margin-top:10px; display:none">
     {% blocktrans %}Thank you for your rating! Your rating will be shown once at least <span id="rating-min-users"></span> different users have submitted a rating.{% endblocktrans %}
 </div>
-
-

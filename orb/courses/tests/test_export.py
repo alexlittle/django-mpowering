@@ -8,8 +8,8 @@ from __future__ import unicode_literals
 
 import pytest
 
-from orb.courses.moodle_export import MoodleCourse
 from orb.courses.export import format_page_as_markdown
+from orb.courses.moodle_export import MoodleCourse
 
 
 @pytest.fixture

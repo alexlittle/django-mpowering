@@ -1,19 +1,26 @@
-{% extends "base.html" %}
-{% load i18n %} 
+{% extends "covid/form.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% load i18n %}
 {% load crispy_forms_tags %}
+
 {% block extra_scripts %}
-{% endblock extra_scripts %} 
+{% endblock extra_scripts %}
 {% block extra_head_title %}{% trans 'Add Resource - Step 2' %}{% endblock extra_head_title %}
-{% block content %}
 
-<h2>{% trans 'Add Resource Files/URLs - Step 2' %}</h2>
+{% block content_title %}
+{% trans 'Add Resource - Step 2' %}
+{% endblock %}
 
+{% block content_overview %}
 {% blocktrans with resource.title as title %}
 <p>Please now add one or more files and/or URLs for '{{ title }}'.</p>
 <p>For example, your resource may consist of multiple files or is available in multiple languages, so you can upload each of them here.</p>
 <p>Please provide a title for each of the files/urls.</p>
 {% endblocktrans %}
+{% endblock %}
 
+{% block content %}
 <h3>{% trans 'Files' %}</h3>
 {% if resource_files %}
 	<ul>
@@ -34,14 +41,16 @@
 
 <h3>{% trans 'URLs' %}</h3>
 {% if resource_urls %}
-	<ul>
+	<ul at-base="edge:yEnd--set:edgeTint rhy:yStart50 pad:yEnd100 iso:yEnd300">
 	{% for ru in resource_urls %}
-		<li>
-		{% if ru.title %}
-			{{ ru.title }}
-		{% else %}
-			{{ ru.url }}
-		{% endif %}
+		<li class="edge:xyEq--set:edgeTint" at-base="pad:xyEq25">
+			<span>
+				{% if ru.title %}
+					{{ ru.title }}
+				{% else %}
+					{{ ru.url }}
+				{% endif %}
+			</span>
 		 - <a href="{% url 'orb_resource_create_delete_url' resource.id  ru.id %}">{% trans 'remove' %}</a>
 		</li>
 	{% endfor %}
@@ -53,8 +62,8 @@
 
 {% crispy form %}
 
-<div class="col-lg-offset-2 col-lg-8">
-	<a href="{% url 'orb_resource_create_thanks' resource.id %}" class="btn btn-primary btn btn-default" >{% trans 'Finished' %}</a>
+<div class="form-controls">
+	<a href="{% url 'orb_resource_create_thanks' resource.id %}" class="control--primary" >{% trans 'Finished' %}</a>
 </div>
 
 

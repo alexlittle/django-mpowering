@@ -5,13 +5,14 @@
  https://oppiamobile.readthedocs.org/en/latest/
 """
 
+from __future__ import unicode_literals
+
+import argparse
+import json
 import time
 import urllib
-import json
-import argparse
 
-
-from orb.models import Tag, Category, Resource
+from orb.models import Category, Resource, Tag
 
 
 def run(cartodb_account, cartodb_key):
@@ -28,7 +29,7 @@ def run(cartodb_account, cartodb_key):
     u = urllib.urlopen(url)
     data = u.read()
     dataJSON = json.loads(data)
-    print dataJSON
+    print(dataJSON)
 
     for c in countries:
         no_resources = Resource.objects.filter(
@@ -40,8 +41,8 @@ def run(cartodb_account, cartodb_key):
         u = urllib.urlopen(url)
         data = u.read()
         dataJSON = json.loads(data)
-        print c.name
-        print dataJSON
+        print(c.name)
+        print(dataJSON)
         time.sleep(1)
 
     cont_countries = Tag.objects.filter(
@@ -58,8 +59,8 @@ def run(cartodb_account, cartodb_key):
             u = urllib.urlopen(url)
             data = u.read()
             dataJSON = json.loads(data)
-            print cc.name
-            print dataJSON
+            print(cc.name)
+            print(dataJSON)
             time.sleep(1)
 
 

@@ -104,6 +104,8 @@ Future enhancements, planned or under consideration.
 
 """
 
+from __future__ import unicode_literals
+
 from modeltranslation_exim.exim import DatabaseTranslations, POTranslations
 
 __title__ = 'modeltranslation_exim'

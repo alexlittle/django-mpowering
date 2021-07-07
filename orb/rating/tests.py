@@ -1,9 +1,11 @@
+from __future__ import unicode_literals
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import TestCase
 
-from orb.models import ResourceRating, Resource
+from orb.models import Resource, ResourceRating
 from orb.tests.utils import login_client
 
 

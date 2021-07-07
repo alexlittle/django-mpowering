@@ -1,10 +1,6 @@
-====================
-ORB Content Platform
-====================
-
-For documentation visit: http://mpowering.readthedocs.org
-
-For information on mPowering visit: http://mpoweringhealth.org
+==================================
+COVID-19 Library Content Platform
+==================================
 
 Development
 ===========
@@ -75,7 +71,7 @@ To run a Django command, use the following:
 Testing
 =======
 
-The tests for the ORB platform can be run using the current Python path (or
+The tests for the COVID-19 Library platform can be run using the current Python path (or
 currently activated virtual environment) using the command::
 
     make test-django
@@ -93,19 +89,10 @@ And then run the command::
 
     tox
 
-This will run all specified tests against all specified environments in
-sequence. Alternatively, you can specify one or more environments using the
-`-e` argument::
-
-    tox -e deployed
-
-This particular environment will run tests using the frozen requirements for
-the deployed environment.
-
 Using the `-r` flag will recreate the test environment from scratch.::
 
     tox -r
-    tox -e deployed -r
+    tox -e py36-django2.2 -r
 
 For running a large matrix of tests, consider using the `detox
 <https://pypi.python.org/pypi/detox>`_ tool which parallelizes tests based on

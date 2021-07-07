@@ -1,18 +1,80 @@
-{% extends "base.html" %}
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load i18n %}
+{% load static %}
 {% load thumbnail %}
 {% block extra_head_title %}{{ user.first_name }} {{ user.last_name }} - {% trans 'resources rated' %}{% endblock extra_head_title %}
 
-{% block content %}
-<h2>{% trans 'Resources Rated' %}</h2>
+{% block content_title %}{% trans 'Resources Rated' %}{% endblock %}
 
+{% block content %}
 {% if ratings %}
-	{% blocktrans %}<p>You have rated the following resources:</p>{% endblocktrans %}
+	<p
+		at-base="flex:h--p:start--s:start pad:xyEq50"
+		at-standard="pad:xEq150"
+		class="motif:tint fx:shift"
+	>
+		{% blocktrans %}You have rated the following resources:{% endblocktrans %}
+	</p>
+	<section
+		at-economy="flex:v--p:start"
+	>
 	{% for rating in ratings %}
-		 {% include "orb/includes/profile_rating_row.html" %}
+		 {% comment %} {% include "orb/includes/profile_rating_row.html" %} {% endcomment %}
+		  <article at-base="grid:v" class="ResourceCard edge:xStart--set:edgePrimary">
+				 	<header at-base="module:static--area:1 flex:v--p:start--s:start pad:xyEq50 rhy:yStart25" class="ResourceCard-header">
+					 	<h3 class="type:major--face:hed--weight:900 color:shade fx:shift">
+						 	<a href="{% url 'orb_resource' rating.resource.slug %}">{{ rating.resource.title }}</a>
+						</h3>
+						<h4 class="type:minor--face:copy color:neutral">
+							{% for t in rating.resource.get_type_tags %}
+							<span class="type:minor--face:hed--weight:900 color:primary--shade fx:shift">
+								{{ t.name }}{% if not forloop.last %}, {% endif %}
+							</span>
+							{% endfor %}
+							<span> {% trans 'from ' %}</span>
+							{% for o in rating.resource.get_organisations %}
+							<span class="type:minor--face:hed--weight:900 color:primary--shade fx:shift">{{ o.name }}{% if not forloop.last %}, {% endif %}</span>
+							{% endfor %}
+						</h4>
+					</header>
+					<div class="type--face:hed--weight:400" at-base="module:static--area:2 pad:xyEq50" class="ResourceCard-body">
+						<p>{{ rating.resource.description|striptags|truncatewords:40|safe }}</p>
+					</div>
+
+					<div class="ResourceCard-world edge:yStart--set:edgeTint" at-base="flex:h--p:start--s:middle rhy:xStart100 pad:yEq50">
+					{% if resource.get_geographies.count is not 0 %}
+					<dl at-base="iflex:h--p:start--s:middle rhy:xStart25">
+					<dt class="type:minor--face:hed--weight:700">{% trans 'Your Rating' %}</dt>
+					<dd class="type:chrome--face:hed--weight:900 color:primary--shade">
+						{% for i in "xxxxx"%}
+						{% if forloop.counter <= rating.rating %}
+							<img
+								src="{% static 'orb/images/star-full-small.png' %}"
+								at-base="aspect:xyEq100--text"
+							/>
+						{% else %}
+							<img
+								src="{% static 'orb/images/star-empty-small.png' %}"
+								at-base="aspect:xyEq100--text"
+							/>
+						{% endif %}
+						{% endfor %}
+					</dd>
+					</dl>
+					{% endif %}
+					</div>
+		</article>
 	{% endfor %}
+
 {% else %}
-	{% blocktrans %}<p>You haven't rated any resources yet.</p>{% endblocktrans %}
+	<p
+		at-base="flex:h--p:start--s:start pad:xyEq50"
+		at-standard="pad:xEq150"
+		class="motif:tint fx:shift"
+	>
+		{% blocktrans %}You haven't rated any resources yet.{% endblocktrans %}
+	</p>
 {% endif %}
 
 {% endblock %}

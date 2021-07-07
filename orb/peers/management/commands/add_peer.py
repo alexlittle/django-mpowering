@@ -10,9 +10,10 @@ Usage:
 
 """
 
+from __future__ import unicode_literals
+
 from django.core.management.base import BaseCommand
-from django.core.validators import URLValidator
-from django.core.validators import ValidationError
+from django.core.validators import URLValidator, ValidationError
 
 from orb.peers.models import Peer
 

@@ -1,10 +1,42 @@
-{% extends "base.html" %}
+{% extends "covid/search_results.html" %}
 {% load i18n %}
+{% load add_get_parameter %}
 {% load crispy_forms_tags %}
 
 {% block extra_head_title %}{% trans 'Search' %}{% endblock extra_head_title %}
 
-{% block content %}
+{% block content_title %}{% trans 'Search' %}{% endblock %}
+
+{% block content_resultCount %}
+	{% if query %}
+		{% if page.object_list %}
+			<strong class="type--weight:900 color:primary--shade">{{ total_results }}</strong>
+			<span>{% trans 'results' %}</span>
+		{% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block content_empty_results %}{% trans 'No results found.' %}{% endblock %}
+{% block content_no_query %}{% trans 'Use our search bar to find resources or extend your search through our advanced filters.' %}{% endblock %}
+
+{% comment %} {% block content_results %}
+	{% if query %}
+		{% if page.object_list %}
+			{% for resource in page.object_list %}
+				{% include "orb/includes/resource_row.html" %}
+			{% endfor %}
+		{% else %}
+			{% trans 'No results found.' %}
+		{% endif %}
+	{% endif %}
+{% endblock %}
+
+{% block notice %}
+{% if not query %}
+
+{% endif %}
+{% endblock %} {% endcomment %}
+{% comment %} {% block content %}
 
 <h2>{% trans 'Search' %}</h2>
 
@@ -15,7 +47,7 @@
 {% if query %}
 	  {% if page.object_list %}
 	      <h3>{{ total_results }} {% trans 'results' %}</h3>
-	
+
 		  {% include "orb/includes/page_navigator.html" %}
 	      {% for resource in page.object_list %}
 	      	  {% with resource.object as resource %}
@@ -25,6 +57,6 @@
 	      {% include "orb/includes/page_navigator.html" %}
       {% else %}
           <h3>{% trans 'No results found.' %}</h3>
-      {% endif %}    
+      {% endif %}
 {% endif %}
-{% endblock %}
+{% endblock %} {% endcomment %}

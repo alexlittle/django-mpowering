@@ -1,8 +1,15 @@
-{% extends "base.html" %}
+{% extends "covid/logout.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n %}
+
 {% block extra_head_title %}{% trans 'Logged Out' %}{% endblock extra_head_title %}
-{% block content %}
-<h2>{% trans 'Logged Out' %}</h2>
+
+{% block content_title %}{% trans 'Logged Out' %}{% endblock %}
+
+{% block notice %}
 {% url 'profile_login' as url_login %}
-<div class="alert alert-success">{% blocktrans %}You are now logged out. <a href="{{ url_login }}" class="alert-link">Log in again</a>{% endblocktrans %}</div>
+{% blocktrans %}
+    <p>You are now logged out. <a href="{{ url_login }}" class="alert-link">Log in again</a></p>
+{% endblocktrans %}
 {% endblock %}

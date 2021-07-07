@@ -2,16 +2,16 @@
 {% blocktrans %}
 Dear {{ firstname }} {{ lastname }},
 
-Welcome to the ORB community!
+Welcome to the COVID-19 Library community!
 
 Thank you for submitting your first resource ('{{ title }}').
 
-Since this is your first resource on ORB, here’s some information about our content approval process:
+Since this is your first resource on COVID-19 Library, here’s some information about our content approval process:
 
 * Our Content Review Team will review your resource to make sure it meets our inclusion guidelines.
-* We will send you an email to let you know if your resource was accepted, or, if not, why we decided not to include it on ORB.
+* We will send you an email to let you know if your resource was accepted, or, if not, why we decided not to include it on COVID-19 Library.
 
-You can find more detailed information about the process here: http://health-orb.org/about/
+You can find more detailed information about the process here: https://covid-19library.org/about/
 
 If you have any questions please contact us at {{ info_email }}
 

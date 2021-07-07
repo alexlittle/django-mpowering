@@ -41,11 +41,11 @@ def test_default_language_duplicate_tags(sample_category, testing_user, test_res
     translation.deactivate()
 
 
+@pytest.mark.skip("We're down to one language")
 @pytest.mark.django_db
 def test_other_language_duplicate_tags(sample_category, testing_user, test_resource):
     t = Tag.tags.create(
         name="Child",
-        name_es="Niño",
         category=sample_category,
         create_user=testing_user,
         update_user=testing_user,

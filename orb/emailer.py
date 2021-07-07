@@ -1,7 +1,9 @@
 # orb/emailer.py
+from __future__ import unicode_literals
+
 from django.conf import settings
 from django.core.mail import send_mail
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 
@@ -14,7 +16,7 @@ def send_orb_email(
         template_text=None,
         subject="",
         fail_silently=False,
-        recipients=[],
+        recipients=None,
         **context):
     """
     Base email task function
@@ -39,7 +41,7 @@ def send_orb_email(
         email_subject,
         text_content,
         from_email,
-        recipients,
+        recipients or [],
         fail_silently=fail_silently,
         html_message=html_content,
     )
@@ -50,7 +52,7 @@ def user_welcome(to_user):
     template_text = 'orb/email/welcome.txt'
 
     from_email = settings.SERVER_EMAIL
-    subject = settings.EMAIL_SUBJECT_PREFIX + _(u"Welcome to ORB")
+    subject = settings.EMAIL_SUBJECT_PREFIX + _("Welcome to ORB")
 
     data = {"firstname": to_user.first_name,
             "lastname": to_user.last_name,
@@ -72,7 +74,7 @@ def password_reset(to_user, new_password):
     template_text = 'orb/email/password_reset.txt'
 
     from_email = settings.SERVER_EMAIL
-    subject = settings.EMAIL_SUBJECT_PREFIX + _(u"Password reset")
+    subject = settings.EMAIL_SUBJECT_PREFIX + _("Password reset")
 
     text_content = render_to_string(
         template_text, {"new_password": new_password})
@@ -93,7 +95,7 @@ def first_resource(to_user, resource):
 
     from_email = settings.SERVER_EMAIL
     subject = settings.EMAIL_SUBJECT_PREFIX + \
-        _(u"Resource Submitted") + ": " + resource.title
+        _("Resource Submitted") + ": " + resource.title
 
     data = {"title": resource.title,
             "firstname": to_user.first_name,
@@ -117,7 +119,7 @@ def resource_approved(request, to_user, resource):
 
     from_email = settings.SERVER_EMAIL
     subject = settings.EMAIL_SUBJECT_PREFIX + \
-        _(u"Resource Submission") + ": " + resource.title
+        _("Resource Submission") + ": " + resource.title
 
     data = {"title": resource.title,
             "firstname": to_user.first_name,
@@ -142,7 +144,7 @@ def resource_rejected(to_user, resource, criteria, notes):
 
     from_email = settings.SERVER_EMAIL
     subject = settings.EMAIL_SUBJECT_PREFIX + \
-        _(u"Resource Submission") + ": " + resource.title
+        _("Resource Submission") + ": " + resource.title
 
     rejection_criteria = ResourceCriteria.objects.filter(id__in=criteria)
     data = {"title": resource.title,
@@ -169,12 +171,17 @@ def new_resource_submitted(request, resource):
 
     from_email = settings.SERVER_EMAIL
     subject = settings.EMAIL_SUBJECT_PREFIX + \
-        _(u" New resource submitted") + ": " + resource.title
+        _(" New resource submitted") + ": " + resource.title
+
+    resource_link = "https://covid-19library.org" + reverse('orb_resource', args=[resource.slug])
+    assign_reviewers_link = "https://covid-19library.org" + reverse('orb_assign_review', args=[resource.id])
 
     data = {"title": resource.title,
             "firstname": resource.create_user.first_name,
             "lastname": resource.create_user.last_name,
             "info_email": settings.ORB_INFO_EMAIL,
+            "resource_link": resource_link,
+            "assign_reviewers_link": assign_reviewers_link
             }
 
     text_content = render_to_string(template_text, data)
@@ -193,7 +200,7 @@ def link_checker_results(resource_urls, tags):
     template_text = 'orb/email/link_checker_results.txt'
 
     from_email = settings.SERVER_EMAIL
-    subject = settings.EMAIL_SUBJECT_PREFIX + _(u"Link checker results")
+    subject = settings.EMAIL_SUBJECT_PREFIX + _("Link checker results")
 
     data = {"resource_urls": resource_urls,
             "tags": tags,

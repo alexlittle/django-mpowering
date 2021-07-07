@@ -1,9 +1,12 @@
 
+from __future__ import unicode_literals
+
 import json
 
-from orb.api.error_codes import *
-from tastypie.exceptions import BadRequest
 from django.utils.encoding import force_text
+from tastypie.exceptions import BadRequest
+
+from orb.api.error_codes import *
 
 
 class ORBAPIBadRequest(BadRequest):

@@ -1,29 +1,31 @@
-{% extends "base.html" %} 
-{% load i18n %} 
+{% extends "covid/content.html" %}
+
+{% load i18n %}
 {% block extra_head_title %}
-{% trans 'Guidelines' %} 
-{% endblock extra_head_title %} 
+{% trans 'Guidelines' %}
+{% endblock extra_head_title %}
+
+{% block content_title %}{% trans 'Guidelines' %}{% endblock %}
+
 {% block content %}
+	<h2>{% trans 'Guidelines' %}</h2>
 
-<h2>{% trans 'Guidelines' %}</h2>
+	<p>{% blocktrans %}COVID-19 Library and COVID-19 Digital Classroom aim to provide high quality, relevant and up to date resources that will help to improve the performance of community-based health workers and trainers.
+	The library hosts learning tools, courses, job aids, videos, and similar resources.{% endblocktrans %}</p>
 
-<p>{% blocktrans %}ORB and mPowering Frontline Health Workers aim to provide high quality, relevant and up to date resources that will help to improve the performance of frontline health workers. ORB hosts
-learning tools, courses, job aids, videos, and similar resources.{% endblocktrans %}</p>
- 
-<p>{% blocktrans %}All resources submitted to ORB will be evaluated by our Content Review Team against the following criteria:{% endblocktrans %}</p>
- 
+	<p>{% blocktrans %}All resources submitted to COVID-19 Library will be evaluated by our Content Review Team against the following criteria:{% endblocktrans %}</p>
 
-<ol>
-{% for cc in criteria_categories %} 
-	<li>
-	<strong>{{ cc.category }}</strong>
-	<ol style="list-style-type: lower-roman;">
-		{% for c in cc.criteria %}
-			<li>{{ c.description }}</li>
-		{% endfor %} 
+
+	<ol>
+	{% for cc in criteria_categories %}
+		<li>
+		<strong>{{ cc.category }}</strong>
+		<ol style="list-style-type: lower-roman;">
+			{% for c in cc.criteria %}
+				<li>{{ c.description }}</li>
+			{% endfor %}
+		</ol>
+		</li>
+	{% endfor %}
 	</ol>
-	</li> 
-{% endfor %} 
-</ol>
-
 {% endblock %}

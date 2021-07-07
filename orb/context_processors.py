@@ -4,17 +4,16 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 import orb
-from orb.models import TagOwner
-from orb.models import home_resources
+from orb.models import TagOwner, home_resources
 
 
 def get_menu(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         tags = TagOwner.objects.filter(user=request.user)
     else:
         tags = None
 
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         try:
             if request.user.userprofile and request.user.userprofile.is_reviewer:
                 reviewer = True
@@ -44,7 +43,7 @@ def get_version(request):
 
     notices = []
     #if date.today() >= date(2017, 04, 05) and date.today() <= date(2017, 05, 21):
-    #    notices.append(_(u'<strong>ORB Survey.</strong> We would like to hear from you on your experience using ORB as a training tool. Please fill out our short survey and enter in to win a $25 Amazon gift card! <strong><a href="https://goo.gl/forms/mPML9uiRZpjSeQkJ3" target="_blank">Take the survey</a></strong>'))
+    #    notices.append(_('<strong>ORB Survey.</strong> We would like to hear from you on your experience using ORB as a training tool. Please fill out our short survey and enter in to win a $25 Amazon gift card! <strong><a href="https://goo.gl/forms/mPML9uiRZpjSeQkJ3" target="_blank">Take the survey</a></strong>'))
 
     return {'version': version,
             'ORB_GOOGLE_ANALYTICS_CODE': settings.ORB_GOOGLE_ANALYTICS_CODE,

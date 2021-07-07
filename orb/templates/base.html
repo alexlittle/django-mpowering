@@ -3,30 +3,30 @@
 <html>
 <head>
     {% if page_title %}
-        <title>{% trans 'ORB by mPowering' %}</title>
+        <title>{% trans 'COVID resources' %}</title>
     {% else %}
         <title>{% block extra_head_title %}{% endblock extra_head_title %}
-            - {% trans 'ORB' %}</title>
+            - {% trans 'COVID' %}</title>
     {% endif %}
 
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <META name="description"
-          content="Frontline health workers provide critical care to
-         millions of people around the world. ORB is a global online library helping
+          content="Community-based health workers and trainers provide critical care to
+         millions of people around the world. COVID-19 Library is a global online library helping
          them access the information, training and support they need."/>
     <META name="keywords"
-        content="mPowering, frontline health workers, orb, open resource bank,
-        online resource bank, platform, MNCH, maternal, care, post natal,
-        postnatal, ante natal, antenatal, child, children, health,
+        content="COVID-19 Digital Classroom, COVID-19, coronavirus, corona, virus, health workers, 
+        community-based health workers and trainers, orb, open resource bank,
+        online resource bank, platform, health,
         quiz, assessment, mobile, android, learning, video, media,
         {% block extra_head_keywords %}{% endblock extra_head_keywords %}"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:image"
-          content="{{ BASE_URL }}{% static 'orb/images/orb-embed-200px.png' %}">
+          content="{{ BASE_URL }}{% static 'orb/images/covid-logo.png' %}">
     <link rel="search" type="application/opensearchdescription+xml"
-          href="{% url 'orb_opensearch' %}" title="Add ORB search">
+          href="{% url 'orb_opensearch' %}" title="Add COVID-19 Library search">
     {% block extra_head_feed %}{% endblock extra_head_feed %}
 
     <!-- Bootstrap -->
@@ -34,10 +34,10 @@
             href="{% static 'orb/bootstrap-3.1.1/css/bootstrap.min.css' %}"
             rel="stylesheet"/>
 
-    <link href="{% static 'orb/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'orb/style.css' %}?t=202005191645" rel="stylesheet"/>
 
     <link rel="shortcut icon" type="image/png"
-          href="{% static 'orb/images/icon-white.png' %}"/>
+          href="{% static 'orb/images/covid-logo.png' %}"/>
     {% block extra_styles %}{% endblock extra_styles %}
     {% block extra_scripts %}{% endblock extra_scripts %}
 </head>
@@ -78,22 +78,20 @@
         </div>
         <div class="col-md-3 text-muted">
             <h4>{% trans 'Follow Us' %}</h4>
-            <a href="https://twitter.com/mpoweringhealth">{% trans 'Twitter' %}</a><br/>
-            <a href="http://mpoweringhealth.org/blog/">{% trans 'Blog' %}</a>
+            <a href="https://twitter.com/C19DigitalClass">{% trans 'Twitter' %}</a><br/>
+            <a href="http://covid-19digitalclassroom.org">{% trans 'Website' %}</a>
         </div>
         <div class="col-md-3 text-muted">
             <h4>{% trans 'About' %}</h4>
-            <a href="{% url 'orb_about' %}">{% trans 'About ORB' %}</a><br/>
-            <a href="{% url 'orb_how_to' %}">{% trans 'How to use ORB' %}</a><br/>
+            <a href="{% url 'orb_about' %}">{% trans 'About COVID-19 Library' %}</a><br/>
+            <a href="{% url 'orb_how_to' %}">{% trans 'How to use COVID-19 Library' %}</a><br/>
             <a href="{% url 'orb_cc_faq' %}">{% trans 'Creative Commons FAQs' %}</a><br/>
             <a href="{% url 'orb_guidelines' %}">{% trans 'Resource Guidelines' %}</a><br/>
             <a href="{% url 'orb_content_review_process' %}">{% trans 'Content Review Process' %}</a><br/>
-            <a href="{% url 'orb_partners' %}">{% trans 'Content Partners' %}</a><br/>
-            <a href="https://mpowering.readthedocs.io/">{% trans 'Documentation' %}</a><br/>
         </div>
         <div class="col-md-3 text-muted">
             {{ version }} &copy; {% now "Y" %} <a
-                href="http://mpoweringhealth.org/">mPowering</a><br/>
+                href="http://covid-19digitalclassroom.org">COVID-19 Digital Classroom</a><br/>
             <a href="{% url 'orb_terms' %}">{% trans 'Terms and Privacy Policy' %}</a><br/>
         </div>
     </div>

@@ -1,0 +1,17 @@
+{% extends "covid/form/index.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block extra_head_title %}{{ title }}{% endblock extra_head_title %}
+
+{% block contentTitle %}{{ title }}{% endblock %}
+
+{% comment %} {% block content %}
+{% crispy form %}
+{% endblock %}  {% endcomment %}
+
+{% block form %}
+{% crispy form %}
+{% endblock %}

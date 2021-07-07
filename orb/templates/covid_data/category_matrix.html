@@ -1,0 +1,26 @@
+{% load i18n %}
+{% load static %}
+{% load thumbnail %}
+
+<script id="CATEGORIES_MATRIX" type="application/json">
+[
+    {% for t in topics %}
+        {% if not t.custom %}
+            {
+                "id": "{{ t.tag.slug }}",
+                "title": "{{ t.tag.name }}",
+                "route": "{% url 'orb_tags' t.tag.slug %}",
+                "media": "{% thumbnail t.tag.image "220x150" format="PNG" crop="center" as im %}{{ im.url }}{% endthumbnail %}",
+                "resourceCount": "{% blocktrans count t.resource_count as resource_count %}{{ resource_count }} resource{% plural %}{{ resource_count }} resources{% endblocktrans %}"
+            }{% if not forloop.last %},{% endif %}
+        {% else %}
+            {
+                "title": "{{ t.title }}",
+                "route": "{{ t.url }}",
+                "media": "{% get_static_prefix %}orb/images/{{ t.image }}",
+                "resourceCount": "{% blocktrans count t.resource_count as resource_count %}{{ resource_count }} resource{% plural %}{{ resource_count }} resources{% endblocktrans %}"
+            }{% if not forloop.last %},{% endif %}
+        {% endif %}
+    {% endfor %}
+]
+</script>

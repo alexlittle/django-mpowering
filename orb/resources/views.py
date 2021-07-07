@@ -12,11 +12,9 @@ from django.views.generic import DetailView
 from django.views.generic.edit import FormMixin
 
 from orb import conf
-from orb.models import ResourceFile
-from orb.models import ResourceURL
+from orb.models import ResourceFile, ResourceURL
 from orb.resources.forms import ResourceAccessForm
-from orb.signals import resource_file_viewed
-from orb.signals import resource_url_viewed
+from orb.signals import resource_file_viewed, resource_url_viewed
 
 logger = logging.getLogger(__name__)
 
@@ -106,4 +104,3 @@ class ResourceURLView(ResourceComponentView):
 
     def get_success_url(self):
         return self.object.url
-

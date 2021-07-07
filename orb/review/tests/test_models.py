@@ -4,13 +4,15 @@
 Tests for ORB resource models
 """
 
+from __future__ import unicode_literals
+
 from django.core import mail
 from django_fsm import TransitionNotAllowed
 
 from orb.models import Resource, ResourceCriteria
 from orb.review.models import ContentReview, process_resource_reviews
-from orb.review.utils import unmet_criteria
 from orb.review.tests.base import ReviewTestCase
+from orb.review.utils import unmet_criteria
 
 
 class ProcessReviewsTests(ReviewTestCase):

@@ -1,88 +1,93 @@
-{% extends "base.html" %} {% load i18n %} {% block extra_head_title %}
-{% trans 'Creative Commons FAQs' %} {% endblock extra_head_title %} 
+{% extends "covid/content.html" %}
+
+{% load i18n %}
+
+{% block extra_head_title %}{% trans 'Creative Commons FAQs' %}{% endblock extra_head_title %}
+
+{% block content_title %}{% trans 'Creative Commons FAQs' %}{% endblock %}
 
 {% block content %}
+	<h2>{% trans 'FAQ: Creative Commons Licenses for Global Health Content' %}</h2>
 
-<h2>{% trans 'FAQ: Creative Commons Licenses for Global Health Content' %}</h2>
+	{% blocktrans %}
+	<h3>What is a Creative Commons (CC) license?</h3>
+	<p>CC licenses allow members of the public to share, re-use and
+		distribute your work. CC licenses work alongside copyright, and are
+		increasingly common for shareable content - MIT, Khan Academy, and even
+		the White House use CC to share their content.</p>
+	{% endblocktrans %} {% url 'orb_resource_create' as orb_add %}
 
-{% blocktrans %}
-<h3>What is a Creative Commons (CC) license?</h3>
-<p>CC licenses allow members of the public to share, re-use and
-	distribute your work. CC licenses work alongside copyright, and are
-	increasingly common for shareable content - MIT, Khan Academy, and even
-	the White House use CC to share their content.</p>
-{% endblocktrans %} {% url 'orb_resource_create' as orb_add %} 
-
-{% blocktrans %}
-<h3>Why does this matter in global health?</h3>
-<p>Health training materials share vital information with health
-	workers and communities. Releasing this content under a CC license
-	means that Ministries, trainers, health workers, and others can access,
-	use, and share their content. It also helps to save time and costs by
-	reducing unnecessary duplication in content development.</p>
-<p>
-	mPowering requires that all <a href="{{ orb_add }}">resources
-		submitted to ORB</a> have a CC or public domain license, to ensure that
-	our users have permission to access and share the content.
-</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>Will I still get credit as the author of my content?</h3>
-<p>Yes. All CC licenses require anyone sharing content to
-	acknowledge the author. In fact, CC licenses can help content reach new
-	audiences and share your organization’s work more broadly.</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>Can my content be changed by others?</h3>
-<p>It’s up to you. Some licenses allow users to remix, build upon,
-	or modify your work (creating derivatives), while others do not allow
-	for derivatives of any kind.</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>How can I decide which license is best for me?</h3>
-<p>
-	There are six main kinds of CC licenses. All require attribution to the
-	original author, but they vary by how much they allow the user to
-	change the content, and how it can be shared. Try the license chooser
-	at <a href="http://www.creativecommons.org/choose">www.creativecommons.org/choose</a>
-	to help you find the license that meets your needs.
-</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>Can I choose which content I release under a CC license?</h3>
-<p>Yes, you can choose a license for each piece of content you
-	produce. Many organizations use different CC licenses for different
-	pieces of work, or release some things under CC while retaining others
-	for commercial use.</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>How can I select the right CC license for my content?</h3>
-<p>
-	Visit <a href="http://www.creativecommons.org/">www.creativecommons.org</a>
-	and choose the license that meets your needs. Fill out a short form
-	with the title of the piece and who should receive attribution, then
-	submit. If your resource lives offline, (such as a PDF), you will be
-	prompted to download a graphic of the CC license of your choice. If
-	your resource lives online (such as a video), you’ll receive an html
-	code that you can include on your web site to indicate which content is
-	available under which license.
-</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>What if someone uses my content in a way that is not compatible
-	with the license?</h3>
-<p>With content released under any license, there is a risk that it
-	could be misused. With a CC license, your organization has the right to
-	deal with this infringement in the same way as an infringement of a
-	non-open license or copyright.</p>
-{% endblocktrans %} {% blocktrans %}
-<h3>Could I be liable if someone makes mistakes when adapting my
-	content?</h3>
-<p>
-	Misuse of medical or health education content is a serious concern, and
-	all the CC licenses contain clauses on <a
-		href="http://creativecommons.org/licenses/by/4.0/legalcode">disclaimer
-		of warranties and limitation of liabilities</a>. Most organizations find
-	these sufficient, but some choose to seek legal advice to ensure the
-	license terms meet their needs.
-</p>
-{% endblocktrans %} {% blocktrans with settings.ORB_INFO_EMAIL as email %}
-<h3>How can I learn more?</h3>
-<p>More detailed FAQs are available on the <a href="https://wiki.creativecommons.org/wiki/Frequently_Asked_Questions">Creative Commons website</a>.
-	If your question is not addressed there or you need additional
-	information, please contact <a href="mailto:{{ email }}">info@mpoweringhealth.org</a>.</p>
-{% endblocktrans %} {% endblock content %}
+	{% blocktrans %}
+	<h3>Why does this matter in global health?</h3>
+	<p>Health training materials share vital information with health
+		workers and communities. Releasing this content under a CC license
+		means that Ministries, trainers, health workers, and others can access,
+		use, and share their content. It also helps to save time and costs by
+		reducing unnecessary duplication in content development.</p>
+	<p>
+		COVID-19 Digital Classroom requires that all <a href="{{ orb_add }}">resources
+			submitted to COVID-19 Library</a> have a CC or public domain license, to ensure that
+		our users have permission to access and share the content.
+	</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>Will I still get credit as the author of my content?</h3>
+	<p>Yes. All CC licenses require anyone sharing content to
+		acknowledge the author. In fact, CC licenses can help content reach new
+		audiences and share your organization’s work more broadly.</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>Can my content be changed by others?</h3>
+	<p>It’s up to you. Some licenses allow users to remix, build upon,
+		or modify your work (creating derivatives), while others do not allow
+		for derivatives of any kind.</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>How can I decide which license is best for me?</h3>
+	<p>
+		There are six main kinds of CC licenses. All require attribution to the
+		original author, but they vary by how much they allow the user to
+		change the content, and how it can be shared. Try the license chooser
+		at <a href="http://www.creativecommons.org/choose">www.creativecommons.org/choose</a>
+		to help you find the license that meets your needs.
+	</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>Can I choose which content I release under a CC license?</h3>
+	<p>Yes, you can choose a license for each piece of content you
+		produce. Many organizations use different CC licenses for different
+		pieces of work, or release some things under CC while retaining others
+		for commercial use.</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>How can I select the right CC license for my content?</h3>
+	<p>
+		Visit <a href="http://www.creativecommons.org/">www.creativecommons.org</a>
+		and choose the license that meets your needs. Fill out a short form
+		with the title of the piece and who should receive attribution, then
+		submit. If your resource lives offline, (such as a PDF), you will be
+		prompted to download a graphic of the CC license of your choice. If
+		your resource lives online (such as a video), you’ll receive an html
+		code that you can include on your web site to indicate which content is
+		available under which license.
+	</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>What if someone uses my content in a way that is not compatible
+		with the license?</h3>
+	<p>With content released under any license, there is a risk that it
+		could be misused. With a CC license, your organization has the right to
+		deal with this infringement in the same way as an infringement of a
+		non-open license or copyright.</p>
+	{% endblocktrans %} {% blocktrans %}
+	<h3>Could I be liable if someone makes mistakes when adapting my
+		content?</h3>
+	<p>
+		Misuse of medical or health education content is a serious concern, and
+		all the CC licenses contain clauses on <a
+			href="http://creativecommons.org/licenses/by/4.0/legalcode">disclaimer
+			of warranties and limitation of liabilities</a>. Most organizations find
+		these sufficient, but some choose to seek legal advice to ensure the
+		license terms meet their needs.
+	</p>
+	{% endblocktrans %} {% blocktrans with settings.ORB_INFO_EMAIL as email %}
+	<h3>How can I learn more?</h3>
+	<p>More detailed FAQs are available on the <a href="https://wiki.creativecommons.org/wiki/Frequently_Asked_Questions">Creative Commons website</a>.
+		If your question is not addressed there or you need additional
+		information, please contact <a href="mailto:{{ email }}">{{ email }}</a>.</p>
+	{% endblocktrans %}
+{% endblock content %}

@@ -1,0 +1,44 @@
+---
+- name: Configure the proper HTTP domain name
+  lineinfile:
+    path: /etc/apache2/sites-available/covid-library.conf
+    regexp: '^	ServerName'
+    line: "	ServerName {{ covid_library_domain }}"  # leader char is a tab!
+  become: yes
+  tags:
+    - apache
+
+- name: Configure the proper HTTPS domain name
+  lineinfile:
+    path: /etc/apache2/sites-available/covid-library-ssl.conf
+    regexp: '^	ServerName'
+    line: "	ServerName {{ covid_library_domain }}"  # leader char is a tab!
+  become: yes
+  tags:
+    - apache
+    - https
+
+- name: Enable the HTTP site
+  file:
+    src: /etc/apache2/sites-available/covid-library-ssl.conf
+    dest: /etc/apache2/sites-enabled/covid-library-ssl.conf
+    state: link
+  become: true
+  tags:
+    - apache
+    - https
+
+- name: Create the LetsEncrypt certificate
+  command: "/usr/bin/letsencrypt --apache -d {{ covid_library_domain }} --no-redirect --noninteractive"
+  tags:
+    - apache
+    - https
+
+- name: Restart Apache
+  service:
+    name: apache2
+    state: restarted
+  become: yes
+  tags:
+    - apache
+    - https

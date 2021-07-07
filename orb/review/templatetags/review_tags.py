@@ -2,9 +2,11 @@
 Template labels for content review
 """
 
+from __future__ import unicode_literals
+
 from django import template
 
-from orb.models import ReviewerRole, ResourceCriteria
+from orb.models import ResourceCriteria, ReviewerRole
 
 register = template.Library()
 
@@ -67,7 +69,7 @@ def selected_criteria(review):
     }
 
 
-@register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
 def can_start_review(context, resource):
     """
     Returns a boolean value for whether the user in the context

@@ -8,7 +8,7 @@ sudo freshclam
 RESULTS=`sudo clamscan -r /full/path/to/media/dir/`
 
 /usr/sbin/sendmail -f $FROM $TO <<EOF
-subject:[ORB] Virus scan results
+subject:[COVID-19 Library] Virus scan results
 from:$FROM
 $RESULTS
 EOF

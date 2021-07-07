@@ -1,11 +1,14 @@
-{% extends "base.html" %}
+{% extends "covid/form.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n crispy_forms_tags %}
 {% block extra_head_title %}{% trans 'Assign Content Review' %}{% endblock extra_head_title %}
+
+{% block content_title %}{% trans 'Assign Content Review' %}{% endblock %}
+
 {% block content %}
 
     {% include "includes/messages.html" %}
-
-    <h2>{% trans 'Assign Content Review' %}</h2>
 
     <h3>{{ resource.title }} (<a href="{% url 'orb_resource' resource.slug %}"
                                  target="_blank" class="preview">{% trans 'Preview' %}</a>)</h3>

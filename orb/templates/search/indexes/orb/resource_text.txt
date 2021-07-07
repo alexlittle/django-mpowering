@@ -11,9 +11,13 @@
 {% endfor %}
 
 {% for tag in object.tags.all %}
+	{{ tag.name }}
+	{{ tag.description }}
     {% translated_fields object 'name' as tag_name %}
     {{ tag_name }}
 	{% if tag.parent_tag %}
+		{{ tag.parent_tag.name }}
+		{{ tag.parent_tag.description }}
         {% translated_fields tag.parent_tag 'name' as parent_tag_name %}
 		{{ parent_tag_name }}
 	{% endif %}

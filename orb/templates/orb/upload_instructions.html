@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %} 
+{% load thumbnail %}
+
+{% block extra_head_title %}{% trans 'Uploading Resources' %}{% endblock extra_head_title %}
+
+
+{% block content %}
+
+<h2>{% trans 'Uploading Resources' %}</h2>
+
+{% blocktrans %}
+<p>Uploading resources to the COVID-19 Library is a 2 step process:</p>
+<ol>
+<li>Add the information about the resource. Title, description, tags etc</li>
+<li>Upload the actual resource files and/or links</li>
+</ol>
+
+<p>Once the resource has been uploaded it will go through our review process.</p>
+
+<p>Specific information about the fields on each step is shown below, the 
+required fields are shown with an asterisk.</p>
+
+<h3>Step 1</h3>
+
+<p>On this page you can enter the meta data/tags about your resource:</p>
+
+<ul>
+<li><strong>Title *</strong> - the title of your resource</li>
+<li><strong>Organisations *</strong> - the organisation/s which created this resource (at least one must be entered)</li>
+<li><strong>Description *</strong> - a short description of the resource, max 150 words</li>
+<li><strong>Image</strong> - an image to display alongside your resource</li>
+<li><strong>Health Domain *</strong> - the health domain/s your resource is most relevant for (at least one must be selected)</li>
+<li><strong>Resource Type *</strong> - the type of your resource (at least one must be selected)</li>
+<li><strong>Study Time</strong> - the approximate study time for learners </li>
+<li><strong>Audience *</strong> - the target audience/s (at least one must be selected)</li>
+<li><strong>Geography *</strong> - enter the geographical area/s your resource could be used in (at least one must be entered)</li>
+<li><strong>Languages *</strong> - enter the language/s your resource uses (at least one must be entered)</li>
+<li><strong>Device *</strong> - the devices that your resource can be used on (at least one must be selected)</li>
+<li><strong>License *</strong> - the license your resource is available under (select one)</li>
+<li><strong>Attribution</strong> - specific text you would like to be used for the attribution for this resource</li>
+<li><strong>Other tags</strong> - any other relevant tags that could be useful for users when searching for your resource</li>
+</ul>
+
+<h3>Step 2</h3>
+
+<p>On this page you can upload the actual resource files and/or links. For each
+file or link, complete the form and click the 'Add' button. Once you have added all the
+files/links, click on 'Finished'<p>
+
+<ul>
+<li><strong>Title</strong> - a title for the resource file/link</li>
+<li><strong>File</strong> - select the file to upload</li>
+<li><strong>Url</strong> - enter the link/url</li>
+</ul>
+
+{% endblocktrans %}
+
+{% endblock %}

@@ -8,7 +8,6 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 
-
 try:
     DOWNLOAD_LOGIN_REQUIRED = settings.DOWNLOAD_LOGIN_REQUIRED
 except AttributeError:

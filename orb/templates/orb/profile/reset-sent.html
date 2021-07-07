@@ -1,9 +1,13 @@
-{% extends "base.html" %}
+{% extends "covid/thanks.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n %}
 {% block extra_head_title %}{% trans 'Password reset' %}{% endblock extra_head_title %}
-{% block content %}
 
-<h2>{% trans 'Password reset' %}</h2>
+{% block content_title %}{% trans 'Password reset' %}{% endblock %}
+
+
+{% block notice %}
 {% blocktrans %}
 <p>A new password has been emailed to you</p>
 {% endblocktrans %}

@@ -2,6 +2,8 @@
 Custom access decorators
 """
 
+from __future__ import unicode_literals
+
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import PermissionDenied
@@ -13,7 +15,7 @@ def staff_test(user):
 
     PermissionDenied excpetion is returned as an HTTP 403 response
     """
-    if not user.is_authenticated():
+    if not user.is_authenticated:
         return False
     if user.is_active and user.is_staff:
         return True

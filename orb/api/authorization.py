@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from tastypie.authorization import Authorization
 from tastypie.exceptions import Unauthorized
 

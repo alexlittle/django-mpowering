@@ -1,12 +1,13 @@
-{% extends "base.html" %}
+{% extends "covid/content.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
+
 {% load i18n review_tags %}
 
 {% block extra_head_title %}{% trans 'Pending Resources' %}{% endblock extra_head_title %}
 
+{% block content_title %}{% trans 'Pending Resources' %}{% endblock %}
+
 {% block content %}
-
-    <h2>{% trans 'Pending Resources' %}</h2>
-
     {% include "includes/messages.html" %}
 
     {% if user.is_staff and overdue_reviews %}
@@ -55,6 +56,7 @@
                         <th>{% trans 'Submitter' %}</th>
                         <th>{% trans 'Submitted' %}</th>
                         <th>{% trans 'Title' %}</th>
+                        <th>{% trans 'Category' %}</th>
                         <th>{% trans 'Organisation' %}</th>
                         <th colspan="3">{% trans 'Options' %}</th>
                     </tr>
@@ -65,6 +67,17 @@
                             <td><a href="mailto:{{ resource.create_user.email }}">{{ resource.create_user.get_full_name }}</a></td>
                             <td>{{ resource.create_date|date }}</td>
                             <td>{{ resource.title }}</td>
+                            <td>
+                                {% for category in resource.get_display_categories %}
+                                    {% if category.name == 'Health Domain' %}
+                                        {% for tag in category.tags %}
+                                            {{ tag.name }} {% if forloop.last is False %} , {% endif %}
+                                        {% endfor %}
+                                    {% endif%}
+
+                                {% endfor %}
+
+                            </td>
                             <td>
                                 {% for organisation in resource.get_organisations %}
                                     {{ organisation.name }}
@@ -119,6 +132,7 @@
                     <th>{% trans 'Submitter' %}</th>
                     <th>{% trans 'Submitted' %}</th>
                     <th>{% trans 'Title' %}</th>
+                    <th>{% trans 'Category' %}</th>
                     <th>{% trans 'Organisation' %}</th>
                     <th colspan="{% if user.is_staff %}4{% else %}2{% endif %}">{% trans 'Options' %}</th>
                 </tr>
@@ -129,6 +143,17 @@
                         <td><a href="mailto:{{ resource.create_user.email }}">{{ resource.create_user.get_full_name }}</a></td>
                         <td>{{ resource.create_date|date }}</td>
                         <td>{{ resource.title }}{% status_labels resource %}</td>
+                        <td>
+                            {% for category in resource.get_display_categories %}
+                                {% if category.name == 'Health Domain' %}
+                                    {% for tag in category.tags %}
+                                        {{ tag.name }} {% if forloop.last is False %} , {% endif %}
+                                    {% endfor %}
+                                {% endif%}
+
+                            {% endfor %}
+
+                        </td>
                         <td>
                             {% for organisation in resource.get_organisations %}
                                 {{ organisation.name }}

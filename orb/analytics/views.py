@@ -2,10 +2,12 @@
 Views for rendering site usage analytics
 """
 
-import datetime
-import tablib
-import dateutil.relativedelta
+from __future__ import unicode_literals
 
+import datetime
+
+import dateutil.relativedelta
+import tablib
 from django.contrib.auth.models import User
 from django.core.paginator import EmptyPage, InvalidPage, Paginator
 from django.db.models import Count, Q
@@ -15,10 +17,10 @@ from django.utils import timezone
 
 from orb.analytics.models import UserLocationVisualization
 from orb.decorators import staff_required
+from orb.lib import search_crawler
 from orb.models import Resource, ResourceTracker, SearchTracker, Tag, TagOwner, TagTracker
 from orb.views import resource_can_edit
 
-from orb.lib import search_crawler
 
 @staff_required
 def home_view(request):
@@ -102,11 +104,6 @@ def home_view(request):
         'total_user_registrations': total_user_registrations,
         'countries': countries,
     })
-
-
-@staff_required
-def map_view(request):
-    return render(request, 'orb/analytics/map.html', {})
 
 
 @staff_required
@@ -278,7 +275,6 @@ def tag_download(request, id, year, month):
     for t in trackers:
         if t.resource.title:
             if t.resource_file and t.resource_file.filename():
-                #print t.resource_file.filename()
                 object = t.resource_file.filename()
             elif t.resource_url and t.resource_url.url:
                 object = t.resource_url.url
@@ -415,7 +411,7 @@ def is_tag_owner(request, id):
     """
     Permission helper for tag related analytics views
     """
-    if not request.user.is_authenticated():
+    if not request.user.is_authenticated:
         return False
 
     if request.user.is_staff:
@@ -483,7 +479,6 @@ def kpi_view(request):
                     'languages': languages
     }
     
-    table_data = []
     
     start_date = timezone.now() - datetime.timedelta(days=days)
     delta = dateutil.relativedelta.relativedelta(months=+1)
@@ -504,52 +499,9 @@ def kpi_view(request):
         
         # strip bots
         for spider in search_crawler.SPIDERS:
-            monthly_trackers = monthly_trackers.exclude(user_agent__contains=spider)
-        
-        downloads = monthly_trackers.count()
-        
-        # no users
-        users_logged_in = monthly_trackers.filter(user__isnull=False).values_list('user').distinct().count()
-        users_anon = monthly_trackers.filter(user__isnull=True).values_list('ip').distinct().count()
-        users = users_logged_in + users_anon
-        
-        # no resources 
-        resources = monthly_trackers.values_list('resource').distinct().count()
-        
-        # intended uses
-        # browsing
-        browsing = monthly_trackers.filter(survey_intended_use='browsing').count()
-        
-        # own learning
-        own_learning = monthly_trackers.filter(survey_intended_use='learning').count()
-        
-        # training
-        training = monthly_trackers.filter(survey_intended_use='training').count()
-        training_data = monthly_trackers.filter(survey_intended_use='training')
-        
-        # other
-        other = monthly_trackers.filter(survey_intended_use='other').count()
-        other_data = monthly_trackers.filter(survey_intended_use='other')
-        
-        period = {
-                    'date': ('%s-%s' % (temp.strftime("%b"), year)),
-                    'downloads' : downloads,
-                    'users': users,
-                    'resources': resources,
-                    'browsing': browsing,
-                    'own_learning' : own_learning,
-                    'training': training,
-                    'training_data': training_data,
-                    'other' : other,
-                    'other_data': other_data
-                    
-                    }
-        table_data.append(period)
-                
-                
+            monthly_trackers = monthly_trackers.exclude(user_agent__contains=spider)               
     
-    return render(request, 'orb/analytics/kpi.html', {'indicators': indicators,
-                                                      'table_data': table_data})
+    return render(request, 'orb/analytics/kpi.html', {'indicators': indicators })
     
 @staff_required
 def resource_download_view(request):

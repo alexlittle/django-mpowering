@@ -1,0 +1,19 @@
+{% load i18n %}
+
+{% if STAGING %}
+    <aside at-base="flex:hRev--p:start--s:start pad:xyEq50" at-standard="pad:xEq150" class="alert control:dissent fx:shift">
+        <a aria-label="close" href="#" class="close type:hed--face:copy--weight:900--lead:matched">×</a>
+        <p at-base="module:balance">{% trans 'This is the development server, anything added here will not be shared on the live site' %}</p>
+    </aside>
+{% endif %}
+
+{% if NOTICES %}
+    {% for n in NOTICES %}
+        <aside at-base="flex:hRev--p:start--s:start pad:xyEq50" at-standard="pad:xEq150" class="notice control:action fx:shift">
+            <a aria-label="close" href="#" class="close type:hed--face:copy--weight:900--lead:matched">×</a>
+            <p at-base="module:balance">
+                {{ n|safe }}
+            </p>
+        </aside>
+    {% endfor %}
+{% endif %}

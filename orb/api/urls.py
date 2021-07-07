@@ -1,10 +1,11 @@
+from __future__ import unicode_literals
+
 from django.conf.urls import include, url
 from tastypie.api import Api
 
-from orb.api.resources import (ResourceResource, CategoryResource, TagResource,
-                               ResourceTagResource, ResourceFileResource,
-                               ResourceURLResource, TagsResource)
 from orb.api import upload
+from orb.api.resources import (CategoryResource, ResourceFileResource, ResourceResource, ResourceTagResource,
+                               ResourceURLResource, TagResource, TagsResource)
 
 v1_api = Api(api_name='v1')
 v1_api.register(ResourceResource())

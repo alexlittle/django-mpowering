@@ -7,34 +7,68 @@ import os
 import time
 import uuid
 from collections import OrderedDict
+from typing import Any, Dict, Iterable, Optional, Text
 
 import parsedatetime as pdt
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.core import urlresolvers
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.db.models import Avg, Count
 from django.utils.translation import ugettext_lazy as _
 from modeltranslation.utils import build_localized_fieldname
-from typing import Any
-from typing import Dict
-from typing import Optional
-from typing import Iterable
-from typing import Text
+from django.utils.encoding import python_2_unicode_compatible
 
-from orb import conf
-from orb import signals
+from orb import conf, signals
 from orb.analytics.models import UserLocationVisualization
-from orb.fields import AutoSlugField
-from orb.fields import image_cleaner
+from orb.fields import AutoSlugField, image_cleaner
 from orb.profiles.querysets import ProfilesQueryset
 from orb.resources.managers import ResourceQueryset, ResourceURLManager, TrackerQueryset
 from orb.review.queryset import CriteriaQueryset
 from orb.tags.managers import ResourceTagManager, TagQuerySet
 
 cal = pdt.Calendar()
+
+
+def orb_mimetype(extension):
+    """
+    Returns the mimetype for a file extension
+
+    We use this as the primary lookup because mimetypes seem to
+    differ between systems and this allows consistency, especially
+    for testing.
+
+    Args:
+        extension: string, just the file extension (e.g. jpg)
+
+    Returns:
+        the string mimetype
+
+    """
+    types_map = dict([
+        ("pdf", "application/pdf"),
+        ("mp4", "video/mp4"),
+        ("mbz", "application/octet-stream"),
+        ("zip", "application/zip"),
+        ("docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"),
+        ("png", "image/png"),
+        ("ppt", "application/vnd.ms-powerpoint"),
+        ("jpg", "image/jpeg"),
+        ("pptx", "application/vnd.openxmlformats-officedocument.presentationml.presentation"),
+        ("m4v", "video/x-m4v"),
+        ("mov", "video/quicktime"),
+        ("wmv", "video/x-ms-wmv"),
+    ])
+
+    try:
+        return types_map[extension]
+    except KeyError:
+        try:
+            return mimetypes.types_map["." + extension]
+        except KeyError:
+            return "application/octet-stream"
 
 
 class WorkflowQueryset(models.QuerySet):
@@ -62,6 +96,7 @@ def pop_fields(input, *fieldnames):
     return input
 
 
+@python_2_unicode_compatible
 class Resource(TimestampBase):
     REJECTED = 'rejected'
     APPROVED = 'approved'
@@ -100,13 +135,15 @@ class Resource(TimestampBase):
     attribution = models.TextField(blank=True, null=True, default=None)
 
     # Tracking fields
-    source_url = models.URLField(null=True, blank=True, help_text=_(u"Original resource URL."))
+    source_url = models.URLField(null=True, blank=True, help_text=_("Original resource URL."))
     source_name = models.CharField(null=True, blank=True, max_length=200,
-                                   help_text=_(u"Name of the source ORB instance where resource was sourced."))
+                                   help_text=_("Name of the source ORB instance where resource was sourced."))
     source_host = models.URLField(null=True, blank=True,
-                                   help_text=_(u"Host URL of the original ORB instance where resource was sourced."))
+                                   help_text=_("Host URL of the original ORB instance where resource was sourced."))
     source_peer = models.ForeignKey('peers.Peer', null=True, blank=True, related_name="resources",
-                                    help_text=_(u"The peer ORB from which the resource was downloaded."))
+                                    help_text=_("The peer ORB from which the resource was downloaded."),
+                                    on_delete=models.SET_NULL,
+                                    )
     tags = models.ManyToManyField('Tag', through='ResourceTag', blank=True)
 
     resources = ResourceQueryset.as_manager()
@@ -117,11 +154,11 @@ class Resource(TimestampBase):
     API_EXCLUDED_FIELDS = ['id', 'guid']
 
     class Meta:
-        verbose_name = _(u'Resource')
-        verbose_name_plural = _(u'Resources')
+        verbose_name = _('Resource')
+        verbose_name_plural = _('Resources')
         ordering = ('title',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def save(self, **kwargs):
@@ -139,7 +176,7 @@ class Resource(TimestampBase):
         return self
 
     def get_absolute_url(self):
-        return urlresolvers.reverse('orb_resource', args=[self.slug])
+        return reverse('orb_resource', args=[self.slug])
 
     def update_from_api(self, api_data):
         """
@@ -161,7 +198,7 @@ class Resource(TimestampBase):
         updated_time, result = cal.parseDT(api_data.pop('update_date'))
         created_time, result = cal.parseDT(api_data.pop('create_date'))
 
-        if updated_time.date <= self.create_date.date:
+        if updated_time.date() <= self.create_date.date():
             return False
 
         resource_files = api_data.pop('files', [])
@@ -178,7 +215,7 @@ class Resource(TimestampBase):
 
         cleaned_api_data = clean_api_data(api_data, 'attribution', 'description', 'title')
 
-        for attr, value in cleaned_api_data.iteritems():
+        for attr, value in cleaned_api_data.items():
             setattr(self, attr, value)
 
         self.update_user = import_user
@@ -338,10 +375,10 @@ class Resource(TimestampBase):
 
         This is based on having both title and description for these fields.
         """
-        field_names = {
-            language[0]: [build_localized_fieldname(field, language[0]) for field in ["title", "description"]]
+        field_names = OrderedDict([
+            (language[0], [build_localized_fieldname(field, language[0]) for field in ["title", "description"]])
             for language in settings.LANGUAGES
-        }
+        ])
 
         return [
             language for language, fields in field_names.items() if all([getattr(self, field) for field in fields])
@@ -350,7 +387,7 @@ class Resource(TimestampBase):
     def user_can_view(self, user):
         if self.status == Resource.APPROVED:
             return True
-        elif user.is_anonymous():
+        elif user.is_anonymous:
             return False
         elif ((user.is_staff or
                        user == self.create_user or
@@ -364,8 +401,12 @@ class Resource(TimestampBase):
 class ResourceWorkflowTracker(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     resource = models.ForeignKey(Resource, blank=True, null=True,
-                                 related_name="workflow_trackers")
-    create_user = models.ForeignKey(settings.AUTH_USER_MODEL)
+                                 related_name="workflow_trackers",
+                                 on_delete=models.SET_NULL,
+                                 )
+    create_user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                    on_delete=models.CASCADE,
+                                    )
     status = models.CharField(
         max_length=50, choices=Resource.STATUS_TYPES, default=Resource.PENDING)
     notes = models.TextField(blank=True, null=True)
@@ -376,10 +417,13 @@ class ResourceWorkflowTracker(models.Model):
     # objects = workflows  # Backwards compatible alias
 
 
+@python_2_unicode_compatible
 class ResourceURL(TimestampBase):
     guid = models.UUIDField(null=True, default=uuid.uuid4, unique=True, editable=False)
     url = models.URLField(blank=False, null=False, max_length=500)
-    resource = models.ForeignKey(Resource)
+    resource = models.ForeignKey(Resource,
+                                 on_delete=models.CASCADE,
+                                 )
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     order_by = models.IntegerField(default=0)
@@ -391,7 +435,7 @@ class ResourceURL(TimestampBase):
 
     objects = ResourceURLManager.as_manager()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.url
 
     def get_absolute_url(self):
@@ -435,7 +479,7 @@ class ResourceURL(TimestampBase):
             the ResourceURL object (not saved to DB)
 
         """
-        for field in ['id', 'resource_uri']:
+        for field in ['id', 'resource_uri', 'file_extension', 'is_embeddable', 'sha1']:
             api_data.pop(field, None)
 
         api_data['url'] = api_data.pop('file')
@@ -446,10 +490,13 @@ class ResourceURL(TimestampBase):
         return cls(resource=resource, create_user=user, update_user=user, **api_data)
 
 
+@python_2_unicode_compatible
 class ResourceFile(TimestampBase):
     guid = models.UUIDField(null=True, default=uuid.uuid4, unique=True, editable=False)
     file = models.FileField(upload_to='resource/%Y/%m/%d', max_length=200)
-    resource = models.ForeignKey(Resource)
+    resource = models.ForeignKey(Resource,
+                                 on_delete=models.CASCADE,
+                                 )
     title = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     order_by = models.IntegerField(default=0)
@@ -461,7 +508,7 @@ class ResourceFile(TimestampBase):
     sha1 = models.CharField(max_length=40, blank=True, null=True, editable=False)
     objects = ResourceURLManager.as_manager()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title or self.file.name
 
     def get_absolute_url(self):
@@ -551,11 +598,7 @@ class ResourceFile(TimestampBase):
         relies on the file extension. As a result it may not be 100%
         accurate.
         """
-        print(self.file_extension, "." + self.file_extension)
-        try:
-            return mimetypes.types_map["." + self.file_extension]
-        except KeyError:
-            return "application/octet-stream"
+        return orb_mimetype(self.file_extension)
 
     @property
     def is_embeddable(self):
@@ -571,9 +614,13 @@ class ResourceRelationship(TimestampBase):
         ('is_contained_in', _('is contained in')),
     )
 
-    resource = models.ForeignKey(Resource, related_name='resource')
+    resource = models.ForeignKey(Resource, related_name='resource',
+                                 on_delete=models.CASCADE,
+                                 )
     resource_related = models.ForeignKey(
-        Resource, related_name='resource_related')
+        Resource, related_name='resource_related',
+        on_delete=models.CASCADE,
+    )
     relationship_type = models.CharField(
         max_length=50, choices=RELATIONSHIP_TYPES)
     description = models.TextField(blank=False, null=False)
@@ -581,6 +628,7 @@ class ResourceRelationship(TimestampBase):
     update_user = models.ForeignKey(User, related_name='resource_relationship_update_user', blank=True, null=True, default=None, on_delete=models.SET_NULL)
 
 
+@python_2_unicode_compatible
 class ResourceCriteria(models.Model):
     CATEGORIES = (
         ('qa', _('Quality Assurance')),
@@ -603,8 +651,9 @@ class ResourceCriteria(models.Model):
         'orb.ReviewerRole',
         related_name="criteria",
         blank=True, null=True,
-        help_text=_(u"Used to show specific criteria to reviewers based on their role. "
-                    u"Leave blank if criterion applies generally."),
+        help_text=_("Used to show specific criteria to reviewers based on their role. "
+                    "Leave blank if criterion applies generally."),
+        on_delete=models.CASCADE,
     )
 
     criteria = CriteriaQueryset.as_manager()
@@ -616,7 +665,7 @@ class ResourceCriteria(models.Model):
         return _("General") if not self.role else self.role.name
     get_role_display.short_description = "Role"
 
-    def __unicode__(self):
+    def __str__(self):
         return self.description
 
     class Meta:
@@ -629,6 +678,7 @@ class CategoryQuerySet(models.QuerySet):
         return self.filter(top_level=True).order_by('order_by')
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     name = models.CharField(max_length=100)
     top_level = models.BooleanField(default=False)
@@ -643,7 +693,7 @@ class Category(models.Model):
         verbose_name_plural = _('Categories')
         ordering = ('name',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @classmethod
@@ -652,9 +702,14 @@ class Category(models.Model):
         return [f.name for f in cls._meta.get_fields() if f.name.startswith('name') and f.name != 'name']
 
 
+@python_2_unicode_compatible
 class Tag(TimestampBase):
-    category = models.ForeignKey(Category)
-    parent_tag = models.ForeignKey('self', blank=True, null=True, default=None, related_name="children")
+    category = models.ForeignKey(Category,
+                                 on_delete=models.CASCADE,
+                                 )
+    parent_tag = models.ForeignKey('self', blank=True, null=True, default=None, related_name="children",
+                                   on_delete=models.SET_NULL,
+                                   )
     name = models.CharField(max_length=100)
     create_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tag_create_user', blank=True, null=True, default=None, on_delete=models.SET_NULL)
     update_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tag_update_user', blank=True, null=True, default=None, on_delete=models.SET_NULL)
@@ -663,10 +718,10 @@ class Tag(TimestampBase):
     order_by = models.IntegerField(default=0)
     external_url = models.URLField(
         blank=True, null=True, default=None, max_length=500)
-    description = models.TextField(blank=True, null=True, default=None)
+    description = RichTextField(blank=True, null=True, default=None)
     summary = models.CharField(blank=True, null=True, max_length=100)
     contact_email = models.CharField(blank=True, null=True, max_length=100)
-    published = models.BooleanField(default=True, help_text=_(u"Used to toggle status of health domains."))
+    published = models.BooleanField(default=True, help_text=_("Used to toggle status of health domains."))
 
     tags = TagQuerySet.as_manager()
     objects = TagQuerySet.as_manager()
@@ -678,11 +733,11 @@ class Tag(TimestampBase):
         ordering = ('name',)
         unique_together = ('name', 'category')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return urlresolvers.reverse('orb_tags', args=[self.slug])
+        return reverse('orb_tags', args=[self.slug])
 
     def save(self, *args, **kwargs):
 
@@ -746,23 +801,30 @@ class Tag(TimestampBase):
         other.delete()
 
 
+@python_2_unicode_compatible
 class TagProperty(models.Model):
-    tag = models.ForeignKey(Tag, related_name="properties")
+    tag = models.ForeignKey(Tag, related_name="properties",
+                            on_delete=models.CASCADE,
+                            )
     name = models.TextField(blank=False, null=False)
     value = models.TextField(blank=False, null=False)
 
     class Meta:
-        verbose_name = _(u'Tag property')
-        verbose_name_plural = _(u'Tag properties')
+        verbose_name = _('Tag property')
+        verbose_name_plural = _('Tag properties')
         ordering = ('tag', 'name', 'value')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
 class TagOwner(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    tag = models.ForeignKey(Tag, related_name="owner")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE,
+                             )
+    tag = models.ForeignKey(Tag, related_name="owner",
+                            on_delete=models.CASCADE,
+                            )
 
     class Meta:
         unique_together = ("user", "tag")
@@ -770,8 +832,12 @@ class TagOwner(models.Model):
 
 class ResourceTag(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
-    resource = models.ForeignKey(Resource)
-    tag = models.ForeignKey(Tag, related_name="resourcetag")
+    resource = models.ForeignKey(Resource,
+                                 on_delete=models.CASCADE,
+                                 )
+    tag = models.ForeignKey(Tag, related_name="resourcetag",
+                            on_delete=models.CASCADE,
+                            )
     create_user = models.ForeignKey(User, related_name='resourcetag_create_user', blank=True, null=True, default=None, on_delete=models.SET_NULL)
 
     objects = ResourceTagManager()
@@ -823,27 +889,34 @@ class ResourceTag(models.Model):
         return cls.objects.create(resource=resource, tag=tag, create_user=user)
 
 
+@python_2_unicode_compatible
 class UserProfile(TimestampBase):
     AGE_RANGE = [
-        ('under_18', _(u'under 18')),
-        ('18_25', _(u'18-24')),
-        ('25_35', _(u'25-34')),
-        ('35_50', _(u'35-50')),
-        ('over_50', _(u'over 50')),
-        ('none', _(u'Prefer not to say')),
+        ('under_18', _('under 18')),
+        ('18_25', _('18-24')),
+        ('25_35', _('25-34')),
+        ('35_50', _('35-50')),
+        ('over_50', _('over 50')),
+        ('none', _('Prefer not to say')),
     ]
     GENDER = [
-        ('female', _(u'Female')),
-        ('male', _(u'Male')),
-        ('none', _(u'Prefer not to say')),
+        ('female', _('Female')),
+        ('male', _('Male')),
+        ('none', _('Prefer not to say')),
     ]
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
+                                )
     photo = models.ImageField(upload_to='userprofile/%Y/%m/%d', max_length=200, blank=True, null=True)
     about = models.TextField(blank=True, null=True, default=None)
     job_title = models.TextField(blank=True, null=True, default=None)
-    organisation = models.ForeignKey(Tag, related_name='organisation', blank=True, null=True, default=None)
-    role = models.ForeignKey(Tag, related_name='role', blank=True, null=True, default=None)
+    organisation = models.ForeignKey(Tag, related_name='organisation', blank=True, null=True, default=None,
+                                     on_delete=models.SET_NULL,
+                                     )
+    role = models.ForeignKey(Tag, related_name='role', blank=True, null=True, default=None,
+                             on_delete=models.SET_NULL,
+                             )
     role_other = models.TextField(blank=True, null=True, default=None)
     phone_number = models.TextField(blank=True, null=True, default=None)
     website = models.CharField(blank=True, null=True, max_length=100, default=None)
@@ -861,10 +934,10 @@ class UserProfile(TimestampBase):
 
     class Meta:
         db_table = "orb_userprofile"
-        verbose_name = _(u"user profile")
-        verbose_name_plural = _(u"user profiles")
+        verbose_name = _("user profile")
+        verbose_name_plural = _("user profiles")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.get_full_name()
 
     def get_twitter_url(self):
@@ -885,11 +958,11 @@ class ResourceTracker(models.Model):
     DOWNLOAD = 'download'
     CREATE = 'create'
     TRACKER_TYPES = (
-        (VIEW, _(u'View')),
-        (VIEW_API, _(u'View-api')),
-        (EDIT, _(u'Edit')),
-        (DOWNLOAD, _(u'Download')),
-        (CREATE, _(u'Create')),
+        (VIEW, _('View')),
+        (VIEW_API, _('View-api')),
+        (EDIT, _('Edit')),
+        (DOWNLOAD, _('Download')),
+        (CREATE, _('Create')),
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True, default=None, on_delete=models.SET_NULL)
     type = models.CharField(max_length=50, choices=TRACKER_TYPES, default=VIEW)
@@ -916,9 +989,9 @@ class SearchTracker(models.Model):
     SEARCH_API = 'search-api'
     SEARCH_ADV = 'search-adv'
     SEARCH_TYPES = (
-        (SEARCH, _(u'search')),
-        (SEARCH_API, _(u'search-api')),
-        (SEARCH_ADV, _(u'search-adv')),
+        (SEARCH, _('search')),
+        (SEARCH_API, _('search-api')),
+        (SEARCH_ADV, _('search-adv')),
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                              default=None, on_delete=models.SET_NULL)
@@ -937,9 +1010,9 @@ class TagTracker(models.Model):
     VIEW_API = 'view-api'
     VIEW_URL = 'view-url'
     TRACKER_TYPES = (
-        (VIEW, _(u'View')),
-        (VIEW_API, _(u'View-API')),
-        (VIEW_URL, _(u'View-URL')),
+        (VIEW, _('View')),
+        (VIEW_API, _('View-API')),
+        (VIEW_URL, _('View-URL')),
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True, null=True,
                              default=None, on_delete=models.SET_NULL)
@@ -953,27 +1026,32 @@ class TagTracker(models.Model):
 
 
 class ResourceRating(TimestampBase):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=False)
-    resource = models.ForeignKey(Resource, blank=False, null=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=False,
+                             on_delete=models.CASCADE,
+                             )
+    resource = models.ForeignKey(Resource, blank=False, null=False,
+                                 on_delete=models.CASCADE,
+                                 )
     rating = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)])
     comments = models.TextField(blank=True, null=True, default=None)
 
 
+@python_2_unicode_compatible
 class Collection(TimestampBase):
     PUBLIC = 'public'
     PRIVATE = 'private'
     VISIBILITY_TYPES = (
-        (PUBLIC, _(u'Public')),
-        (PRIVATE, _(u'Private')),
+        (PUBLIC, _('Public')),
+        (PRIVATE, _('Private')),
     )
     title = models.TextField(blank=False,
                             null=False,
-                            help_text=_(u"A title for the collection"))
+                            help_text=_("A title for the collection"))
     description = models.TextField(blank=True,
                                    null=True,
                                    default=None,
-                                   help_text=_(u"A description of the collection"))
+                                   help_text=_("A description of the collection"))
     visibility = models.CharField(
                             max_length=50,
                             choices=VISIBILITY_TYPES,
@@ -983,23 +1061,27 @@ class Collection(TimestampBase):
     slug = AutoSlugField(populate_from='title', max_length=255, blank=True, null=True)
 
     class Meta:
-        verbose_name = _(u'Collection')
-        verbose_name_plural = _(u'Collections')
+        verbose_name = _('Collection')
+        verbose_name_plural = _('Collections')
         ordering = ('title',)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return urlresolvers.reverse('orb_collection', args=[self.slug])
+        return reverse('orb_collection', args=[self.slug])
 
     def image_filename(self):
         return os.path.basename(self.image.name)
 
 
 class CollectionUser(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=False)
-    collection = models.ForeignKey(Collection, blank=False, null=False)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=False,
+                             on_delete=models.CASCADE,
+                             )
+    collection = models.ForeignKey(Collection, blank=False, null=False,
+                                   on_delete=models.CASCADE,
+                                   )
 
     class Meta:
         verbose_name = _('Collection user')
@@ -1008,8 +1090,12 @@ class CollectionUser(models.Model):
 
 
 class CollectionResource(models.Model):
-    resource = models.ForeignKey(Resource, blank=False, null=False)
-    collection = models.ForeignKey(Collection, blank=False, null=False)
+    resource = models.ForeignKey(Resource, blank=False, null=False,
+                                 on_delete=models.CASCADE,
+                                 )
+    collection = models.ForeignKey(Collection, blank=False, null=False,
+                                   on_delete=models.CASCADE,
+                                   )
     order_by = models.IntegerField(blank=False, null=False, default=0)
 
     class Meta:
@@ -1018,6 +1104,7 @@ class CollectionResource(models.Model):
         ordering = ('collection', 'order_by', 'resource')
 
 
+@python_2_unicode_compatible
 class ReviewerRole(models.Model):
     """
     Models the different roles a content review might fulfill
@@ -1036,7 +1123,7 @@ class ReviewerRole(models.Model):
     objects = models.Manager()
     # objects = roles
 
-    def __unicode__(self):
+    def __str__(self):
         return self.get_name_display()
 
 

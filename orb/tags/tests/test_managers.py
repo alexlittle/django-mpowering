@@ -2,10 +2,12 @@
 Tests for orb.tags.managers.
 """
 
+from __future__ import unicode_literals
+
 from django.contrib.auth.models import User
 from django.test import TestCase
 
-from orb.models import Tag, Resource, ResourceTag
+from orb.models import Resource, ResourceTag, Tag
 from orb.resources.tests.factory import resource_factory
 from orb.tags.tests.factory import tag_factory
 

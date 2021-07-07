@@ -1,7 +1,10 @@
-from django.test import TestCase
-from django.contrib.auth import get_user_model
+from __future__ import unicode_literals
+
 import mock
-from orb.models import UserProfile, ReviewerRole
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+
+from orb.models import ReviewerRole, UserProfile
 
 
 class ProfileReviewerTessts(TestCase):

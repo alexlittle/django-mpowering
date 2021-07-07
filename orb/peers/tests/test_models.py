@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
 """
-Tests for ORB resource models
+Tests for COVID-19 Library resource models
 """
 
+from __future__ import unicode_literals
+
 import pytest
+from six import text_type
 
 from orb.peers.models import Peer
 
@@ -15,7 +18,7 @@ class TestPeerModel(object):
     """
     def test_string_representation(self):
         peer = Peer(name="Another ORB", host="http://www.yahoo.mx")
-        assert unicode(peer) == u"Another ORB"
+        assert text_type(peer) == "Another ORB"
 
 
 @pytest.mark.django_db
@@ -24,7 +27,7 @@ class TestPeerQuerysets(object):
     def test_active_peers(self):
         Peer.peers.create(name="Second ORB", host="http://www.yahoo.mx")
         Peer.peers.create(name="Third ORB", host="http://www.yahoo.ca", active=False)
-        assert u"Second ORB" == Peer.peers.active().get().name
+        assert "Second ORB" == Peer.peers.active().get().name
 
     def test_queryable(self):
         assert not Peer.peers.queryable()
@@ -36,7 +39,7 @@ class TestPeerQuerysets(object):
 class TestLoggingQuerysets(object):
 
     def test_log(self):
-        peer = Peer.peers.create(name=u"Sécond ORB", host="http://www.yahoo.mx")
+        peer = Peer.peers.create(name="Sécond ORB", host="http://www.yahoo.mx")
         update_log = peer.logs.create()
         update_log.finish()
         assert update_log.finished > update_log.created

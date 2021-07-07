@@ -1,86 +1,67 @@
-{% extends "base.html" %}
+{% extends "covid/profile/view.html" %}
+{% comment %} {% extends "base.html" %} {% endcomment %}
 {% load i18n %}
 {% load thumbnail %}
 {% block extra_head_title %}{{ viewuser.first_name }} {{ viewuser.last_name }} - {% trans 'profile' %}{% endblock extra_head_title %}
 
 
-{% block content %}
+{% block profile_image %}
+{% thumbnail viewuser.userprofile.photo "80x80" format="PNG" padding=True %}
+{% endblock %}
 
-<div class="row profile">
-	<div class="col-lg-2 vcenter">
-		{% if viewuser.userprofile.photo %}
-			{% thumbnail viewuser.userprofile.photo "80x80" format="PNG" padding=True as im %}
-				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="thumbnail profile-image" >
-			{% endthumbnail %}	
-		{% endif %}
-	</div><!-- 
-	--><div class="col-md-8 col-xs-8 vcenter" >
-		<h2> {{ viewuser.first_name }} {{ viewuser.last_name }}</h2>
-	</div>
-</div>
+{% block profile_name %}
+{{ viewuser.first_name }} {{ viewuser.last_name }}
+{% endblock %}
 
-{% if viewuser.userprofile.role or viewuser.userprofile.role_other %}
-	<div class="row profile">
-		<div class="col-lg-2">
-			<strong>{% trans 'Role' %}</strong>
-		</div><!-- 
-		--><div class="col-md-8 col-xs-8" >
-			{% if viewuser.userprofile.role %}
-				{{ viewuser.userprofile.role }}
-			{% else %}
-				{{ viewuser.userprofile.role_other }}
-			{% endif %}
-		</div>
-	</div>
+{% block profile_edit_label %}
+{% trans 'Edit' %}
+{% endblock %}
+
+{% comment %} extended template handles show/hide logic {% endcomment %}
+{% block profile_role_label %}
+{% trans 'Role' %}
+{% endblock %}
+
+{% block profile_role %}
+{% if viewuser.userprofile.role %}
+{{ viewuser.userprofile.role }}
+{% else %}
+{{ viewuser.userprofile.role_other }}
 {% endif %}
+{% endblock %}
 
-{% if viewuser.userprofile.organisation %}
-	<div class="row profile">
-		<div class="col-lg-2">
-			<strong>{% trans 'Organisation' %}</strong>
-		</div><!-- 
-		--><div class="col-md-8 col-xs-8 vcenter" >
-				{{ viewuser.userprofile.organisation.name }}
-		</div>
-	</div>
-{% endif %}
+{% comment %} extended template handles show/hide logic {% endcomment %}
+{% block profile_org_label %}
+{% trans 'Organisation' %}
+{% endblock %}
 
-{% if viewuser.userprofile.about %}
-	<div class="row profile">
-		<div class="col-lg-2">
-			<strong>{% trans 'About' %}</strong>
-		</div><!-- 
-		--><div class="col-md-8 col-xs-8" >
-				{{ viewuser.userprofile.about }}
-		</div>
-	</div>
-{% endif %}
+{% block profile_org %}
+{{ viewuser.userprofile.organisation.name }}
+{% endblock %}
 
-{% if viewuser.userprofile.website %}
-	<div class="row profile">
-		<div class="col-lg-2">
-			<strong>{% trans 'Website' %}</strong>
-		</div><!-- 
-		--><div class="col-md-8 col-xs-8" >
-				<a href="{{ viewuser.userprofile.website }}">{{ viewuser.userprofile.website }}</a>
-		</div>
-	</div>
-{% endif %}
+{% comment %} extended template handles show/hide logic {% endcomment %}
+{% block profile_about_label %}
+{% trans 'About' %}
+{% endblock %}
 
-{% if viewuser.userprofile.twitter %}
-	<div class="row profile">
-		<div class="col-lg-2">
-			<strong>{% trans 'Twitter' %}</strong>
-		</div><!-- 
-		--><div class="col-md-8 col-xs-8" >
-				<a href="{{ viewuser.userprofile.get_twitter_url }}">{{ viewuser.userprofile.twitter }}</a>
-		</div>
-	</div>
-{% endif %}
+{% block profile_about %}
+{{ viewuser.userprofile.about }}
+{% endblock %}
 
-{% if viewuser.id == user.id %}
-	<div class="col-lg-offset-2 col-lg-8">
-		<a href="{% url 'my_profile_edit' %}" class="btn btn-primary btn btn-default" >{% trans 'Edit' %}</a>
-	</div>
-{% endif %}
+{% comment %} extended template handles show/hide logic {% endcomment %}
+{% block profile_website_label %}
+{% trans 'Website' %}
+{% endblock %}
+
+{% block profile_website %}
+<a href="{{ viewuser.userprofile.website }}">{{ viewuser.userprofile.website }}</a>
+{% endblock %}
+
+{% comment %} extended template handles show/hide logic {% endcomment %}
+{% block profile_twitter_label %}
+{% trans 'Twitter' %}
+{% endblock %}
+
+{% block profile_twitter %}
+<a href="{{ viewuser.userprofile.get_twitter_url }}">{{ viewuser.userprofile.twitter }}</a>
 {% endblock %}

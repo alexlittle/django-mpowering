@@ -1,0 +1,60 @@
+name: ORB-Covid-Library Testing
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python: [2.7, 3.6]
+        django: [1.11.29, 2.2.12]
+        exclude:
+          - python: 2.7
+            django: 2.2.12
+
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Set up Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Cache requirements
+        uses: actions/cache@v1
+        id: pip-cache
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ hashFiles('requirements/*.txt') }}-${{ matrix.python }}-${{ matrix.django }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install Django==${{ matrix.django }}
+          python -m pip install -r requirements/base.txt
+          python -m pip install -r requirements/test.txt
+
+      - name: Collect static files
+        env:
+          DATABASE_URL: 'mysql://root:root@127.0.0.1:3306/orb'
+          DJANGO_SETTINGS_MODULE: 'config.test_settings'
+          SECRET_KEY: 'mysecretphrase'
+          DEBUG_TOOLBAR: 'False'
+        run: |
+          python manage.py collectstatic
+
+      - name: Run the tests
+        env:
+          DATABASE_URL: 'mysql://root:root@127.0.0.1:3306/orb'
+          DJANGO_SETTINGS_MODULE: 'config.test_settings'
+          SECRET_KEY: 'mysecretphrase'
+          DEBUG_TOOLBAR: 'False'
+        run: |
+          pytest
+
+
+

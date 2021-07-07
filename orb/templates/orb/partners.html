@@ -11,7 +11,7 @@
 
 {% url 'orb_guidelines' as orb_guidelines %} {% blocktrans %}
 
-<h3>Anyone is welcome to share content resources on ORB!</h3>
+<h3>Anyone is welcome to share content resources on COVID-19 Library!</h3>
 
 <p>
 	If you believe your content meets <a href="{{ orb_guidelines }}">our
@@ -21,36 +21,36 @@
 </p>
 
 
-<h3>Are you interested in becoming an ORB Content Partner?</h3>
+<h3>Are you interested in becoming an COVID-19 Library Content Partner?</h3>
 
-<p>This is a more formal relationship with ORB and mPowering Frontline Health Workers.</p>
+<p>This is a more formal relationship with COVID-19 Library and COVID-19 Digital Classroom.</p>
 
-<p>As a Content Partner, we will create an ORB partner page with
+<p>As a Content Partner, we will create an COVID-19 Library partner page with
 	your logo, a short description of your organisation and a link back to
 	your home page. We will also help connect with you other partners who
 	may want to use your content or commission new content from you.
 
 	Content Partners should have an internal quality assurance and review
-	process in place, as this will help us fast-track your ORB resources
+	process in place, as this will help us fast-track your COVID-19 Library resources
 	through our content review process.</p>
 
 <p>The criteria for becoming a content partner are:</p>
 
 <ul>
 	<li>Commitment to using open content licensing (Creative Commons)
-		and sharing your digital health training materials on ORB. <a
+		and sharing your digital health training materials on COVID-19 Library. <a
 		href="https://youtu.be/zbqq6Gg5g3U">Watch our video on Creative
 			Commons for Global Health</a>
 	</li>
 	<li>Robust, well-documented internal quality assurance and review
-		processes - this helps us to fast-track your ORB resources through our
+		processes - this helps us to fast-track your COVID-19 Library resources through our
 		content review process</li>
-	<li>Agreement to being an ambassador for ORB - promoting its use
+	<li>Agreement to being an ambassador for COVID-19 Library - promoting its use
 		by implementers, health workers and others</li>
 </ul>
 
 <p>
-	To apply to become an ORB Content Partner, please <a
+	To apply to become an COVID-19 Library Content Partner, please <a
 		href="mailto:info@mpoweringhealth.org">contact us</a>. All Content
 	Partners should send a letter of commitment, not to exceed one page,
 	which documents how they meet these criteria and their motivation for
@@ -64,10 +64,10 @@
 {% for p in partners %}
 <div class="row" style="padding-bottom:20px">
 	<div class="col-md-1">
-		<a href="{% url 'orb_tags' p.slug %}" title="{% blocktrans with p.name as org %}View all {{ org }} resources on ORB{% endblocktrans %}">
+		<a href="{% url 'orb_tags' p.slug %}" title="{% blocktrans with p.name as org %}View all {{ org }} resources on COVID-19 Library{% endblocktrans %}">
 		{% thumbnail p.image "70x70" format="PNG" padding=True as im %}
 				<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}"
-					alt="{% blocktrans with p.name as org %}View all {{ org }} resources on ORB{% endblocktrans %}">
+					alt="{% blocktrans with p.name as org %}View all {{ org }} resources on COVID-19 Library{% endblocktrans %}">
 		{% endthumbnail %}
 		</a>
 	</div>
@@ -75,10 +75,10 @@
 		<h4>{{ p.name }}</h4>
 		<p>{{ p.description|safe }}<br/>
 		{% if p.slug == 'jhu-ccp' %}
-			<a href="{% url 'orb_tags' 'nurhi' %}">{% blocktrans %}View all NURHI project resources on ORB{% endblocktrans %}</a><br/>
-			<a href="{% url 'orb_tags' 'ghana-behavior-change-support' %}">{% blocktrans %}View all Ghana BCS project resources on ORB{% endblocktrans %}</a></p>
+			<a href="{% url 'orb_tags' 'nurhi' %}">{% blocktrans %}View all NURHI project resources on COVID-19 Library{% endblocktrans %}</a><br/>
+			<a href="{% url 'orb_tags' 'ghana-behavior-change-support' %}">{% blocktrans %}View all Ghana BCS project resources on COVID-19 Library{% endblocktrans %}</a></p>
 		{% else %}
-			<a href="{% url 'orb_tags' p.slug %}">{% blocktrans with p.name as org %}View all {{ org }} resources on ORB{% endblocktrans %}</a></p>
+			<a href="{% url 'orb_tags' p.slug %}">{% blocktrans with p.name as org %}View all {{ org }} resources on COVID-19 Library{% endblocktrans %}</a></p>
 		{%endif %}
 	</div>
 

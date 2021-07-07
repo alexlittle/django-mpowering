@@ -1,5 +1,5 @@
 """
-Management command to query peer ORB instances for updated content and
+Management command to query peer COVID-19 Library instances for updated content and
 add those resources or update if they were sourced remotely.
 
 Usage:
@@ -15,6 +15,8 @@ Optionally select one or more peers by primary key:
 The primary keys can be listed using the list_peers command.
 
 """
+
+from __future__ import unicode_literals
 
 from django.core.management.base import BaseCommand
 

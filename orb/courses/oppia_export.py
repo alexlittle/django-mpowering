@@ -11,8 +11,7 @@ from django.template.loader import render_to_string
 from lxml import etree
 from pathlib2 import Path
 
-from orb.courses.export import CourseExport
-from orb.courses.export import format_page_as_markdown
+from orb.courses.export import CourseExport, format_page_as_markdown
 
 module_base = Path(__file__).parent  # Directory in which this file lives
 

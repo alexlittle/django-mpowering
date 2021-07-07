@@ -1,7 +1,8 @@
+from __future__ import unicode_literals
+
 from django.conf.urls import url
 
 from orb.bookmark import views
-
 
 urlpatterns = [
     url(r'^$', views.resource_bookmark_view, name="orb_bookmark"),

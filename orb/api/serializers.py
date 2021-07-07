@@ -1,4 +1,6 @@
 # orb/api/serializers.py
+from __future__ import unicode_literals
+
 import json
 
 from tastypie.serializers import Serializer
